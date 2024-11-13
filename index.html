@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visualogic</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+    .fade-in {
+        animation: fadeIn 2s ease-in-out;
+    }
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+</style>
+</head>
+<body class="bg-gray-900">
+    <nav class="bg-gray-800 p-4 fixed w-full z-10">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo Section -->
+            <div class="text-white font-bold text-2xl">
+                <img id="logo" style="width: 20%;" src="./assets/logo.png" alt="">
+            </div>
+            <!-- Navigation Links -->
+            <ul class="hidden md:flex space-x-8">
+                <li><a href="#" class="text-white hover:text-gray-400">Home</a></li>
+                <li><a href="#" class="text-white hover:text-gray-400">About</a></li>
+                <!--li><a href="#" class="text-white hover:text-gray-400">Categories</a></li-->
+            </ul>
+            <!-- Hamburger Menu -->
+            <button id="menu-toggle" class="block md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+    
+<!-- Background Video Section -->
+<div class="relative h-screen w-full overflow-hidden">
+    <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover">
+        <source src="./assets/bg-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <!-- Hero Content Aligned to the Left -->
+<div class="relative flex items-center justify-start h-full text-white fade-in px-8 md:px-16">
+    <div class="max-w-md">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-4">WELCOME TO Visualogic</h1>
+        <p class="text-lg md:text-2xl mb-6">Your online algorithm visualization tool.</p>
+        <a href="#about" class="bg-transparent border border-white text-white px-6 py-2 rounded hover:bg-white hover:text-gray-900 transition">
+            GET STARTED!
+        </a>
+    </div>
+</div>
+
+</div>
+
+<!-- Navigation Bar -->
+<nav class="bg-gray-800 p-4 fixed w-full z-10">
+    <div class="container mx-auto flex justify-between items-center">
+        <!-- Logo Section -->
+        <div class="text-white font-bold text-2xl">
+            ALGOVIS.IO
+        </div>
+        <!-- Navigation Links -->
+        <ul class="hidden md:flex space-x-8">
+            <li><a href="#" class="text-white hover:text-gray-400">Home</a></li>
+            <li><a href="#about" class="text-white hover:text-gray-400">About</a></li>
+            <li><a href="#categories" class="text-white hover:text-gray-400">Categories</a></li>
+        </ul>
+        <!-- Hamburger Menu -->
+        <button id="menu-toggle" class="block md:hidden text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+    </div>
+</nav>
+
+<!-- About Section -->
+<section id="about" class="bg-white p-8 text-gray-900 fade-in">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+        <!-- Left Part: Text Content -->
+        <div class="w-full md:w-1/2 mb-8 md:mb-0">
+            <h2 class="text-3xl font-bold mb-4">How can visualizing algorithms help you learn better?</h2>
+            <p class="text-lg mb-6"> 
+                Algovis.io is an interactive tool for visualizing algorithms and data structures. It helps you understand complex concepts in an easy and engaging way, making learning fun and efficient.
+            </p>
+            <p class="mb-6">
+                Are you a visual learner looking to better understand important algorithms? I made AlgoVis for all the people who want to learn about algorithms, but don't feel like studying textbooks for hours just to understand them.
+            </p>
+            <ul class="pl-6">
+                <li class="text-lg"><span class="font-bold">✓</span> Short explanations of how the algorithms work.</li>
+                <li class="text-lg"><span class="font-bold">✓</span> Pseudocode implementations with dynamically highlighted lines.</li>
+                <li class="text-lg"><span class="font-bold">✓</span> High quality visualizations on all devices.</li>
+            </ul>
+            <p class="mt-6">
+                I made sure to create visualizations with the highest degree of interactivity. Every visualization comes with the option to test the algorithm on your own data, be it a list of unsorted numbers or a custom graph.
+            </p>
+        </div>
+
+        <!-- Right Part: Image Content -->
+        <div class="w-full md:w-1/2">
+            <img src="./assets/about.jpg" alt="Algorithm Visualization" class="rounded-lg shadow-lg">
+        </div>
+    </div>
+</section>
+<!--Cards text-->
+<section id="categories" class="bg-white p-8 text-black fade-in">
+    <div class="container mx-auto text-center">        
+        <!-- Cards Container -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="card p-6 bg-white text-left text-gray-800 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:bg-red-600 hover:text-white">
+                <h3 class="text-3xl font-bold mb-2">01</h3>
+                <h4 class="text-xl font-semibold mb-2">High quality visualizations</h4>
+                <p>All visualizations have been coded by me, touching them up until it's clear on first sight how an algorithm works.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card p-6 bg-white text-left text-gray-800 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:bg-red-600 hover:text-white">
+                <h3 class="text-3xl font-bold mb-2">02</h3>
+                <h4 class="text-xl font-semibold mb-2">Completely free</h4>
+                <p>I believe in free education. AlgoVis is and will stay free - forever. Also, there’s no need to create an account. All features are available for everyone.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card p-6 bg-white text-left text-gray-800 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:bg-red-600 hover:text-white">
+                <h3 class="text-3xl font-bold mb-2">03</h3>
+                <h4 class="text-xl font-semibold mb-2">No advertisements</h4>
+                <p>Ads are annoying. In fact, they're so annoying that I refrain from having them on my site at all. I’m sure your ad-blocker appreciates that break.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- Categories Section -->
+<section id="categories" class="bg-white p-8 text-black fade-in">
+    <div class="container mx-auto text-center">
+        <!--h2 class="text-3xl font-bold mb-4">Categories</h2-->
+        <!--p class="mb-6">Explore different categories of algorithms such as sorting, searching, and dynamic programming.</p-->
+        
+        <!-- Cards Container -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="card max-w-sm rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:bg-red-600 hover:text-white">
+                <img src="https://via.placeholder.com/100" alt="Algorithm" class="w-full h-56 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold mb-2">Sorting Algorithms</h3>
+                    <p class="text-gray-700">Learn how different sorting algorithms work, from Bubble Sort to Merge Sort.</p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card max-w-sm rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:bg-red-600 hover:text-white">
+                <img src="https://via.placeholder.com/300" alt="Algorithm" class="w-full h-56 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold mb-2">Searching Algorithms</h3>
+                    <p class="text-gray-700">Explore various searching algorithms like Binary Search and Linear Search.</p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card max-w-sm rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:bg-red-600 hover:text-white">
+                <img src="https://via.placeholder.com/300" alt="Algorithm" class="w-full h-56 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold mb-2">Dynamic Programming</h3>
+                    <p class="text-gray-700">Understand dynamic programming with examples like Fibonacci sequence and Knapsack problem.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- JavaScript for Toggle Menu -->
+<script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.querySelector('ul');
+
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('hidden');
+    });
+</script>
+<footer class="bg-black text-white py-10">
+    <div class="container mx-auto flex flex-wrap justify-between items-center">
+      <!-- Left Side (Social Media Links) -->
+      <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-6 md:mb-0">
+        <h3 class="text-xl font-bold mb-2">Visualogic</h3>
+        <p class="mb-4">Feel free to hit me up on social media:</p>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-400 hover:text-white">
+            <i class="fab fa-twitter"></i> <!-- Replace with actual icon -->
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white">
+            <i class="fab fa-google"></i> <!-- Replace with actual icon -->
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white">
+            <i class="fab fa-xing"></i> <!-- Replace with actual icon -->
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white">
+            <i class="fab fa-linkedin"></i> <!-- Replace with actual icon -->
+          </a>
+        </div>
+      </div>
+      
+      <!-- Right Side (Useful Links) -->
+      <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-6 md:mb-0">
+        <h3 class="text-xl font-bold mb-2">Useful Links</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">About us</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Categories</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Terms of service</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Privacy policy</a></li>
+        </ul>
+      </div>
+    </div>
+  
+    <!-- Bottom Section (Copyright) -->
+    <div class="border-t border-gray-700 mt-6 pt-4 text-center text-gray-400">
+      <p>© Copyright <span class="font-bold">Visualogic</span>. All Rights Reserved</p>
+      <!--p>Designed by <a href="#" class="text-red-500 hover:text-red-700">BootstrapMade</a></p-->
+    </div>
+  </footer>
+</body>
+</html>
