@@ -23,17 +23,16 @@
 </style>
 </head>
 <body class="bg-gray-900">
-    <nav class="bg-[#0a1d46] p-4 fixed w-full z-10">
+    <nav id="navbar" style="background-color: transparent; padding: 1rem; position: fixed; width: 100%; z-index: 10; transition: background-color 0.3s ease;">
         <div class="container mx-auto flex justify-between items-center">
             <!-- Logo Section -->
-            <div class="text-white font-bold text-2xl">
-                <img id="logo" style="width: 20%;" src="./assets/logo.png" alt="">
+            <div class="text-white font-bold text-2xl" style="padding-left: 2rem;">
+                <img id="logo" style="width: 20%;" src="./assets/logo.png" alt="Logo">
             </div>
             <!-- Navigation Links -->
-            <ul class="hidden md:flex space-x-8">
+            <ul class="hidden md:flex space-x-8" style="padding-right: 2rem;">
                 <li><a href="#" class="text-white hover:text-gray-400">Home</a></li>
                 <li><a href="#" class="text-white hover:text-gray-400">About</a></li>
-                <!--li><a href="#" class="text-white hover:text-gray-400">Categories</a></li-->
             </ul>
             <!-- Hamburger Menu -->
             <button id="menu-toggle" class="block md:hidden text-white">
@@ -44,6 +43,17 @@
         </div>
     </nav>
     
+    <script>
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) { // Adjust scroll distance as needed
+                navbar.style.backgroundColor = '#11224a'; // Solid color when scrolled
+            } else {
+                navbar.style.backgroundColor = 'transparent'; // Transparent at top
+            }
+        });
+    </script>    
+
 <!-- Background Video Section -->
 <div class="relative h-screen w-full overflow-hidden">
     <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover">
@@ -55,11 +65,13 @@
     <!-- Hero Content Aligned to the Left -->
 <div class="relative flex items-center justify-start h-full text-white fade-in px-8 md:px-16">
     <div class="max-w-md">
-        <h1 class="text-4xl md:text-6xl font-extrabold mb-4">WELCOME TO Visualogic</h1>
-        <p class="text-lg md:text-2xl mb-6">Your online algorithm visualization tool.</p>
-        <a href="#about" class="bg-transparent border border-white text-white px-6 py-2 rounded hover:bg-white hover:text-gray-900 transition">
+        <h1 class="text-4xl px-4 md:text-6xl font-extrabold mb-4">WELCOME TO Visualogic</h1>
+        <p class="text-lg px-4 md:text-2xl mb-6">Your online algorithm visualization tool.</p>
+        <p class = "px-4">
+        <a href="#about" class="bg-transparent border border-white text-white px-8 py-3 rounded hover:bg-white hover:text-gray-900 transition">
             GET STARTED!
         </a>
+    </p>
     </div>
 </div>
 
@@ -88,7 +100,7 @@
 </nav>
 
 <!-- About Section -->
-<section id="about" class="bg-white p-8 text-gray-900 fade-in">
+<section id="about" class="bg-white p-8 px-8 md:px-16 text-gray-900 fade-in">
     <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
         <!-- Left Part: Text Content -->
         <div class="w-full md:w-1/2 mb-8 md:mb-0">
@@ -115,27 +127,28 @@
         </div>
     </div>
 </section>
-<!--Cards text-->
-<section id="categories" class="bg-white p-8 text-black fade-in">
+
+<!-- Cards Section -->
+<section id="categories" class="bg-white p-8 px-8 md:px-16 text-black fade-in">
     <div class="container mx-auto text-center">        
         <!-- Cards Container -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Card 1 -->
-            <div class="card p-6 bg-white text-left text-gray-800 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:bg-red-600 hover:text-white">
+            <div class="card p-6 w-80 h-80 bg-white text-left text-gray-800 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:bg-blue-900 hover:text-white">
                 <h3 class="text-3xl font-bold mb-2">01</h3>
                 <h4 class="text-xl font-semibold mb-2">High quality visualizations</h4>
                 <p>All visualizations have been coded by me, touching them up until it's clear on first sight how an algorithm works.</p>
             </div>
 
             <!-- Card 2 -->
-            <div class="card p-6 bg-white text-left text-gray-800 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:bg-red-600 hover:text-white">
+            <div class="card p-6 w-80 h-80 bg-white text-left text-gray-800 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:bg-blue-900 hover:text-white">
                 <h3 class="text-3xl font-bold mb-2">02</h3>
                 <h4 class="text-xl font-semibold mb-2">Completely free</h4>
                 <p>I believe in free education. AlgoVis is and will stay free - forever. Also, there’s no need to create an account. All features are available for everyone.</p>
             </div>
 
             <!-- Card 3 -->
-            <div class="card p-6 bg-white text-left text-gray-800 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:bg-red-600 hover:text-white">
+            <div class="card p-6 w-80 h-80 bg-white text-left text-gray-800 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:bg-blue-900 hover:text-white">
                 <h3 class="text-3xl font-bold mb-2">03</h3>
                 <h4 class="text-xl font-semibold mb-2">No advertisements</h4>
                 <p>Ads are annoying. In fact, they're so annoying that I refrain from having them on my site at all. I’m sure your ad-blocker appreciates that break.</p>
@@ -144,19 +157,13 @@
     </div>
 </section>
 
-
-
-
 <!-- Categories Section -->
-<section id="categories" class="bg-white p-8 text-black fade-in">
+<section id="categories" class="bg-white p-8 px-8 md:px-16 text-black fade-in">
     <div class="container mx-auto text-center">
-        <!--h2 class="text-3xl font-bold mb-4">Categories</h2-->
-        <!--p class="mb-6">Explore different categories of algorithms such as sorting, searching, and dynamic programming.</p-->
-        
         <!-- Cards Container -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Card 1 -->
-            <div class="card max-w-sm rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:bg-red-600 hover:text-white">
+            <div class="card max-w-sm rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:bg-blue-900 hover:text-white">
                 <img src="https://via.placeholder.com/100" alt="Algorithm" class="w-full h-56 object-cover">
                 <div class="p-4">
                     <h3 class="text-xl font-semibold mb-2">Sorting Algorithms</h3>
@@ -165,7 +172,7 @@
             </div>
 
             <!-- Card 2 -->
-            <div class="card max-w-sm rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:bg-red-600 hover:text-white">
+            <div class="card max-w-sm rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:bg-blue-900 hover:text-white">
                 <img src="https://via.placeholder.com/300" alt="Algorithm" class="w-full h-56 object-cover">
                 <div class="p-4">
                     <h3 class="text-xl font-semibold mb-2">Searching Algorithms</h3>
@@ -174,7 +181,7 @@
             </div>
 
             <!-- Card 3 -->
-            <div class="card max-w-sm rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:bg-red-600 hover:text-white">
+            <div class="card max-w-sm rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:bg-blue-900 hover:text-white">
                 <img src="https://via.placeholder.com/300" alt="Algorithm" class="w-full h-56 object-cover">
                 <div class="p-4">
                     <h3 class="text-xl font-semibold mb-2">Dynamic Programming</h3>
@@ -184,7 +191,6 @@
         </div>
     </div>
 </section>
-
 
 <!-- JavaScript for Toggle Menu -->
 <script>
