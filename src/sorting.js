@@ -23,10 +23,13 @@ function generateBars() {
     array.forEach(value => {
         const bar = document.createElement('div');
         bar.classList.add('bar');
-        bar.style.height = `${value * 6}px`;
+        bar.style.height = `${value * 5}px`;
         bar.textContent = value;
         visualization.appendChild(bar);
     });
+
+    // Adjust the visualization container height dynamically
+    adjustVisualizationHeight();
 }
 
 function sortArray() {
@@ -70,6 +73,9 @@ async function bubbleSort() {
         }
         bars[array.length - i - 1].classList.add('sorted');
     }
+
+    // Adjust the visualization container height dynamically after sorting
+    adjustVisualizationHeight();
 }
 
 async function selectionSort() {
@@ -95,6 +101,8 @@ async function selectionSort() {
         bars[minIdx].classList.remove('active');
         bars[i].classList.add('sorted');
     }
+    // Adjust the visualization container height dynamically after sorting
+    adjustVisualizationHeight();
 }
 
 async function insertionSort() {
@@ -109,6 +117,9 @@ async function insertionSort() {
         }
         bars[i].classList.add('sorted');
     }
+
+    // Adjust the visualization container height dynamically after sorting
+    adjustVisualizationHeight();
 }
 
 async function mergeSort(left, right) {
@@ -134,6 +145,9 @@ async function merge(left, mid, right) {
         document.querySelectorAll('.bar')[k].textContent = array[k];
         await pause();
     }
+
+    // Adjust the visualization container height dynamically after sorting
+    adjustVisualizationHeight();
 }
 
 async function quickSort(low, high) {
@@ -170,6 +184,9 @@ async function heapSort() {
         await pause();
         await heapify(i, 0, bars);
     }
+
+    // Adjust the visualization container height dynamically after sorting
+    adjustVisualizationHeight();
 }
 
 async function heapify(n, i, bars) {
@@ -191,6 +208,12 @@ function updateBars(bars, i, j) {
     bars[i].textContent = array[i];
     bars[j].style.height = `${array[j] * 5}px`;
     bars[j].textContent = array[j];
+    bars[i].classList.add('selected');
+    bars[j].classList.add('selected');
+    setTimeout(() => {
+        bars[i].classList.remove('selected');
+        bars[j].classList.remove('selected');
+    }, 100);
 }
 
 function reset() {
@@ -200,5 +223,20 @@ function reset() {
 }
 
 function pause() {
-    return new Promise(resolve => setTimeout(resolve, 100));
+    return new Promise(resolve => setTimeout(resolve, 200));
+}
+
+function adjustVisualizationHeight() {
+    const bars = document.querySelectorAll('.bar');
+    let maxHeight = 0;
+
+    bars.forEach(bar => {
+        const barHeight = bar.offsetHeight;
+        if (barHeight > maxHeight) {
+            maxHeight = barHeight;
+        }
+    });
+
+    const visualization = document.getElementById('visualization');
+    visualization.style.height = `${maxHeight + 20}px`;
 }
