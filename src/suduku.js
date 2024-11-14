@@ -88,7 +88,6 @@ const problemData = {
 };
 
 
-// Function to update the UI for the selected problem
 function setBacktrackingProblem(problem) {
     currentProblem = problem;
     const { title, description, timeComplexity, spaceComplexity, conclusion } = problemData[problem];
@@ -129,19 +128,108 @@ function setBacktrackingProblem(problem) {
             </div>
     `;
     resetVisualization();
+    // Clear any previously shown input or buttons and update based on the selected problem
+    switch(problem) {
+        case 'sudoku':
+            document.getElementById('maze-container').classList.add('hidden');
+            document.getElementById('visualization').classList.remove('hidden');
+            document.getElementById('generate-maze').classList.add('hidden');
+            document.getElementById('start-solution').classList.add('hidden');
+            // Add custom inputs for Sudoku if needed
+            break;
+        case 'ratInMaze':
+            document.getElementById('maze-container').classList.remove('hidden');
+            document.getElementById('visualization').classList.add('hidden');
+            document.getElementById('generate-maze').classList.remove('hidden');
+            document.getElementById('start-solution').classList.remove('hidden');
+            // Set up input for Rat in Maze
+            break;
+        case 'wordBreak':
+            // Handle word break input and visualization setup
+            break;
+        case 'nQueens':
+            // Handle N-Queens input and visualization setup
+            break;
+    }
 }
 
 // Generate random input for the selected problem
 function generateRandomInput() {
-    const grid = Array.from({ length: 9 }, () => Array(9).fill(0));
-    for (let i = 0; i < 20; i++) {
-        const row = Math.floor(Math.random() * 9);
-        const col = Math.floor(Math.random() * 9);
-        grid[row][col] = Math.floor(Math.random() * 9) + 1;
+   switch(currentProblem) {
+        case 'sudoku':
+            const grid = Array.from({ length: 9 }, () => Array(9).fill(0));
+            for (let i = 0; i < 20; i++) {
+                const row = Math.floor(Math.random() * 9);
+                const col = Math.floor(Math.random() * 9);
+                grid[row][col] = Math.floor(Math.random() * 9) + 1;
+            }
+            arrayInput.value = JSON.stringify(grid);
+            visualizeGrid(grid);
+            break;
+        case 'ratInMaze':
+            const maze = generateRandomMaze(5, 5); // Generate a random maze for Rat in Maze
+            arrayInput.value = JSON.stringify(maze);
+            visualizeMaze(maze); // You need to define visualizeMaze
+            break;
+        case 'wordBreak':
+            // Generate random input for Word Break (e.g., a string and dictionary)
+            break;
+        case 'nQueens':
+            // Generate random input for N-Queens (e.g., a random N value)
+            break;
     }
-    arrayInput.value = JSON.stringify(grid);
-    visualizeGrid(grid);
 }
+
+function generateRandomMaze(rows, cols) {
+    console.log(rows,cols)
+    const maze = Array.from({ length: rows }, () => Array(cols).fill(0));
+    // Add some random walls (denoted by 1) and a starting point (denoted by 2)
+    for (let i = 0; i < Math.floor(rows * cols * 0.2); i++) {
+        const r = Math.floor(Math.random() * rows);
+        const c = Math.floor(Math.random() * cols);
+        maze[r][c] = 1;
+    }
+    maze[0][0] = 2; // Start point
+    maze[rows - 1][cols - 1] = 3; // End point
+    return maze;
+}
+
+// Handle visualization start for different algorithms
+function startVisualization() {
+    switch(currentProblem) {
+        case 'sudoku':
+            const grid = JSON.parse(arrayInput.value);
+            solveSudoku(grid);
+            break;
+        case 'ratInMaze':
+            const maze = JSON.parse(arrayInput.value);
+            solveRatInMaze(maze); // Define this function
+            break;
+        case 'wordBreak':
+            // Start the Word Break visualization
+            break;
+        case 'nQueens':
+            // Start the N-Queens visualization
+            break;
+    }
+}
+// Function to visualize the maze (you need to define it)
+function visualizeMaze(maze) {
+    visualizationContainer.innerHTML = '';
+    maze.forEach((row) => {
+        const rowDiv = document.createElement('div');
+        rowDiv.className = 'flex space-x-1';
+        row.forEach((cell) => {
+            const cellDiv = document.createElement('div');
+            cellDiv.className = `w-8 h-8 text-center ${cell === 1 ? 'bg-gray-600' : cell === 2 ? 'bg-green-500' : cell === 3 ? 'bg-red-500' : 'bg-white'} p-1 border border-gray-600`;
+            rowDiv.appendChild(cellDiv);
+        });
+        console.log(rowDiv, "rowdiv")
+        visualizationContainer.appendChild(rowDiv);
+    });
+}
+
+
 
 // Visualize grid function to update UI with the current state of the Sudoku grid
 function visualizeGrid(grid) {
@@ -199,6 +287,14 @@ function startVisualization() {
 function resetVisualization() {
     visualizationContainer.innerHTML = '';
     arrayInput.value = '';
+}
+
+generateRandomInput();
+
+// Function to solve the Rat in a Maze (you need to implement the backtracking logic)
+async function solveRatInMaze(maze) {
+    // Backtracking logic for Rat in Maze
+    // Update the visualization step-by-step
 }
 
 generateRandomInput();
