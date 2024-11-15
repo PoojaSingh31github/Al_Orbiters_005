@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Queue </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .card {
+            width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .card h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+        .queue-container {
+            display: flex;
+            align-items: center;
+            border: 2px solid #333;
+            border-radius: 8px;
+            width: 100%;
+            height: 100px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            overflow-x: auto; /* Enable horizontal scrolling */
+            max-width: 100%; /* Limit maximum width of the container */
+        }
+        .queue-element {
+            padding: 8px;
+            margin: 2px;
+            background-color: #0099cc;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 5px;
+            text-align: center;
+            min-width: 50px;
+        }
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .input-group input {
+            width: 48%;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .button-group button {
+            width: 23%; /* Adjusted button width to fit in one row */
+            padding: 10px;
+            font-size: 14px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button-group button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Queue Visualizer</h2>
+        <div class="queue-container" id="queueContainer"></div>
+        <div class="input-group">
+            <input type="number" id="queueInput" placeholder="Enter a value" />
+            <input type="number" id="maxSize" placeholder="Max Size" min="1" />
+        </div>
+        <div class="button-group">
+            <button onclick="enqueue()">Enqueue</button>
+            <button onclick="dequeue()">Dequeue</button>
+            <button onclick="peek()">Peek</button>
+            <button onclick="clearQueue()">Clear</button>
+        </div>
+        <div id="result">Queue Size: 0</div>
+    </div>
+
+    <script>
+        const queue = [];
+        let maxSize = Infinity;
+
+        document.getElementById('maxSize').addEventListener('change', function() {
+            maxSize = parseInt(this.value) || Infinity;
+            if (queue.length > maxSize) {
+                queue.splice(maxSize); // Trim the queue to the new max size
+                updateDisplay();
+            }
+        });
+
+        function updateDisplay() {
+            const container = document.getElementById("queueContainer");
+            const result = document.getElementById("result");
+
+            container.innerHTML = '';
+            queue.forEach(value => {
+                const element = document.createElement("div");
+                element.className = "queue-element";
+                element.innerText = value;
+                container.appendChild(element);
+            });
+
+            result.innerText = `Queue Size: ${queue.length}`;
+        }
+
+        function enqueue() {
+            const value = document.getElementById("queueInput").value;
+            if (value) {
+                if (queue.length < maxSize) {
+                    queue.push(parseInt(value));
+                    updateDisplay();
+                } else {
+                    alert("Queue is full. Max size reached.");
+                }
+            }
+        }
+
+        function dequeue() {
+            if (queue.length > 0) {
+                queue.shift();
+                updateDisplay();
+            }
+        }
+
+        function peek() {
+            const result = document.getElementById("result");
+            result.innerText = queue.length > 0 ? `Front: ${queue[0]}` : 'Queue is empty';
+        }
+
+        function clearQueue() {
+            queue.length = 0;
+            updateDisplay();
+        }
+    </script>
+</body>
+</html>

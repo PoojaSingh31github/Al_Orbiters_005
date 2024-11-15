@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Stack Visualizer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f4f4f9;
+      }
+      .card {
+        width: 400px; /* Increased card width */
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+      .card h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #333;
+      }
+      .stack-container {
+        display: flex;
+        flex-direction: column-reverse;
+        border: 2px solid #333;
+        border-radius: 8px;
+        width: 100%;
+        height: 150px;
+        margin-bottom: 20px;
+        background-color: #f9f9f9;
+        overflow-y: auto; /* Enable scrolling */
+        max-height: 300px; /* Limit maximum height of the container */
+      }
+      .stack-element {
+        padding: 8px;
+        margin: 2px;
+        background-color: #0099cc;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 5px;
+        text-align: center;
+      }
+      .input-group {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+      .input-group input {
+        width: 48%;
+        padding: 8px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .button-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+      }
+      .button-group button {
+        width: 23%; /* Adjusted button width to fit in one row */
+        padding: 10px;
+        font-size: 14px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .button-group button:hover {
+        background-color: #0056b3;
+      }
+      #result {
+        margin-top: 10px;
+        font-size: 16px;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2>Stack Visualizer</h2>
+      <div class="stack-container" id="stackContainer"></div>
+      <div class="input-group">
+        <input type="number" id="stackInput" placeholder="Enter a value" />
+        <input type="number" id="maxSize" placeholder="Max Size" min="1" />
+      </div>
+      <div class="button-group">
+        <button onclick="push()">Push</button>
+        <button onclick="pop()">Pop</button>
+        <button onclick="peek()">Peek</button>
+        <button onclick="clearStack()">Clear</button>
+      </div>
+      <div id="result">Stack Size: 0</div>
+    </div>
+
+    <script>
+      const stack = []
+      let maxSize = Infinity
+
+      document
+        .getElementById('maxSize')
+        .addEventListener('change', function () {
+          maxSize = parseInt(this.value) || Infinity
+          if (stack.length > maxSize) {
+            stack.splice(maxSize) // Trim the stack to the new max size
+            updateDisplay()
+          }
+        })
+
+      function updateDisplay() {
+        const container = document.getElementById('stackContainer')
+        const result = document.getElementById('result')
+
+        container.innerHTML = ''
+        stack.forEach((value) => {
+          const element = document.createElement('div')
+          element.className = 'stack-element'
+          element.innerText = value
+          container.appendChild(element)
+        })
+
+        result.innerText = `Stack Size: ${stack.length}`
+      }
+
+      function push() {
+        const value = document.getElementById('stackInput').value
+        if (value) {
+          if (stack.length < maxSize) {
+            stack.push(parseInt(value))
+            updateDisplay()
+          } else {
+            alert('Stack is full. Max size reached.')
+          }
+        }
+      }
+
+      function pop() {
+        if (stack.length > 0) {
+          stack.pop()
+          updateDisplay()
+        }
+      }
+
+      function peek() {
+        const result = document.getElementById('result')
+        result.innerText =
+          stack.length > 0
+            ? `Top: ${stack[stack.length - 1]}`
+            : 'Stack is empty'
+      }
+
+      function clearStack() {
+        stack.length = 0
+        updateDisplay()
+      }
+    </script>
+  </body>
+</html>
