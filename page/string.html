@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String oprations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body class="bg-gray-900 text-white">
+    <div class="flex h-full">
+        <!-- Sidebar -->
+        <div
+            class="fixed top-0 left-0 h-full w-16 md:w-64 bg-gray-800 text-gray-400 flex flex-col items-center md:items-start p-4 shadow-lg">
+            <h2
+                class="hidden md:block text-transparent text-lg font-semibold mb-4 bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">
+                Data Structures</h2>
+            <ul class="space-y-4">
+                <li class="text-center md:text-left">
+                    <a href="array.html" onclick="setBacktrackingProblem('sudoku')"
+                        class="flex items-center space-x-2 py-1 hover:text-white">
+                        <i class="fas fa-th-large"></i>
+                        <span class="hidden md:inline">Array</span>
+                    </a>
+                </li>
+                <li class="text-center md:text-left">
+                    <a href="string.html" onclick="setBacktrackingProblem('ratInMaze')"
+                        class="flex items-center space-x-2 py-1 hover:text-white">
+                        <i class="fas fa-font"></i>
+                        <span class="hidden md:inline">string</span>
+                    </a>
+                </li>
+                <li class="text-center md:text-left">
+                    <a href="Stack.html" onclick="setBacktrackingProblem('wordBreak')"
+                        class="flex items-center space-x-2 py-1 hover:text-white">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span class="hidden md:inline">stack</span>
+                    </a>
+                </li>
+                <li class="text-center md:text-left">
+                    <a href="Queue.html" onclick="setBacktrackingProblem('nQueens')"
+                        class="flex items-center space-x-2 py-1 hover:text-white">
+                        <i class="fa-brands fa-stack-overflow"></i>
+                        <span class="hidden md:inline">Queue</span>
+                    </a>
+                </li>
+                <li class="text-center md:text-left">
+                    <a href="linklist.html" onclick="setBacktrackingProblem('nQueens')"
+                        class="flex items-center space-x-2 py-1 hover:text-white">
+                        <i class="fas fa-project-diagram"></i>
+                        <span class="hidden md:inline">linklist</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="ml-16 md:ml-64 flex-1 p-8">
+            <h1 id="problemTitle"
+                class="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 mb-2">
+                string Visualizer</h1>
+            <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 items-center mt-5">
+                <div>
+                    <label for="addChar" class="block text-lg font-medium">Add Character</label>
+                    <input id="addChar" type="text" maxlength="1"
+                        class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400">
+                </div>
+                <div>
+                    <label for="deleteIndex" class="block text-lg font-medium">Delete String
+                        (Index)</label>
+                    <input id="deleteIndex" type="number"
+                        class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400">
+                </div>
+                <div> <label for="appendIndex" class="block text-lg font-medium">Append String at
+                        Index</label>
+                    <input id="appendIndex" type="number"
+                        class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400" placeholder="Index">
+                    <input id="appendValue" type="text"
+                        class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400"
+                        placeholder="String">
+                </div>
+                <div>
+                    <label for="updateIndex" class="block text-lg font-medium">Update String (Index)</label>
+                    <input id="updateIndex" type="number"
+                        class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400" placeholder="Index">
+                    <input id="updateValue" type="text"
+                        class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400"
+                        placeholder="New String">
+
+                </div>
+            </div>
+
+            <div class="space-x-2">
+                <div class="flex space-x-4 mt-6">
+                    <button onclick="addChar()"
+                        class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Add
+                    </button>
+                    <button onclick="deleteChar()"
+                        class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Delete</button>
+                    <button onclick="appendChar()"
+                        class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Append</button>
+                    <button onclick="updateChar()"
+                        class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Update</button>
+                </div>
+            </div>
+
+            <!-- Visualization Area -->
+            <div id="stringDisplay" class="visualization mt-8 bg-gray-800 p-4 rounded"></div>
+            <!-- Problem Description -->
+            <div class="p-6 mt-4 bg-gray-800 rounded-lg shadow-lg space-y-4" id="problemDescription">
+                <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500" id="problemTitle">
+                    String Data Structure
+                </h2>
+                <p class="text-gray-300 leading-relaxed" id="problemDescriptionText">
+                    A <strong>String</strong> is a sequence of characters, typically used to represent text. Strings are one of the most commonly used data structures in programming, enabling the manipulation and storage of textual data. 
+                    Strings are immutable in many programming languages, meaning any modification creates a new string. Operations such as concatenation, substring extraction, and character replacement are widely supported.
+                </p>
+            
+                <!-- Time Complexity Section -->
+                <div class="bg-gray-700 p-4 rounded-lg">
+                    <h3 class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 mb-2">
+                        Time Complexity:
+                    </h3>
+                    <p class="text-gray-300">
+                        - <strong>Access by Index:</strong> O(1) (constant time to access a character).<br>
+                        - <strong>Concatenation:</strong> O(n), where n is the length of the new string.<br>
+                        - <strong>Substring Extraction:</strong> O(k), where k is the length of the substring.<br>
+                        - <strong>Search:</strong> O(n), where n is the length of the string being searched.<br>
+                        - <strong>Replace/Modify:</strong> O(n), as a new string must be created in most cases.
+                    </p>
+                </div>
+            
+                <!-- Space Complexity Section -->
+                <div class="bg-gray-700 p-4 rounded-lg">
+                    <h3 class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 mb-2">
+                        Space Complexity:
+                    </h3>
+                    <p class="text-gray-300">
+                        - The space complexity of a string depends on its size. For a string of length <strong>n</strong>, space complexity is O(n) for ASCII and O(2n) for Unicode.
+                        - Operations like concatenation may require additional memory allocation proportional to the resulting string's length.
+                    </p>
+                </div>
+            
+                <!-- Additional Problem Information -->
+                <p class="text-gray-400 italic">
+                    Strings are foundational in programming, enabling everything from basic text processing to complex algorithms like pattern matching, encryption, and data serialization. They are extensively used in file manipulation, web development, and natural language processing (NLP).
+                </p>
+            </div>
+            
+
+        </div>
+    </div>
+
+</body>
+<script>
+    // Initialize array
+    // Initialize the string
+    let myString = "";
+
+    // Function to update the string display
+    function updateDisplay() {
+        const stringDisplay = document.getElementById('stringDisplay');
+        stringDisplay.innerText = myString || "String is empty";
+    }
+
+    // Add a character to the string
+    function addChar() {
+        const input = document.getElementById('addChar');
+        const value = input.value;
+
+        if (/^[a-zA-Z]$/.test(value)) {
+            myString += value;
+            input.value = '';
+            updateDisplay();
+        } else {
+            alert('Only a single alphabetic character is allowed!');
+        }
+    }
+
+    // Delete a character at a specific index
+    function deleteChar() {
+        const input = document.getElementById('deleteIndex');
+        const index = Number(input.value);
+
+        if (!isNaN(index) && index >= 0 && index < myString.length) {
+            myString = myString.slice(0, index) + myString.slice(index + 1);
+            input.value = '';
+            updateDisplay();
+        } else {
+            alert('Invalid index');
+        }
+    }
+
+    // Append a character at a specific index
+    function appendChar() {
+    const indexInput = document.getElementById('appendIndex');
+    const charInput = document.getElementById('appendValue'); // Corrected ID
+    const index = Number(indexInput.value.trim());
+    const char = charInput.value.trim();
+
+    // Validate input: index and character
+    if (indexInput.value === '' || charInput.value === '') {
+        alert('Both index and character fields are required.');
+        return;
+    }
+
+    if (isNaN(index) || index < 0 || index > myString.length) {
+        alert('Invalid index! Index must be within bounds of the string.');
+        return;
+    }
+
+    if (!/^[a-zA-Z]$/.test(char)) {
+        alert('Only a single alphabetic character is allowed.');
+        return;
+    }
+
+    // Perform append operation
+    myString = myString.slice(0, index) + char + myString.slice(index);
+    indexInput.value = '';
+    charInput.value = '';
+    updateDisplay();
+}
+
+
+
+    // Update a character at a specific index
+    function updateChar() {
+    const indexInput = document.getElementById('updateIndex');
+    const charInput = document.getElementById('updateValue'); // Corrected ID
+    const index = Number(indexInput.value.trim());
+    const char = charInput.value.trim();
+
+    // Validate input: index and character
+    if (indexInput.value === '' || charInput.value === '') {
+        alert('Both index and character fields are required.');
+        return;
+    }
+
+    if (isNaN(index) || index < 0 || index >= myString.length) {
+        alert('Invalid index! Index must be within bounds of the string.');
+        return;
+    }
+
+    if (!/^[a-zA-Z]$/.test(char)) {
+        alert('Only a single alphabetic character is allowed.');
+        return;
+    }
+
+    // Perform update operation
+    myString = myString.slice(0, index) + char + myString.slice(index + 1);
+    indexInput.value = '';
+    charInput.value = '';
+    updateDisplay();
+}
+
+
+    // Initialize display
+    updateDisplay();
+
+
+</script>
+
+</html>

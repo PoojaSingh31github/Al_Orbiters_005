@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advanced Binary Search Visualizer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f4f4f9;
+      }
+      .card {
+        width: 600px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+      .card h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #333;
+      }
+      .array-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        overflow-x: auto;
+      }
+      .array-element {
+        padding: 10px;
+        margin: 2px;
+        background-color: #0099cc;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 5px;
+        text-align: center;
+        width: 50px;
+        transition: background-color 0.3s;
+      }
+      .array-element.active {
+        background-color: #28a745;
+      }
+      .array-element.checked {
+        background-color: #ffc107;
+      }
+      .input-group,
+      .type-group {
+        margin-bottom: 10px;
+      }
+      .input-group input,
+      .type-group select {
+        width: calc(50% - 5px);
+        padding: 10px;
+        font-size: 16px;
+        margin-right: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .button-group {
+        margin-top: 10px;
+      }
+      .button-group button {
+        padding: 10px 20px;
+        font-size: 14px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .button-group button:hover {
+        background-color: #0056b3;
+      }
+      #result {
+        margin-top: 10px;
+        font-size: 16px;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2>Advanced Binary Search Visualizer</h2>
+      <div class="input-group">
+        <input
+          type="text"
+          id="arrayInput"
+          placeholder="Enter sorted array (e.g., 1, 2, 3, 4)"
+        />
+        <input type="number" id="targetInput" placeholder="Target Number" />
+      </div>
+      <div class="type-group">
+        <select id="searchType">
+          <option value="normal">Normal Binary Search</option>
+          <option value="first">First Occurrence</option>
+          <option value="last">Last Occurrence</option>
+          <option value="closest">Closest Value</option>
+          <option value="abstract">Abstract Binary Search</option>
+        </select>
+      </div>
+      <div class="button-group">
+        <button onclick="startSearch()">Start Search</button>
+      </div>
+      <div class="array-container" id="arrayContainer"></div>
+      <div id="result"></div>
+    </div>
+
+    <script>
+      function startSearch() {
+        const arrayInput = document.getElementById('arrayInput').value
+        const target = parseInt(document.getElementById('targetInput').value)
+        const searchType = document.getElementById('searchType').value
+        const resultDiv = document.getElementById('result')
+        const arrayContainer = document.getElementById('arrayContainer')
+
+        if (!arrayInput || isNaN(target)) {
+          resultDiv.innerText = 'Please enter a valid array and target number.'
+          return
+        }
+
+        const array = arrayInput.split(',').map(Number)
+        if (array.some(isNaN)) {
+          resultDiv.innerText = 'Array must contain only numbers.'
+          return
+        }
+
+        array.sort((a, b) => a - b)
+
+        arrayContainer.innerHTML = ''
+        resultDiv.innerText = ''
+
+        array.forEach((value) => {
+          const element = document.createElement('div')
+          element.className = 'array-element'
+          element.innerText = value
+          arrayContainer.appendChild(element)
+        })
+
+        let left = 0,
+          right = array.length - 1,
+          result = -1
+
+        function updateDisplay(mid) {
+          document.querySelectorAll('.array-element').forEach((el, idx) => {
+            el.classList.remove('active', 'checked')
+            if (idx === mid) el.classList.add('active')
+          })
+        }
+
+        function searchStep() {
+          if (left > right) {
+            if (result !== -1) {
+              resultDiv.innerText = `Target ${
+                searchType === 'closest' ? 'closest to' : 'found at'
+              } index ${result}`
+            } else {
+              resultDiv.innerText = 'Target not found.'
+            }
+            return
+          }
+
+          const mid = Math.floor((left + right) / 2)
+          updateDisplay(mid)
+
+          setTimeout(() => {
+            const midValue = array[mid]
+            if (searchType === 'normal') {
+              if (midValue === target) result = mid
+            } else if (searchType === 'first') {
+              if (midValue === target) result = mid
+              if (midValue >= target) right = mid - 1
+              else left = mid + 1
+              return searchStep()
+            } else if (searchType === 'last') {
+              if (midValue === target) result = mid
+              if (midValue <= target) left = mid + 1
+              else right = mid - 1
+              return searchStep()
+            } else if (searchType === 'closest') {
+              if (
+                result === -1 ||
+                Math.abs(array[result] - target) > Math.abs(midValue - target)
+              ) {
+                result = mid
+              }
+            }
+
+            if (midValue < target) left = mid + 1
+            else right = mid - 1
+
+            searchStep()
+          }, 1000)
+        }
+
+        searchStep()
+      }
+    </script>
+  </body>
+</html>
