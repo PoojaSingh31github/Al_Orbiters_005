@@ -5,18 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visualogic</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+    .fade-in {
+        animation: fadeIn 2s ease-in-out;
+    }
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+</style>
 </head>
 <body class="bg-gray-900">
     <nav id="navbar" style="background-color: transparent; padding: 1rem; position: fixed; width: 100%; z-index: 10; transition: background-color 0.3s ease;">
         <div class="container mx-auto flex justify-between items-center">
             <!-- Logo Section -->
             <div class="text-white font-bold text-2xl" style="padding-left: 2rem;">
-                <img id="logo" style="width: 20%;" src="../assets/logo.png" alt="Logo">
+                <img id="logo" style="width: 20%;" src="../assets/logo2.png" alt="Logo">
             </div>
             <!-- Navigation Links -->
             <ul class="hidden md:flex space-x-8" style="padding-right: 2rem;">
                 <li><a href="#" class="text-white hover:text-gray-400">Home</a></li>
                 <li><a href="#" class="text-white hover:text-gray-400">About</a></li>
+                <li><a href="#" class="text-white hover:text-gray-400">Login</a></li>
             </ul>
             <!-- Hamburger Menu -->
             <button id="menu-toggle" class="block md:hidden text-white">
@@ -70,6 +87,7 @@
         <ul class="hidden md:flex space-x-8">
             <li><a href="#" class="text-white hover:text-gray-400">Home</a></li>
             <li><a href="#about" class="text-white hover:text-gray-400">About</a></li>
+            <li><a href="#" class="text-white hover:text-gray-400">Login</a></li>
             <li><a href="#categories" class="text-white hover:text-gray-400">Categories</a></li>
         </ul>
         <!-- Hamburger Menu -->
@@ -84,7 +102,7 @@
 <section id="about" class="bg-dark-navy p-8 text-white fade-in">
     <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
         <!-- Left Part: Text Content -->
-        <div class="w-full md:w-1/2 mb-8 md:mb-0">
+        <div class="w-full md:w-1/2 mb-8 md:mb-0 text-justify pr-8 ml-6">
             <h2 class="text-3xl font-bold mb-4">How can visualizing algorithms help you learn better?</h2>
             <p class="text-lg mb-6"> 
                 Algovis.io is an interactive tool for visualizing algorithms and data structures. It helps you understand complex concepts in an easy and engaging way, making learning fun and efficient.
@@ -104,33 +122,33 @@
 
         <!-- Right Part: Image Content -->
         <div class="w-full md:w-1/2">
-            <img src="../assets/about.jpg" alt="Algorithm Visualization" class="rounded-lg shadow-lg">
+            <img src="about2.jpg" alt="Algorithm Visualization" class="rounded-lg shadow-lg">
         </div>
     </div>
 </section>
 <!--Cards text-->
-<section id="categories" class="bg-dark-navy p-8 text-black fade-in">
+<section id="categories" class="bg-dark-navy p-8 text-black fade-in ">
     <div class="container mx-auto text-center">
         <!-- Cards Container -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-">
             <!-- Card 1 -->
             <div class="card p-6 bg-transparent text-left text-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white border border-gray-300">
                 <h3 class="text-3xl font-bold mb-2 text-white">01</h3>
-                <h4 class="text-xl font-semibold mb-2 text-white">High quality visualizations</h4>
+                <h4 class="text-xl font-bold mb-2 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">High quality visualizations</h4>
                 <p>All visualizations have been coded by me, touching them up until it's clear on first sight how an algorithm works.</p>
             </div>
 
             <!-- Card 2 -->
             <div class="card p-6 bg-transparent text-left text-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white border border-gray-300">
                 <h3 class="text-3xl font-bold mb-2 text-white">02</h3>
-                <h4 class="text-xl font-semibold mb-2">Completely free</h4>
+                <h4 class="text-xl font-bold mb-2 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">Completely free</h4>
                 <p>I believe in free education. AlgoVis is and will stay free - forever. Also, there’s no need to create an account. All features are available for everyone.</p>
             </div>
 
             <!-- Card 3 -->
             <div class="card p-6 bg-transparent text-left text-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white border border-gray-300">
                 <h3 class="text-3xl font-bold mb-2 text-white">03</h3>
-                <h4 class="text-xl font-semibold mb-2 text-white">No advertisements</h4>
+                <h4 class="text-xl font-bold mb-2 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">No advertisements</h4>
                 <p>Ads are annoying. In fact, they're so annoying that I refrain from having them on my site at all. I’m sure your ad-blocker appreciates that break.</p>
             </div>
         </div>
@@ -149,7 +167,9 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
             <!-- Card 1 -->
             <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
-                <img src="https://via.placeholder.com/100" alt="Algorithm" class="w-full h-56 object-cover">
+                <div class="flex justify-center items-center transform rotate-180 scale-x-[-1]">
+                <img src="../assets/sorting2.gif" alt="Algorithm" class="w-full py-9 sm:w-70 md:w-60 lg:w-78 h-auto">
+                </div>
                 <div class="p-4">
                     <h3 class=" text-white text-xl font-semibold mb-2">Sorting Algorithms</h3>
                     <p class="text-white">Learn how different sorting algorithms work, from Bubble Sort to Merge Sort.</p>
@@ -157,7 +177,9 @@
             </div>
             <!-- Card 2 -->
             <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
-                <img src="https://via.placeholder.com/300" alt="Algorithm" class="w-full h-56 object-cover">
+                <div class="flex justify-center items-center">
+                    <img src="../assets/binarySearch.gif" alt="Algorithm" class="w-full py-3 sm:w-64 md:w-48 lg:w-70 h-auto">
+                    </div>
                 <div class="p-4">
                     <h3 class="text-white text-xl font-semibold mb-2">Searching Algorithms</h3>
                     <p class="text-white">Explore various searching algorithms like Binary Search and Linear Search.</p>
@@ -166,47 +188,58 @@
 
             <!-- Card 3 -->
             <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
-                <img src="https://via.placeholder.com/300" alt="Algorithm" class="w-full h-56 object-cover">
+                <div class="flex justify-center items-center">
+                    <img src="../assets/stack.gif" alt="Algorithm" class="w-full py-3 sm:w-70 md:w-54 lg:w-80 h-auto">
+                    </div>
                 <div class="p-4">
-                    <h3 class="text-white text-xl font-semibold mb-2">Dynamic Programming</h3>
+                    <h3 class="text-white text-xl font-semibold mb-2">Stack</h3>
                     <p class="text-white">Understand dynamic programming with examples like Fibonacci sequence and Knapsack problem.</p>
                 </div>
             </div>
             <!-- Card 4 -->
             <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
-                <img src="https://via.placeholder.com/300" alt="Algorithm" class="w-full h-56 object-cover">
+                <div class="flex justify-center items-center">
+                    <img src="../assets/twoPointer.gif" alt="Algorithm" class="w-full py-3 sm:w-70 md:w-54 lg:w-80 h-auto">
+                    </div>
                 <div class="p-4">
-                    <h3 class="text-white text-xl font-semibold mb-2">Dynamic Programming</h3>
+                    <h3 class="text-white text-xl font-semibold mb-2">Two Pointer Algorithm</h3>
                     <p class="text-white">Understand dynamic programming with examples like Fibonacci sequence and Knapsack problem.</p>
                 </div>
             </div>
             <!-- Card 5 -->
             <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
-                <img src="https://via.placeholder.com/300" alt="Algorithm" class="w-full h-56 object-cover">
+                <div class="flex justify-center items-center">
+                    <img src="../assets/Array.gif" alt="Algorithm" class="w-full py-3 sm:w-70 md:w-54 lg:w-80 h-auto">
+                    </div>
                 <div class="p-4">
-                    <h3 class="text-white text-xl font-semibold mb-2">Dynamic Programming</h3>
+                    <h3 class="text-white text-xl font-semibold mb-2">Array</h3>
                     <p class="text-white">Understand dynamic programming with examples like Fibonacci sequence and Knapsack problem.</p>
                 </div>
             </div>
             <!-- Card 6 -->
             <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
-                <img src="https://via.placeholder.com/300" alt="Algorithm" class="w-full h-56 object-cover">
+                <div class="flex justify-center items-center">
+                    <img src="../assets/queue.gif" alt="Algorithm" class="w-full py-3 sm:w-70 md:w-54 lg:w-80 h-auto">
+                    </div>
                 <div class="p-4">
-                    <h3 class="text-white text-xl font-semibold mb-2">Dynamic Programming</h3>
+                    <h3 class="text-white text-xl font-semibold mb-2">Queue</h3>
                     <p class="text-white">Understand dynamic programming with examples like Fibonacci sequence and Knapsack problem.</p>
                 </div>
             </div>
             <!-- Card 3 -->
             <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
-                <img src="https://via.placeholder.com/300" alt="Algorithm" class="w-full h-56 object-cover">
+                <div class="flex justify-center items-center">
+                    <img src="../assets/linkedlist.gif" alt="Algorithm" class="w-full py-3 sm:w-70 md:w-54 lg:w-80 h-auto">
+                    </div>
                 <div class="p-4">
-                    <h3 class="text-white text-xl font-semibold mb-2">Dynamic Programming</h3>
+                    <h3 class="text-white text-xl font-semibold mb-2">Linked List Algorithm</h3>
                     <p class="text-white">Understand dynamic programming with examples like Fibonacci sequence and Knapsack problem.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
 
 <!-- JavaScript for Toggle Menu -->
