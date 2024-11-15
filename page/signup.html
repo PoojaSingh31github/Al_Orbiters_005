@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex justify-center items-center h-screen">
+    <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover z-0">
+        <source src="../assets/loginBG.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    <div
+        class="max-w-md  mx-auto relative overflow-hidden z-10 bg-gray-800 p-8 px-12 rounded-lg shadow-md before:w-24 before:h-24 before:absolute before:bg-purple-600 before:rounded-full before:-z-10 before:blur-2xl after:w-32 after:h-32 after:absolute after:bg-sky-400 after:rounded-full after:-z-10 after:blur-xl after:top-24 after:-right-12">
+        <h2 class="text-2xl font-bold text-white mb-6">Welcome to <span class="text-[#7747ff]">Visualogic </span>App</h2>
+
+        <form method="post" action="#" id="emailSignupForm">
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-300" for="name">User Name</label>
+                <input class="mt-1 p-2 w-full bg-gray-700 border border-gray-600 rounded-md text-white" name="name"
+                    type="text" required />
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-300" for="email">Email Address</label>
+                <input class="mt-1 p-2 w-full bg-gray-700 border border-gray-600 rounded-md text-white" name="email"
+                    id="signupEmail" type="email" required />
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-300" for="name">Password</label>
+                <input class="mt-1 p-2 w-full bg-gray-700 border border-gray-600 rounded-md text-white" name="password"
+                    type="password" id="signupPassword" required />
+            </div>
+
+            <div class="flex justify-end">
+                <button
+                    class="bg-gradient-to-r from-purple-600 via-purple-400 to-blue-500 text-white px-4 py-2 font-bold rounded-md hover:opacity-80"
+                    type="submit">
+                    Sign up
+                </button>
+            </div>
+
+        </form>
+
+        <!-- google login -->
+        <div class="mt-6 space-y-3">
+            <button
+                class="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
+                type="button" id="signupWithGoogle">
+                <span class="mr-2 inline-block">
+                    <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 text-rose-500">
+                        <path
+                            d="M20.283 10.356h-8.327v3.451h4.792c-.446 2.193-2.313 3.453-4.792 3.453a5.27 5.27 0 0 1-5.279-5.28 5.27 5.27 0 0 1 5.279-5.279c1.259 0 2.397.447 3.29 1.178l2.6-2.599c-1.584-1.381-3.615-2.233-5.89-2.233a8.908 8.908 0 0 0-8.934 8.934 8.907 8.907 0 0 0 8.934 8.934c4.467 0 8.529-3.249 8.529-8.934 0-.528-.081-1.097-.202-1.625z">
+                        </path>
+                    </svg>
+                </span>
+                Sign up with Google
+            </button>
+        </div>
+        <!-- <button id="loginWithGoogle">Login with Google</button> -->
+        <div class="text-center text-gray-300">
+             already have as account?
+            <a class="text-purple-300 hover:underline" href="login.html">Sign in</a>
+          </div>
+    </div>
+</body>
+<script type="module" src="../script/signup.js"></script>
+
+</html>
