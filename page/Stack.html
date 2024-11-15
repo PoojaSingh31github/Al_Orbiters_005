@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>stack Visualizer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    .stack-container {
+      margin-top: 15px;
+        display: flex;
+        flex-direction: column-reverse;
+        border: 2px solid #333;
+        border-radius: 8px;
+        width: 100%;
+        height: 400px;
+        margin-bottom: 20px;
+        background-color: #202938;
+        overflow-y: auto; 
+        max-height: 300px; 
+      }
+      .stack-element {
+        padding: 8px;
+        margin: 2px;
+        background-color: #384152;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 5px;
+        text-align: center;
+      }
+  </style>
+</head>
+
+<body class="bg-gray-900 text-white">
+  <div class="flex h-full">
+    <!-- Sidebar -->
+    <div
+      class="fixed top-0 left-0 h-full w-16 md:w-64 bg-gray-800 text-gray-400 flex flex-col items-center md:items-start p-4 shadow-lg">
+      <h2
+        class="hidden md:block text-transparent text-lg font-semibold mb-4 bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">
+        Data Structures</h2>
+      <ul class="space-y-4">
+        <li class="text-center md:text-left">
+          <a href="array.html" onclick="setBacktrackingProblem('sudoku')"
+            class="flex items-center space-x-2 py-1 hover:text-white">
+            <i class="fas fa-th-large"></i>
+            <span class="hidden md:inline">Array</span>
+          </a>
+        </li>
+        <li class="text-center md:text-left">
+          <a href="string.html" onclick="setBacktrackingProblem('ratInMaze')"
+            class="flex items-center space-x-2 py-1 hover:text-white">
+            <i class="fas fa-font"></i>
+            <span class="hidden md:inline">string</span>
+          </a>
+        </li>
+        <li class="text-center md:text-left">
+          <a href="Stack.html" onclick="setBacktrackingProblem('wordBreak')"
+            class="flex items-center space-x-2 py-1 hover:text-white">
+            <i class="fa-solid fa-layer-group"></i>
+            <span class="hidden md:inline">stack</span>
+          </a>
+        </li>
+        <li class="text-center md:text-left">
+          <a href="Queue.html" onclick="setBacktrackingProblem('nQueens')"
+            class="flex items-center space-x-2 py-1 hover:text-white">
+            <i class="fa-brands fa-stack-overflow"></i>
+            <span class="hidden md:inline">Queue</span>
+          </a>
+        </li>
+        <li class="text-center md:text-left">
+          <a href="linklist.html" onclick="setBacktrackingProblem('nQueens')"
+            class="flex items-center space-x-2 py-1 hover:text-white">
+            <i class="fas fa-project-diagram"></i>
+            <span class="hidden md:inline">linklist</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="ml-16 md:ml-64 flex-1 p-8">
+      <h1 id="problemTitle"
+        class="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500">
+        Stack Visualizer</h1>
+        <div class="w-full flex justify-between gap-3 items-center mt-3">
+          <input type="number" id="stackInput" placeholder="Enter a value"
+            class="w-1/2 p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400" />
+          <input type="number" id="maxSize" placeholder="Max Size" min="1"
+            class="w-1/2 p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400" />
+        </div>
+
+        <div class="space-x-2">
+        <div class="flex space-x-4 mt-6">
+          <button onclick="push()"
+            class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Push</button>
+          <button onclick="pop()"
+            class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Pop</button>
+          <button onclick="peek()"
+            class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Peek</button>
+          <button onclick="clearStack()"
+            class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Clear</button>
+        </div>
+      </div>
+
+      <!-- Visualization Area -->
+      <div id="stackContainer" class="stack-container" class="visualization mt-8 bg-gray-800 p-4 rounded"></div>
+      <div id="result">Stack Size: 0</div>
+      <!-- Problem Description -->
+      <div class="p-6 mt-4 bg-gray-800 rounded-lg shadow-lg space-y-4" id="problemDescription">
+        <h2
+          class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500"
+          id="problemTitle">
+          Stack Data Structure
+        </h2>
+        <p class="text-gray-300 leading-relaxed" id="problemDescriptionText">
+          A stack is a linear data structure that follows the Last In First Out (LIFO) principle, meaning the
+          last element added to the stack will be the first one to be removed.
+          It supports two main operations: <strong>push</strong> (adding an element to the top of the stack)
+          and <strong>pop</strong> (removing the top element from the stack).
+          Stacks are commonly used for tasks such as expression evaluation, backtracking, undo operations, and
+          parsing syntax in compilers.
+        </p>
+
+        <!-- Time Complexity Section -->
+        <div class="bg-gray-700 p-4 rounded-lg">
+          <h3
+            class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 mb-2">
+            Time Complexity:
+          </h3>
+          <p class="text-gray-300">
+            <strong>Push Operation:</strong> O(1) (constant time to add an element to the stack).<br>
+            <strong>Pop Operation:</strong> O(1) (constant time to remove an element from the stack).<br>
+            <strong>Peek Operation:</strong> O(1) (constant time to view the top element without removing
+            it).
+          </p>
+        </div>
+
+        <!-- Space Complexity Section -->
+        <div class="bg-gray-700 p-4 rounded-lg">
+          <h3
+            class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 mb-2">
+            Space Complexity:
+          </h3>
+          <p class="text-gray-300">
+            O(n) (space complexity is proportional to the number of elements stored in the stack, where n is
+            the number of elements in the stack).
+          </p>
+        </div>
+
+        <!-- Additional Problem Information -->
+        <p class="text-gray-400 italic">
+          The stack is a fundamental data structure widely used in various algorithms and systems. While it is
+          efficient for many use cases, it may not be suitable for problems requiring random access to
+          elements or when elements need to be accessed in a specific order other than LIFO.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</body>
+
+
+<script>
+  const stack = []
+  let maxSize = Infinity
+
+  document
+    .getElementById('maxSize')
+    .addEventListener('change', function () {
+      maxSize = parseInt(this.value) || Infinity
+      if (stack.length > maxSize) {
+        stack.splice(maxSize)
+        updateDisplay()
+      }
+    })
+
+  function updateDisplay() {
+    const container = document.getElementById('stackContainer')
+    const result = document.getElementById('result')
+
+    container.innerHTML = ''
+    stack.forEach((value) => {
+      const element = document.createElement('div')
+      element.className = 'stack-element'
+      element.innerText = value
+      container.appendChild(element)
+    })
+
+    result.innerText = `Stack Size: ${stack.length}`
+  }
+
+  function push() {
+    const value = document.getElementById('stackInput').value
+    if (value) {
+      if (stack.length < maxSize) {
+        stack.push(parseInt(value))
+        updateDisplay()
+      } else {
+        alert('Stack is full. Max size reached.')
+      }
+    }
+  }
+
+  function pop() {
+    if (stack.length > 0) {
+      stack.pop()
+      updateDisplay()
+    }
+  }
+
+  function peek() {
+    const result = document.getElementById('result')
+    result.innerText =
+      stack.length > 0
+        ? `Top: ${stack[stack.length - 1]}`
+        : 'Stack is empty'
+  }
+
+  function clearStack() {
+    stack.length = 0
+    updateDisplay()
+  }
+</script>
+
+</html>
