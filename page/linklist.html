@@ -81,60 +81,55 @@
           <!-- Visualization Area -->
           <div id="listContainer" class="visualization mt-8 bg-gray-800 p-4 rounded flex"></div>
           <!-- Problem Description -->
-
           <div class="p-2 md:p-6 mt-4 bg-gray-800 rounded-lg shadow-lg space-y-4" id="problemDescription">
-              <h2 class="text-xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500"
-                  id="problemTitle">
-                  Array Data Structure
-              </h2>
-              <p class="text-gray-300 leading-relaxed" id="problemDescriptionText">
-                  An <strong>Array</strong> is a collection of elements, each identified by an index or key. Arrays are one of the
-                  most fundamental data structures, often used to store lists of data where each element can be
-                  accessed efficiently.
-                  Arrays can store data of the same type (homogeneous) and are typically fixed in size once
-                  initialized. They are used in a wide range of applications, from basic data storage to complex
-                  algorithms and systems.
-              </p>
-
-              <!-- Time Complexity Section -->
-              <div class="bg-gray-700 p-4 rounded-lg">
-                  <h3
-                      class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 mb-2">
-                      Time Complexity:
-                  </h3>
-                  <p class="text-gray-300">
-                      - <strong>Access by Index:</strong> O(1) (constant time to access any element by its index).<br>
-                      - <strong>Insertion/Deletion at End:</strong> O(1) (constant time for adding/removing an element at the
-                      end).<br>
-                      - <strong>Insertion/Deletion at Beginning:</strong> O(n) (linear time due to the need to shift elements).<br>
-                      - <strong>Search:</strong> O(n) (linear time to search for an element in an unsorted array).<br>
-                      - <strong>Sorting:</strong> O(n log n) (average time complexity for sorting using algorithms like MergeSort
-                      or QuickSort).
-                  </p>
-              </div>
-
-              <!-- Space Complexity Section -->
-              <div class="bg-gray-700 p-4 rounded-lg">
-                  <h3
-                      class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 mb-2">
-                      Space Complexity:
-                  </h3>
-                  <p class="text-gray-300">
-                      - The space complexity of an array is O(n), where <strong>n</strong> is the number of elements in the array.
-                      Each element occupies space proportional to its type, and the overall space is linear with
-                      respect to the number of elements stored in the array.
-                      - Dynamic arrays (like those in languages such as Python) may require occasional resizing, but
-                      their space complexity remains O(n).
-                  </p>
-              </div>
-
-              <!-- Additional Problem Information -->
-              <p class="text-gray-400 italic">
-                  Arrays are an essential data structure used in a variety of domains, including database management,
-                  graphics rendering, and machine learning. Variants like multidimensional arrays and dynamic arrays
-                  offer added flexibility and efficiency in specialized applications.
-              </p>
-          </div>
+            <h2 class="text-xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500"
+                id="problemTitle">
+                Linked List Data Structure
+            </h2>
+            <p class="text-gray-300 leading-relaxed" id="problemDescriptionText">
+                A <strong>Linked List</strong> is a linear data structure in which elements (nodes) are connected using pointers. 
+                Each node consists of two parts: the data and a reference to the next node in the sequence. Unlike arrays, linked lists 
+                are dynamic in size and can efficiently handle insertions and deletions without requiring shifting of elements.
+                Linked Lists are categorized into different types, such as singly linked lists, doubly linked lists, and circular linked lists, 
+                each with unique properties and use cases.
+            </p>
+        
+            <!-- Time Complexity Section -->
+            <div class="bg-gray-700 p-4 rounded-lg">
+                <h3
+                    class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 mb-2">
+                    Time Complexity:
+                </h3>
+                <p class="text-gray-300">
+                    - <strong>Access by Index:</strong> O(n) (linear time, as traversal from the head is required).<br>
+                    - <strong>Insertion at Head:</strong> O(1) (constant time to update the head pointer).<br>
+                    - <strong>Insertion at Tail:</strong> O(1) (constant time if tail pointer is maintained, otherwise O(n)).<br>
+                    - <strong>Deletion:</strong> O(1) for head deletion, O(n) for arbitrary node deletion (traversal needed).<br>
+                    - <strong>Search:</strong> O(n) (linear time to traverse the list for the desired value).
+                </p>
+            </div>
+        
+            <!-- Space Complexity Section -->
+            <div class="bg-gray-700 p-4 rounded-lg">
+                <h3
+                    class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 mb-2">
+                    Space Complexity:
+                </h3>
+                <p class="text-gray-300">
+                    - The space complexity of a linked list is O(n), where <strong>n</strong> is the number of nodes in the list. 
+                    Each node requires additional space for the pointer/reference to the next node.
+                    - In the case of a doubly linked list, space complexity increases as each node stores an additional pointer 
+                    (to the previous node), resulting in O(2n) = O(n).
+                </p>
+            </div>
+        
+            <!-- Additional Problem Information -->
+            <p class="text-gray-400 italic">
+                Linked lists are widely used in scenarios requiring efficient memory utilization, dynamic data handling, and operations 
+                like insertion and deletion. Applications include implementation of stacks, queues, and adjacency lists for graphs.
+            </p>
+        </div>
+        
 
 
 
