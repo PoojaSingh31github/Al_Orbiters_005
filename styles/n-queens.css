@@ -1,0 +1,86 @@
+#visualization {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .visualization-box {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+    font-size: 24px;
+    color: white;
+  }
+  
+  /* .visualization-box.queen {
+    background-color: purple;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 40px);
+    /* grid-gap: 2px; */
+  /* }  */
+  /* 
+  .grid-cols-8 {
+    grid-template-columns: repeat(8, 40px);
+  }
+  
+  .grid-cols-9 {
+    grid-template-columns: repeat(9, 40px);
+  }
+  
+  .grid-cols-10 {
+    grid-template-columns: repeat(10, 40px);
+  }
+  i{
+    font-size: 1.5rem;
+    position: relative;
+    top: .35rem;
+  } */
+  
+  .cell {
+    position: relative;
+    transition: background-color 0.5s ease; /* Smooth transition for cell color */
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 40px);
+  }
+  
+  .grid-cols-8 {
+    grid-template-columns: repeat(8, 40px);
+  }
+  
+  .grid-cols-9 {
+    grid-template-columns: repeat(9, 40px);
+  }
+  
+  .grid-cols-10 {
+    grid-template-columns: repeat(10, 40px);
+  }
+  #visualization {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .visualization-box {
+    transition: all 0.5s ease; /* Smooth transition for queen's movement */
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+    font-size: 24px;
+    color: white;
+  }
+  
+  i {
+    font-size: 1.5rem;
+    position: relative;
+    top: .35rem;
+    left: .3rem;
+  }
+  
