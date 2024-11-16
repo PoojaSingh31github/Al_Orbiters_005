@@ -1,0 +1,95 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+}
+
+#visualizationArea {
+    display: grid;
+    grid-template-columns: repeat(5, 50px);
+    grid-gap: 5px;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.visualization-box {
+    width: 50px;
+    height: 50px;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: black;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.visualization-box.block {
+    background-color: #9d4848;
+}
+
+.visualization-box.start {
+    background-color: #007bff;
+    color: white;
+}
+
+.visualization-box.end {
+    background-color: #a3a728;
+    color: white;
+}
+
+.highlight-success {
+    background-color: #28a745;
+    animation: highlightSuccess 1s ease-in-out;
+}
+
+/* .highlight-fail {
+    background-color: #dc3545;
+    animation: highlightFail 1s ease-in-out;
+} */
+
+@keyframes highlightSuccess {
+    0% {
+        background-color: #28a745;
+    }
+    50% {
+        background-color: #218838;
+    }
+    100% {
+        background-color: #28a745;
+    }
+}
+
+@keyframes highlightFail {
+    0% {
+        background-color: #dc3545;
+    }
+    50% {
+        background-color: #c82333;
+    }
+    100% {
+        background-color: #dc3545;
+    }
+}
+
+button {
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background-color: #0056b3;
+}

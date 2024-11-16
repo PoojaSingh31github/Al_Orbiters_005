@@ -5,215 +5,87 @@ const visualizationContainer = document.getElementById('visualization');
 const arrayInput = document.getElementById('arrayInput');
 
 // Current selected problem
-let currentProblem = 'sudoku';
+let currentProblem = 'ratInMaze';
 
 const problemData = {
     sudoku: {
         title: 'Sudoku Solver Visualizer',
         description: `
-            The Sudoku Solver uses backtracking to fill a 9x9 grid so that each row, column, 
-            and 3x3 section contain the numbers 1 to 9 without repetition. The algorithm works 
-            by filling in empty cells one at a time, and if it finds that a given cell can't 
-            hold any valid number, it backtracks to the previous cell and tries the next possible number. 
-            The algorithm continues this process until the grid is completely filled or no solution is found.
+            Solve a 9x9 Sudoku grid using backtracking.
         `,
-        timeComplexity: `
-            <strong>Best Case:</strong> O(n²) (when there are fewer empty cells to fill).<br>
-            <strong>Average and Worst Case:</strong> O(9^(n²)) (for each empty cell, there are up to 9 possible values to try).
-        `,
-        spaceComplexity: `
-            O(n²) (requires space for the grid and recursion stack).
-        `,
-        conclusion: `
-           The Sudoku Solver is an excellent demonstration of backtracking, but it is not suitable for large puzzles due to its exponential time complexity.
-        `
-    },
-    nQueens: {
-        title: 'N-Queens Problem',
-        description: `
-            The N-Queens problem involves placing N queens on an N×N chessboard so that no two queens 
-            threaten each other. Each queen must be placed such that no other queen is in the same row, 
-            column, or diagonal. Backtracking is used to try placing a queen in each row, and if placing 
-            the queen leads to a conflict later on, the algorithm backtracks and tries the next possible position.
-        `,
-        timeComplexity: `
-            <strong>Best Case:</strong> O(n²) (this assumes that the solution is found early in the process).<br>
-            <strong>Average and Worst Case:</strong> O(n!) (due to the recursive nature of the problem and trying all possible positions for each queen).
-        `,
-        spaceComplexity: `
-            O(n) (requires space to track the positions of the queens).
-        `,
-        conclusion: `
-           The N-Queens problem is a classic demonstration of backtracking, but it becomes computationally expensive for larger values of N due to the exponential growth in possible placements.
-        `
-    },
-    wordBreak: {
-        title: 'Word Break Problem',
-        description: `
-            The Word Break problem determines if a given string can be segmented into words from a dictionary. 
-            The problem is solved by checking if there exists a valid partition of the string such that each segment 
-            of the partition is a word found in the dictionary. This is typically solved using backtracking or dynamic programming.
-        `,
-        timeComplexity: `
-            <strong>Best Case:</strong> O(n) (if the string can be segmented with minimal backtracking).<br>
-            <strong>Average and Worst Case:</strong> O(n²) (since each substring check could involve iterating over a portion of the string).
-        `,
-        spaceComplexity: `
-            O(n) (for storing intermediate results when using dynamic programming or recursion stack for backtracking).
-        `,
-        conclusion: `
-           The Word Break problem is a great example of backtracking, though it may not be the most efficient approach for longer strings when compared to dynamic programming.
-        `
     },
     ratInMaze: {
-        title: 'Rat in a Maze',
+        title: 'Rat in a Maze Visualizer',
         description: `
-            The Rat in a Maze problem involves finding a path for a rat from the start to the end of a grid. 
-            The rat can only move in 4 directions (up, down, left, right), and it can only move through 
-            cells that are open (denoted as 1). The algorithm uses backtracking to explore all possible paths, 
-            and when it reaches a dead end, it backtracks to the previous cell and tries a new direction.
+            Find a path from the start to the end of a maze using backtracking.
         `,
-        timeComplexity: `
-            <strong>Best Case:</strong> O(n) (if the path is found early in the grid).<br>
-            <strong>Average and Worst Case:</strong> O(2^(n²)) (because the algorithm explores all possible paths in the grid).
-        `,
-        spaceComplexity: `
-            O(n²) (for storing the grid and recursion stack).
-        `,
-        conclusion: `
-           The Rat in a Maze problem demonstrates backtracking in exploring paths, but it becomes inefficient in larger grids due to its exponential time complexity.
-        `
-
-    }
+    },
 };
 
-
+// Set the current problem and reset the UI
 function setBacktrackingProblem(problem) {
     currentProblem = problem;
-    const { title, description, timeComplexity, spaceComplexity, conclusion } = problemData[problem];
+    const { title, description } = problemData[problem];
     problemTitle.innerText = title;
-    problemDescription.innerHTML = `
-        <div class="p-6 mt-4 bg-gray-800 rounded-lg shadow-lg space-y-4" id="problemDescription">
-                <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500" id="problemTitle">
-                    ${title}
-                </h2>
-                <p class="text-gray-300 leading-relaxed" id="problemDescriptionText">
-                    ${description}
-                </p>
-                
-                <!-- Time Complexity Section -->
-                <div class="bg-gray-700 p-4 rounded-lg">
-                    <h3 class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 mb-2">
-                        Time Complexity:
-                    </h3>
-                    <p class="text-gray-300">
-                    ${timeComplexity}    
-                    </p>
-                </div>
-            
-                <!-- Space Complexity Section -->
-                <div class="bg-gray-700 p-4 rounded-lg">
-                    <h3 class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 mb-2">
-                        Space Complexity:
-                    </h3>
-                    <p class="text-gray-300">
-                       ${spaceComplexity}
-                    </p>
-                </div>
-            
-                <!-- Additional Problem Information -->
-                <p class="text-gray-400 italic">
-                   ${conclusion}
-                </p>
-            </div>
-    `;
+    problemDescription.innerText = description;
     resetVisualization();
-    // Clear any previously shown input or buttons and update based on the selected problem
-    switch(problem) {
-        case 'sudoku':
-            document.getElementById('maze-container').classList.add('hidden');
-            document.getElementById('visualization').classList.remove('hidden');
-            document.getElementById('generate-maze').classList.add('hidden');
-            document.getElementById('start-solution').classList.add('hidden');
-            // Add custom inputs for Sudoku if needed
-            break;
-        case 'ratInMaze':
-            document.getElementById('maze-container').classList.remove('hidden');
-            document.getElementById('visualization').classList.add('hidden');
-            document.getElementById('generate-maze').classList.remove('hidden');
-            document.getElementById('start-solution').classList.remove('hidden');
-            // Set up input for Rat in Maze
-            break;
-        case 'wordBreak':
-            // Handle word break input and visualization setup
-            break;
-        case 'nQueens':
-            // Handle N-Queens input and visualization setup
-            break;
-    }
 }
 
 // Generate random input for the selected problem
 function generateRandomInput() {
-   switch(currentProblem) {
-        case 'sudoku':
-            const grid = Array.from({ length: 9 }, () => Array(9).fill(0));
-            for (let i = 0; i < 20; i++) {
-                const row = Math.floor(Math.random() * 9);
-                const col = Math.floor(Math.random() * 9);
-                grid[row][col] = Math.floor(Math.random() * 9) + 1;
-            }
-            arrayInput.value = JSON.stringify(grid);
-            visualizeGrid(grid);
-            break;
-        case 'ratInMaze':
-            const maze = generateRandomMaze(5, 5); // Generate a random maze for Rat in Maze
-            arrayInput.value = JSON.stringify(maze);
-            visualizeMaze(maze); // You need to define visualizeMaze
-            break;
-        case 'wordBreak':
-            // Generate random input for Word Break (e.g., a string and dictionary)
-            break;
-        case 'nQueens':
-            // Generate random input for N-Queens (e.g., a random N value)
-            break;
+    if (currentProblem === 'sudoku') {
+        const grid = Array.from({ length: 9 }, () => Array(9).fill(0));
+        for (let i = 0; i < 20; i++) {
+            const row = Math.floor(Math.random() * 9);
+            const col = Math.floor(Math.random() * 9);
+            grid[row][col] = Math.floor(Math.random() * 9) + 1;
+        }
+        arrayInput.value = JSON.stringify(grid);
+        visualizeGrid(grid);
+    } else if (currentProblem === 'ratInMaze') {
+        const maze = generateSolvableMaze(5, 5);
+        arrayInput.value = JSON.stringify(maze);
+        visualizeMaze(maze);
     }
 }
 
-function generateRandomMaze(rows, cols) {
-    console.log(rows,cols)
-    const maze = Array.from({ length: rows }, () => Array(cols).fill(0));
-    // Add some random walls (denoted by 1) and a starting point (denoted by 2)
-    for (let i = 0; i < Math.floor(rows * cols * 0.2); i++) {
-        const r = Math.floor(Math.random() * rows);
-        const c = Math.floor(Math.random() * cols);
-        maze[r][c] = 1;
+// Generate a guaranteed solvable maze for Rat in a Maze
+function generateSolvableMaze(rows, cols) {
+    // Initialize the maze with all walls
+    const maze = Array.from({ length: rows }, () => Array(cols).fill(1));
+
+    // Create a guaranteed path from (0, 0) to (rows - 1, cols - 1)
+    let x = 0, y = 0;
+    maze[x][y] = 2; // Start point
+
+    const path = [[x, y]];
+
+    while (x !== rows - 1 || y !== cols - 1) {
+        if (x < rows - 1 && (y === cols - 1 || Math.random() > 0.5)) {
+            x++; // Move down
+        } else {
+            y++; // Move right
+        }
+        maze[x][y] = 0; // Mark as a valid path
+        path.push([x, y]);
     }
-    maze[0][0] = 2; // Start point
+
     maze[rows - 1][cols - 1] = 3; // End point
+
+    // Randomly add walls, keeping the guaranteed path intact
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+            if (maze[i][j] === 0 && Math.random() > 0.7 && !path.some(([px, py]) => px === i && py === j)) {
+                maze[i][j] = 1; // Add a wall
+            }
+        }
+    }
+
     return maze;
 }
 
-// Handle visualization start for different algorithms
-function startVisualization() {
-    switch(currentProblem) {
-        case 'sudoku':
-            const grid = JSON.parse(arrayInput.value);
-            solveSudoku(grid);
-            break;
-        case 'ratInMaze':
-            const maze = JSON.parse(arrayInput.value);
-            solveRatInMaze(maze); // Define this function
-            break;
-        case 'wordBreak':
-            // Start the Word Break visualization
-            break;
-        case 'nQueens':
-            // Start the N-Queens visualization
-            break;
-    }
-}
-// Function to visualize the maze (you need to define it)
+
+// Visualize the maze
 function visualizeMaze(maze) {
     visualizationContainer.innerHTML = '';
     maze.forEach((row) => {
@@ -221,17 +93,62 @@ function visualizeMaze(maze) {
         rowDiv.className = 'flex space-x-1';
         row.forEach((cell) => {
             const cellDiv = document.createElement('div');
-            cellDiv.className = `w-8 h-8 text-center ${cell === 1 ? 'bg-gray-600' : cell === 2 ? 'bg-green-500' : cell === 3 ? 'bg-red-500' : 'bg-white'} p-1 border border-gray-600`;
+            cellDiv.className = `
+                w-8 h-8 text-center 
+                ${cell === 1 ? 'bg-gray-600' : 
+                  cell === 2 ? 'bg-green-500' : 
+                  cell === 3 ? 'bg-red-500' : 
+                  cell === 9 ? 'bg-blue-400' : 'bg-white'} 
+                p-1 border border-gray-600
+            `;
             rowDiv.appendChild(cellDiv);
         });
-        console.log(rowDiv, "rowdiv")
         visualizationContainer.appendChild(rowDiv);
     });
 }
 
+// Recursive function to solve the Rat in a Maze problem
+async function solveRatInMaze(maze, x = 0, y = 0) {
+    const rows = maze.length;
+    const cols = maze[0].length;
 
+    // Base case: If the rat reaches the destination
+    if (x === rows - 1 && y === cols - 1) {
+        maze[x][y] = 9; // Mark the destination
+        visualizeMaze(maze);
+        await new Promise((resolve) => setTimeout(resolve, 200));
+        return true;
+    }
 
-// Visualize grid function to update UI with the current state of the Sudoku grid
+    // Check if the current position is safe to move
+    if (isSafeToMove(maze, x, y)) {
+        maze[x][y] = 9; // Mark the cell as part of the path
+        visualizeMaze(maze);
+        await new Promise((resolve) => setTimeout(resolve, 200));
+
+        // Try moving in all 4 directions
+        if (await solveRatInMaze(maze, x, y + 1)) return true; // Right
+        if (await solveRatInMaze(maze, x + 1, y)) return true; // Down
+        if (await solveRatInMaze(maze, x, y - 1)) return true; // Left
+        if (await solveRatInMaze(maze, x - 1, y)) return true; // Up
+
+        // Backtrack: Unmark the cell
+        maze[x][y] = 0;
+        visualizeMaze(maze);
+        await new Promise((resolve) => setTimeout(resolve, 200));
+    }
+
+    return false;
+}
+
+// Check if the rat can move to a specific cell
+function isSafeToMove(maze, x, y) {
+    const rows = maze.length;
+    const cols = maze[0].length;
+    return x >= 0 && y >= 0 && x < rows && y < cols && maze[x][y] === 0;
+}
+
+// Visualize the Sudoku grid
 function visualizeGrid(grid) {
     visualizationContainer.innerHTML = '';
     grid.forEach((row) => {
@@ -247,17 +164,7 @@ function visualizeGrid(grid) {
     });
 }
 
-// Check if a number can be placed in a given position
-function isSafe(grid, row, col, num) {
-    for (let x = 0; x < 9; x++) {
-        if (grid[row][x] === num || grid[x][col] === num || grid[3 * Math.floor(row / 3) + Math.floor(x / 3)][3 * Math.floor(col / 3) + x % 3] === num) {
-            return false;
-        }
-    }
-    return true;
-}
-
-// Recursive function to solve Sudoku with visualization
+// Recursive function to solve Sudoku
 async function solveSudoku(grid, row = 0, col = 0) {
     if (row === 9) return true;
     if (col === 9) return solveSudoku(grid, row + 1, 0);
@@ -266,35 +173,48 @@ async function solveSudoku(grid, row = 0, col = 0) {
     for (let num = 1; num <= 9; num++) {
         if (isSafe(grid, row, col, num)) {
             grid[row][col] = num;
-            visualizeGrid(grid); // Update visualization
-            await new Promise((resolve) => setTimeout(resolve, 200)); // Pause for visualization
+            visualizeGrid(grid);
+            await new Promise((resolve) => setTimeout(resolve, 1));
 
             if (await solveSudoku(grid, row, col + 1)) return true;
 
             grid[row][col] = 0;
-            visualizeGrid(grid); 
-            await new Promise((resolve) => setTimeout(resolve, 200)); // Pause for visualization
+            visualizeGrid(grid);
+            await new Promise((resolve) => setTimeout(resolve, 1));
         }
     }
     return false;
 }
 
-function startVisualization() {
-    const grid = JSON.parse(arrayInput.value);
-    solveSudoku(grid);
+// Check if a number can be placed in a cell
+function isSafe(grid, row, col, num) {
+    for (let x = 0; x < 9; x++) {
+        if (grid[row][x] === num || grid[x][col] === num || 
+            grid[3 * Math.floor(row / 3) + Math.floor(x / 3)][3 * Math.floor(col / 3) + x % 3] === num) {
+            return false;
+        }
+    }
+    return true;
 }
 
+// Reset the visualization
 function resetVisualization() {
     visualizationContainer.innerHTML = '';
     arrayInput.value = '';
 }
 
-generateRandomInput();
-
-// Function to solve the Rat in a Maze (you need to implement the backtracking logic)
-async function solveRatInMaze(maze) {
-    // Backtracking logic for Rat in Maze
-    // Update the visualization step-by-step
+// Start visualization based on the current problem
+function startVisualization() {
+    if (currentProblem === 'ratInMaze') {
+        const maze = JSON.parse(arrayInput.value);
+        solveRatInMaze(maze).then((solved) => {
+            if (!solved) alert("No solution found for the maze!");
+        });
+    } else if (currentProblem === 'sudoku') {
+        const grid = JSON.parse(arrayInput.value);
+        solveSudoku(grid);
+    }
 }
 
+// Generate initial input
 generateRandomInput();
