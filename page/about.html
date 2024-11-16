@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+        src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+    <link rel="stylesheet" href="../styles/index.css" />
+    <title>visualogic</title>
+    <link rel="icon" href="../assets/logo2meta.png" type="image/png" />
+</head>
+
+<body class="bg-[#0f2451] text-white">
+    <!-- nav -->
+    <nav id="navbar"
+        class="h-[4.5rem] lg:h-[5rem] bg-[#0f2451] lg:text-gray-300 lg:bg-transparent w-full fixed top-0 z-50"
+        data-aos="fade-down" data-aos-duration="800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex justify-between items-center h-full" data-aos="zoom-in"
+            data-aos-delay="500">
+            <!-- Logo dark headphone -->
+            <div class="logo-dark" data-aos="zoom-out" data-aos-delay="700">
+                <a href="#hero"><img class="h-9 sm:h-10" src="../assets/logo2.png" alt="" /></a>
+            </div>
+            <!-- Hamburger icon -->
+
+            <div class="lg:hidden flex" data-aos="fade-left">
+                <button id="hamburger-btn">
+                    <i class="fa-solid fa-bars text-xl sm:text-black-400"></i>
+                </button>
+            </div>
+
+            <!-- Navbar Desktop -->
+            <ul id="desktop-nav" class="hidden lg:flex lg:items-center space-x-10 text-[1.05rem] font-medium"
+                data-aos="fade-up" data-aos-delay="1000">
+                <li>
+                    <a href="index.html" class="hover:text-orange transition ease-in-out duration-300">Home</a>
+                </li>
+                <li>
+                    <a href="about.html" class="hover:text-orange transition ease-in-out duration-300">About</a>
+                </li>
+                <li>
+                    <a href="login.html" class="hover:text-orange transition ease-in-out duration-300">login</a>
+                </li>
+            </ul>
+        </div>
+
+        <!--Navbar Mobile Menu-->
+        <div id="mobile-menu" class="hidden lg:hidden w-full nav-mob-effect" data-aos="fade-up" data-aos-duration="800">
+            <ul
+                class="flex flex-col font-medium space-y-5 pt-4 pb-10 pl-4 text-left bg-white items-center dark:bg-black">
+                <li>
+                    <a href="index.html"
+                        class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">Home</a>
+                </li>
+                <li>
+                    <a href="about.html"
+                        class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">About</a>
+                </li>
+                <li>
+                    <a href="login.html"
+                        class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">Topics</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    <!-- team details -->
+    
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-white clear-both pt-10">
+        <!-- Subscription Section -->
+        <div
+            class="max-w-md  mx-auto relative overflow-hidden z-10 bg-gray-800 p-8 rounded-lg shadow-md before:w-24 before:h-24 before:absolute before:bg-purple-600 before:rounded-full before:-z-10 before:blur-2xl after:w-32 after:h-32 after:absolute after:bg-sky-400 after:rounded-full after:-z-10 after:blur-xl after:top-24 after:-right-12">
+            <h5 class="mb-8 text-2xl font-bold text-gray-900 dark:text-gray-200">
+                Subscribe now to get update of new Algorithms
+            </h5>
+            <form
+                class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 w-full">
+                <input type="email" class="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-md text-gray-800"
+                    placeholder="Email" required />
+                <button type="submit"
+                    class="bg-gradient-to-r from-purple-600 via-purple-400 to-blue-500 text-white px-4 py-2 font-bold rounded-md hover:opacity-80">
+                    Subscribe
+                </button>
+            </form>
+        </div>
+
+        <!-- Contact Info Section -->
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-center pl-8 gap-8 mt-8" data-aos="fade-up"
+            data-aos-duration="800">
+            <!-- Call Us -->
+            <div class="flex items-center space-x-4" data-aos="fade-right" data-aos-duration="800">
+                <i class="fas fa-phone-alt w-8 h-8 text-gray-300"></i>
+                <div>
+                    <p class="text-lg font-semibold">Call Us</p>
+                    <p class="text-sm text-gray-300">(831) 870-9901</p>
+                </div>
+            </div>
+
+            <!-- Email Us -->
+            <div class="flex items-center space-x-4" data-aos="fade-right" data-aos-duration="800">
+                <i class="fas fa-envelope w-8 h-8 text-gray-300"></i>
+                <div>
+                    <p class="text-lg font-semibold">Email Us</p>
+                    <p class="text-sm text-gray-300">support@visualogic.net</p>
+                </div>
+            </div>
+
+            <!-- Address -->
+            <div class="flex items-center space-x-4" data-aos="fade-right" data-aos-duration="800">
+                <i class="fas fa-map-marker-alt w-8 h-8 text-gray-300"></i>
+                <div>
+                    <p class="text-lg font-semibold">Address</p>
+                    <p class="text-sm text-gray-300">Delhi</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Icons Section -->
+        <div class="max-w-4xl mx-auto flex justify-center mt-6 space-x-6">
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fa-brands fa-google"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+
+        <!-- Footer Text -->
+        <div class="mt-6 text-center text-sm text-gray-400">
+            <p>© 2024 all rights reserved - Visualogic.</p>
+            <p>A product of Visualogic.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../script/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <script src="https://kit.fontawesome.com/b7c0508dd7.js" crossorigin="anonymous"></script>
+    <script src="https://pbutcher.uk/flipdown/js/flipdown/flipdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@1.0.4/dist/simple-notify.min.js"></script>
+</body>
+
+</html>

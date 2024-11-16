@@ -10,6 +10,7 @@
 </head>
 
 <body class="bg-gray-900 text-white">
+    
     <div class="flex h-full">
         <!-- Sidebar -->
         <div
@@ -60,7 +61,7 @@
             <h1 id="problemTitle"
                 class="text-3xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 mb-2">
                 Array Visualizer</h1>
-            <div class= grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 items-center mt-5">
+            <div class= "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 items-center mt-5">
                 <div>
                     <label for="addElement" class="block md:text-lg font-medium">Add to Array</label>
                     <input id="addElement" type="number"
@@ -74,7 +75,7 @@
                 </div>
                 <div> <label for="appendIndex" class="block md:text-lg font-medium">Append to Array
                         Index</label>
-                    <div class="flex gap-2 flex-col md:flex-row">
+                    <div class="flex gap-2 flex-col">
                         <input id="appendIndex" type="number"
                         class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400" placeholder="Index">
                     <input id="appendValue" type="text"
@@ -84,7 +85,7 @@
                 </div>
                 <div>
                     <label for="updateIndex" class="block md:text-lg font-medium">Update String (Index)</label>
-                    <div class="flex gap-2 flex-col md:flex-row">
+                    <div class="flex gap-2 flex-col">
                         <input id="updateIndex" type="number"
                         class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400" placeholder="Index">
                     <input id="updateValue" type="text"
