@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linear Search Visualizer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f4f4f9;
+      }
+      .card {
+        width: 600px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+      .card h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #333;
+      }
+      .array-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        overflow-x: auto;
+      }
+      .array-element {
+        padding: 10px;
+        margin: 2px;
+        background-color: #0099cc;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 5px;
+        text-align: center;
+        width: 50px;
+        transition: background-color 0.3s;
+      }
+      .array-element.active {
+        background-color: #ffc107;
+      }
+      .array-element.found {
+        background-color: #28a745;
+      }
+      .input-group {
+        margin-bottom: 10px;
+      }
+      .input-group input {
+        width: calc(50% - 5px);
+        padding: 10px;
+        font-size: 16px;
+        margin-right: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .button-group {
+        margin-top: 10px;
+      }
+      .button-group button {
+        padding: 10px 20px;
+        font-size: 14px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .button-group button:hover {
+        background-color: #0056b3;
+      }
+      #result {
+        margin-top: 10px;
+        font-size: 16px;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2>Linear Search Visualizer</h2>
+      <div class="input-group">
+        <input
+          type="text"
+          id="arrayInput"
+          placeholder="Enter array (e.g., 4, 7, 1, 9)"
+        />
+        <input type="number" id="targetInput" placeholder="Target Number" />
+      </div>
+      <div class="button-group">
+        <button onclick="startSearch()">Start Search</button>
+      </div>
+      <div class="array-container" id="arrayContainer"></div>
+      <div id="result"></div>
+    </div>
+
+    <script>
+      function startSearch() {
+        const arrayInput = document.getElementById('arrayInput').value;
+        const target = parseInt(document.getElementById('targetInput').value);
+        const resultDiv = document.getElementById('result');
+        const arrayContainer = document.getElementById('arrayContainer');
+
+        if (!arrayInput || isNaN(target)) {
+          resultDiv.innerText = 'Please enter a valid array and target number.';
+          return;
+        }
+
+        const array = arrayInput.split(',').map(Number);
+        if (array.some(isNaN)) {
+          resultDiv.innerText = 'Array must contain only numbers.';
+          return;
+        }
+
+        arrayContainer.innerHTML = '';
+        resultDiv.innerText = '';
+
+        array.forEach((value) => {
+          const element = document.createElement('div');
+          element.className = 'array-element';
+          element.innerText = value;
+          arrayContainer.appendChild(element);
+        });
+
+        let index = 0;
+
+        function searchStep() {
+          if (index >= array.length) {
+            resultDiv.innerText = 'Target not found.';
+            return;
+          }
+
+          const elements = document.querySelectorAll('.array-element');
+          elements.forEach((el) => el.classList.remove('active'));
+
+          const currentElement = elements[index];
+          currentElement.classList.add('active');
+
+          setTimeout(() => {
+            if (array[index] === target) {
+              currentElement.classList.remove('active');
+              currentElement.classList.add('found');
+              resultDiv.innerText = `Target found at index ${index}.`;
+              return;
+            }
+
+            index++;
+            searchStep();
+          }, 500);
+        }
+
+        searchStep();
+      }
+    </script>
+  </body>
+</html>
