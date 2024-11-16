@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Two Pointer Visualizer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    .bar {
+      position: relative;
+      width: 30px;
+      margin: 0 2px;
+      background-color: #89c2d9;
+      transition: all 0.3s ease;
+    }
+
+    .active {
+      background-color: #ff6f61;
+    }
+
+    .bar-number {
+      position: absolute;
+      bottom: -20px;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+      color: wheat;
+    }
+
+    .info {
+      margin-top: 20px;
+    }
+
+    .button-container {
+      margin-top: 20px;
+    }
+
+    /* Start Button */
+    .start-btn {
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background-color: #4CAF50;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    .start-btn:hover {
+      background-color: #45a049;
+    }
+
+    .start-btn:disabled {
+      background-color: #ddd;
+      cursor: not-allowed;
+    }
+
+    /* Pause Button */
+    .pause-btn {
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background-color: #ffcc00;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    .pause-btn:hover {
+      background-color: #e6b800;
+    }
+
+    .pause-btn:disabled {
+      background-color: #ddd;
+      cursor: not-allowed;
+    }
+
+    /* Reset Button */
+    .reset-btn {
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background-color: #f44336;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    .reset-btn:hover {
+      background-color: #e53935;
+    }
+
+    .reset-btn:disabled {
+      background-color: #ddd;
+      cursor: not-allowed;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    #chart {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      margin-top: 20px;
+      height: 300px;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .output {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-900 text-white">
+  <div class="flex h-full">
+    <!-- Sidebar -->
+    <div
+      class="fixed top-0 left-0 h-full w-16 md:w-64 bg-gray-800 text-gray-400 flex flex-col items-center md:items-start p-4 shadow-lg">
+      <h2
+        class="hidden md:block text-transparent text-lg font-semibold mb-4 bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">
+        Two Pointers</h2>
+      <ul class="space-y-4">
+        <li class="text-center md:text-left">
+          <a href="TwoSum.html"
+            class="flex items-center space-x-2 py-1 hover:text-white">
+            <i class="fas fa-th-large"></i>
+            <span class="hidden md:inline">Two Sum - All Pairs</span>
+          </a>
+        </li>
+        <li class="text-center md:text-left">
+          <a href="palindrome.html" 
+            class="flex items-center space-x-2 py-1 hover:text-white">
+            <i class="fas fa-font"></i>
+            <span class="hidden md:inline">Valid Palindrome</span>
+          </a>
+        </li>
+        <li class="text-center md:text-left">
+          <a href="water.html" 
+            class="flex items-center space-x-2 py-1 hover:text-white">
+            <i class="fa-solid fa-layer-group"></i>
+            <span class="hidden md:inline">Container With Most Water</span>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="ml-16 md:ml-64 flex-1 p-8">
+      <h1 id="problemTitle"
+        class="text-6xl font-bold text-transparent mt-10 bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500">
+        Container with Most Water</h1>
+
+      <!-- Visualization Area -->
+      <div class="max-w-3xl mx-auto p-6">
+        
+        <!-- User Input -->
+        <div class="flex justify-center gap-4 mb-6">
+          <input type="text" id="heightsInput" class="p-2 border text-black" placeholder="Enter heights (comma-separated)">
+          <button id="renderChartButton" class="p-2 bg-blue-500 text-white">Visualize</button>
+        </div>
+    
+        <!-- Chart Container -->
+        <div id="chart"></div>
+    
+        <!-- Information -->
+        <div class="info text-center">
+          <p>Current Area: <span id="currentArea">0</span></p>
+          <p>Max Area: <span id="maxArea">0</span></p>
+        </div>
+    
+        <!-- Controls -->
+        <div class="button-container text-center">
+          <button id="startButton" class="start-btn">Start</button>
+          <button id="pauseButton" class="pause-btn" disabled>Pause</button>
+          <button id="resetButton" class="reset-btn">Reset</button>
+        </div>
+    
+        <!-- Output Section -->
+        <div class="output text-center text-white">
+          <p id="resultText">Output: <span id="finalArea">N/A</span></p>
+        </div>
+      </div>
+
+      <!-- Problem Description -->
+      <div class="p-6 mt-4 bg-gray-800 rounded-lg shadow-lg space-y-4" id="problemDescription">
+        <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500" id="problemTitle">
+            Container with Most Water
+        </h2>
+        <p class="text-gray-300 leading-relaxed" id="problemDescriptionText">
+            You are given an array of integers, where each integer represents the height of a vertical line. These lines are positioned at consecutive indices, and the width between any two consecutive lines is 1 unit.
+
+Your task is to find two lines that, together with the x-axis, form a container that can hold the most water. The amount of water a container can hold is determined by the shorter of the two lines and the distance between them.
+        </p>
+        
+        <!-- Time Complexity Section -->
+        <div class="bg-gray-700 p-4 rounded-lg">
+            <h3 class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 mb-2">
+                Time Complexity:
+            </h3>
+            <p class="text-gray-300">
+                O(n), where n is the length of the array. This is because we are only traversing the array once, moving the pointers inward.
+            </p>
+        </div>
+        
+        <!-- Space Complexity Section -->
+        <div class="bg-gray-700 p-4 rounded-lg">
+            <h3 class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 mb-2">
+                Space Complexity:
+            </h3>
+            <p class="text-gray-300">
+                The space complexity is O(1) as we are only using a constant amount of extra space for the pointers and the result.
+            </p>
+        </div>
+    
+        <!-- Additional Problem Information -->
+        <p class="text-gray-400 italic">
+            Visualizing the Problem: Imagine each pair of lines as forming a fence. The water is "trapped" in the space between them. The wider the distance between the lines, the more potential the container has for holding water. However, the amount of water is also limited by the height of the shorter line. Thus, to maximize the area, it's crucial to find the best combination of width and height.
+        </p>
+      </div>
+    </div>
+  </div>
+
+    
+  <script>
+    let heights = [];
+    let left = 0, right = 0;
+    let maxArea = 0;
+    let interval;
+    const chart = document.getElementById("chart");
+    const currentAreaSpan = document.getElementById("currentArea");
+    const maxAreaSpan = document.getElementById("maxArea");
+    const startButton = document.getElementById("startButton");
+    const pauseButton = document.getElementById("pauseButton");
+    const resetButton = document.getElementById("resetButton");
+    const renderChartButton = document.getElementById("renderChartButton");
+    const finalAreaText = document.getElementById("finalArea");
+
+    // Function to render the chart
+    function renderChart() {
+      chart.innerHTML = ""; // Clear chart
+      if (heights.length === 0) return;
+
+      const maxHeight = Math.max(...heights); // Get the max height in the array
+      const scale = chart.offsetHeight / maxHeight; // Scale factor to fit bars within the container
+
+      heights.forEach((height, index) => {
+        const bar = document.createElement("div");
+        bar.classList.add("bar");
+        bar.style.height = `${height * scale}px`; // Scale the bar height to fit container
+        if (index === left || index === right) bar.classList.add("active");
+
+        const barNumber = document.createElement("div");
+        barNumber.classList.add("bar-number");
+        barNumber.textContent = height;
+
+        bar.appendChild(barNumber);
+        chart.appendChild(bar);
+      });
+    }
+
+    // Function to calculate the area
+    function calculateArea() {
+      const area = Math.min(heights[left], heights[right]) * (right - left);
+      maxArea = Math.max(maxArea, area);
+      currentAreaSpan.textContent = area;
+      maxAreaSpan.textContent = maxArea;
+    }
+
+    // Function to start the visualization
+    function startVisualization() {
+      startButton.disabled = true;
+      pauseButton.disabled = false;
+
+      interval = setInterval(() => {
+        if (left >= right) {
+          clearInterval(interval);
+          finalAreaText.textContent = maxArea;  // Display the max area in the output section
+          startButton.disabled = false;
+          pauseButton.disabled = true;
+          return;
+        }
+
+        calculateArea();
+
+        // Move the pointers
+        if (heights[left] < heights[right]) {
+          left++;
+        } else {
+          right--;
+        }
+
+        renderChart();
+      }, 1000); // Delay between steps
+    }
+
+    // Function to pause the visualization
+    function pauseVisualization() {
+      clearInterval(interval);
+      startButton.disabled = false;
+      pauseButton.disabled = true;
+    }
+
+    // Function to reset the visualization
+    function resetVisualization() {
+  clearInterval(interval);  // Stop any running interval
+  left = 0;  // Reset left pointer
+  right = heights.length > 0 ? heights.length - 1 : 0;  // Reset right pointer to avoid negative index
+  maxArea = 0;  // Reset max area
+  currentAreaSpan.textContent = "0";  // Reset current area display
+  maxAreaSpan.textContent = "0";  // Reset max area display
+  finalAreaText.textContent = "N/A";  // Reset final area display
+  renderChart();  // Re-render the chart with the initial state
+
+  startButton.disabled = false;  // Enable start button
+  pauseButton.disabled = true;  // Disable pause button
+}
+
+    // Render chart based on user input
+    renderChartButton.addEventListener("click", () => {
+      const input = document.getElementById("heightsInput").value;
+      heights = input.split(",").map(num => parseInt(num.trim(), 10));
+      if (heights.length > 0) {
+        left = 0;
+        right = heights.length - 1;
+        maxArea = 0;
+        currentAreaSpan.textContent = "0";
+        maxAreaSpan.textContent = "0";
+        finalAreaText.textContent = "N/A";  // Reset result
+        renderChart();
+      }
+    });
+
+    // Event listeners
+    startButton.addEventListener("click", startVisualization);
+    pauseButton.addEventListener("click", pauseVisualization);
+    resetButton.addEventListener("click", resetVisualization);
+  </script>
+  </script>
+</body>
+
+</html>

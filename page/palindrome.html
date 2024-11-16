@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Two Pointer Visualizer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    .queue-container {
+        margin-top: 15px;
+            display: flex;
+            align-items: center;
+            border: 2px solid #333;
+            border-radius: 8px;
+            width: 100%;
+            height: 400px;
+            margin-bottom: 20px;
+            background-color: #202938;
+            overflow-x: auto;
+            max-width: 100%;
+            border: .5px solid #fff;
+        }
+
+        .queue-element {
+            padding: 8px;
+            margin: 2px;
+            background-color: #384152;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 5px;
+            text-align: center;
+            min-width: 50px;
+        }
+  </style>
+</head>
+
+<body class="bg-gray-900 text-white">
+  <div class="flex h-full">
+    <!-- Sidebar -->
+    <div
+      class="fixed top-0 left-0 h-full w-16 md:w-64 bg-gray-800 text-gray-400 flex flex-col items-center md:items-start p-4 shadow-lg">
+      <h2
+        class="hidden md:block text-transparent text-lg font-semibold mb-4 bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">
+        Data Structures</h2>
+      <ul class="space-y-4">
+        <li class="text-center md:text-left">
+          <a href="TwoSum.html"
+            class="flex items-center space-x-2 py-1 hover:text-white">
+            <i class="fas fa-th-large"></i>
+            <span class="hidden md:inline">Two Sum - All Pairs</span>
+          </a>
+        </li>
+        <li class="text-center md:text-left">
+          <a href="palindrome.html" 
+            class="flex items-center space-x-2 py-1 hover:text-white">
+            <i class="fas fa-font"></i>
+            <span class="hidden md:inline">Valid Palindrome</span>
+          </a>
+        </li>
+        <li class="text-center md:text-left">
+          <a href="water.html" 
+            class="flex items-center space-x-2 py-1 hover:text-white">
+            <i class="fa-solid fa-layer-group"></i>
+            <span class="hidden md:inline">Container With Most Water</span>
+          </a>
+        </li>
+        
+        <!-- <li class="text-center md:text-left">
+          <a href="linklist.html" onclick="setBacktrackingProblem('nQueens')"
+            class="flex items-center space-x-2 py-1 hover:text-white">
+            <i class="fas fa-project-diagram"></i>
+            <span class="hidden md:inline">linklist</span>
+          </a>
+        </li> -->
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="ml-16 md:ml-64 flex-1 p-8">
+        <h1 id="problemTitle"
+        class="text-6xl font-bold text-transparent mt-10 bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500">
+        Valid Palindrome</h1>
+
+
+      <!-- Visualization Area -->
+      <div id="visualizer" class="text-center">
+    <h1 class="text-3xl font-semibold mb-6 mt-10">Valid Palindrome Visualizer</h1>
+    <input type="text" id="inputString" class="px-4 py-2 text-xl border rounded-md mb-4 text-black" placeholder="Enter a string" />
+    <button onclick="startVisualization()" class="px-6 py-2 bg-blue-500 text-white text-lg rounded-md hover:bg-blue-700 focus:outline-none">Check Palindrome</button>
+    <button onclick="resetVisualizer()" class="px-6 py-2 bg-gray-500 text-white text-lg rounded-md hover:bg-gray-700 focus:outline-none">Reset</button>
+    <div id="output" class="mt-4 text-2xl font-bold"></div>
+    <div id="animation" class="flex justify-center mt-6 gap-2"></div>
+  </div>
+    
+      <!-- Problem Description -->
+      <div class="p-6 mt-4 bg-gray-800 rounded-lg shadow-lg space-y-4" id="problemDescription">
+        <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500" id="problemTitle">
+            Valid Palindrome
+        </h2>
+        <p class="text-gray-300 leading-relaxed" id="problemDescriptionText">
+            The Valid Palindrome problem asks us to determine whether a given string is a palindrome. A string is considered a palindrome if it reads the same forward and backward, after ignoring spaces, punctuation, and case sensitivity.
+        </p>
+        
+        <!-- Time Complexity Section -->
+        <div class="bg-gray-700 p-4 rounded-lg">
+            <h3 class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 mb-2">
+                Time Complexity:
+            </h3>
+            <p class="text-gray-300">
+                O(n), where n is the length of the string
+            </p>
+        </div>
+        
+        <!-- Space Complexity Section -->
+        <div class="bg-gray-700 p-4 rounded-lg">
+            <h3 class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 mb-2">
+                Space Complexity:
+            </h3>
+            <p class="text-gray-300">
+                O(n) for the space used to store the sanitized version of the string.
+            </p>
+        </div>
+    
+        <!-- Additional Problem Information -->
+        <p class="text-gray-400 italic">
+            For most palindrome checks, spaces, punctuation, and case are ignored. For example, "A man, a plan, a canal, Panama!" is considered a palindrome when spaces, commas, and punctuation are removed, and the case is disregarded.
+            Result: "amanaplanacanalpanama",which is a Palindrome
+        </p>
+    </div>
+
+    </div>
+  </div>
+  <script>
+    function startVisualization() {
+  const input = document.getElementById("inputString").value;
+  const animation = document.getElementById("animation");
+  animation.innerHTML = "";
+
+  // Clean input (remove non-alphanumeric characters and convert to lowercase)
+  const sanitizedInput = input.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+  let left = 0, right = sanitizedInput.length - 1;
+
+  // Create visual boxes for each character
+  sanitizedInput.split("").forEach((char, idx) => {
+    const charBox = document.createElement("div");
+    charBox.classList.add("char", "px-4", "py-2", "border", "border-gray-600", "rounded-md", "text-xl");
+    charBox.textContent = char;
+    charBox.id = `char-${idx}`;
+    animation.appendChild(charBox);
+  });
+
+  const output = document.getElementById("output");
+  output.textContent = "";
+
+  // Create an interval for the visualization
+  const interval = setInterval(() => {
+    if (left >= right) {
+      clearInterval(interval);
+      output.textContent = "Palindrome!";
+      return;
+    }
+
+    // Skip non-alphanumeric characters
+    while (left < right && !sanitizedInput[left].match(/[a-zA-Z0-9]/)) {
+      document.getElementById(`char-${left}`).classList.add("bg-gray-300");
+      left++;
+    }
+    while (left < right && !sanitizedInput[right].match(/[a-zA-Z0-9]/)) {
+      document.getElementById(`char-${right}`).classList.add("bg-gray-300");
+      right--;
+    }
+
+    const leftChar = document.getElementById(`char-${left}`);
+    const rightChar = document.getElementById(`char-${right}`);
+
+    // If characters don't match, display mismatch and stop
+    if (sanitizedInput[left] !== sanitizedInput[right]) {
+      leftChar.classList.add("bg-red-400");
+      rightChar.classList.add("bg-red-400");
+      clearInterval(interval);
+      output.textContent = "Not a Palindrome!";
+      return;
+    }
+
+    // If characters match, highlight them
+    leftChar.classList.add("bg-green-400");
+    rightChar.classList.add("bg-green-400");
+    left++;
+    right--;
+  }, 1000);
+}
+function resetVisualizer() {
+  // Clear the input field
+  document.getElementById("inputString").value = "";
+
+  // Clear the output message
+  document.getElementById("output").textContent = "";
+
+  // Clear the animation area
+  const animation = document.getElementById("animation");
+  animation.innerHTML = "";
+
+  // Remove any previous styles that might have been applied to characters
+  const allChars = document.querySelectorAll(".char");
+  allChars.forEach(char => {
+    char.classList.remove("bg-gray-300", "bg-red-400", "bg-green-400");
+  });
+}
+
+  </script>
+</body>
+
+</html>
