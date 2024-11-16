@@ -2,13 +2,70 @@ document.getElementById('enterArray').addEventListener('click', generateBars);
 document.getElementById('sortButton').addEventListener('click', sortArray);
 document.getElementById('resetButton').addEventListener('click', reset);
 
+
+const algorithmsData = {
+    bubbleSort: {
+        name: "Bubble Sort",
+        description: "Bubble Sort is a simple comparison-based sorting algorithm. It repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. This process continues until the list is sorted.",
+        timeComplexity: "Best Case: O(n), Average and Worst Case: O(n²)",
+        spaceComplexity: "O(1) (in-place sorting)",
+        note: "Bubble Sort is not suitable for large datasets due to its inefficiency. However, it is simple to implement."
+    },
+    selectionSort: {
+        name: "Selection Sort",
+        description: "Selection Sort is an in-place comparison-based algorithm. It works by dividing the list into two parts: a sorted and an unsorted part. It repeatedly selects the smallest element from the unsorted part and moves it to the sorted part.",
+        timeComplexity: "Best, Average, and Worst Case: O(n²)",
+        spaceComplexity: "O(1) (in-place sorting)",
+        note: "Selection Sort is efficient for small datasets but inefficient for large datasets."
+    },
+    insertionSort: {
+        name: "Insertion Sort",
+        description: "Insertion Sort builds the sorted array one element at a time. It takes one element from the unsorted part and inserts it into its correct position in the sorted part.",
+        timeComplexity: "Best Case: O(n), Average and Worst Case: O(n²)",
+        spaceComplexity: "O(1) (in-place sorting)",
+        note: "Insertion Sort is efficient for small datasets but inefficient for large datasets."
+    },
+    mergeSort: {
+        name: "Merge Sort",
+        description: "Merge Sort is a divide-and-conquer algorithm. It divides the array into two halves, recursively sorts each half, and then merges the two sorted halves back together.",
+        timeComplexity: "Best, Average, and Worst Case: O(n log n)",
+        spaceComplexity: "O(n) (not in-place)",
+        note: "Merge Sort is efficient for large datasets and guarantees O(n log n) performance, but it requires additional space for merging."
+    },
+    quickSort: {
+        name: "Quick Sort",
+        description: "Quick Sort is a divide-and-conquer algorithm that works by selecting a 'pivot' element and partitioning the array around the pivot. The subarrays are then recursively sorted.",
+        timeComplexity: "Best and Average Case: O(n log n), Worst Case: O(n²)",
+        spaceComplexity: "O(log n) (in-place sorting)",
+        note: "Quick Sort is efficient but can degrade to O(n²) if not implemented properly (e.g., with a bad pivot)."
+    },
+    heapSort: {
+        name: "Heap Sort",
+        description: "Heap Sort is a comparison-based sorting algorithm that uses a binary heap data structure. It first builds a heap from the input array and then repeatedly extracts the maximum element from the heap to build the sorted array.",
+        timeComplexity: "Best, Average, and Worst Case: O(n log n)",
+        spaceComplexity: "O(1) (in-place sorting)",
+        note: "Heap Sort is efficient and guarantees O(n log n) performance, but it is not stable and does not preserve the order of equal elements."
+    }
+};
+
+
 let array = [];
 let selectedAlgorithm = 'bubbleSort';
 
 function setSortAlgorithm(algorithm) {
     selectedAlgorithm = algorithm;
+    // Update the main algorithm name
     document.getElementById('algorithmName').textContent = `${capitalize(algorithm)} Visualizer`;
+
+    // Update the algorithm details dynamically
+    const algorithmData = algorithmsData[algorithm];
+    document.querySelector('.algorithm-details h2').textContent = algorithmData.name;
+    document.querySelector('.algorithm-details p').textContent = algorithmData.description;
+    document.querySelector('#timeComplexity').textContent = `Time Complexity: ${algorithmData.timeComplexity}`;
+    document.querySelector('#spaceComplexity').textContent = `Space Complexity: ${algorithmData.spaceComplexity}`;
+    document.querySelector('.note').textContent = algorithmData.note;
 }
+
 
 function capitalize(str) {
     return str.replace(/([A-Z])/g, ' $1').replace(/^./, (s) => s.toUpperCase());

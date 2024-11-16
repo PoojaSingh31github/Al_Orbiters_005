@@ -5,78 +5,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visualogic</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<style>
-    html {
-        scroll-behavior: smooth;
-    }
-    .fade-in {
-        animation: fadeIn 2s ease-in-out;
-    }
-    @keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
-</style>
 </head>
-<body class="bg-gray-900">
-    <nav id="navbar" style="background-color: transparent; padding: 1rem; position: fixed; width: 100%; z-index: 10; transition: background-color 0.3s ease;">
-        <div class="container mx-auto flex justify-between items-center">
+<body class="bg-[#0f2451] text-white">
+    <nav id="navbar" class="bg-gray-800 fixed w-full z-10 transition-all duration-300">
+        <div class="container mx-auto flex justify-between items-center px-4 py-3">
             <!-- Logo Section -->
-            <div class="text-white font-bold text-2xl" style="padding-left: 2rem;">
-                <img id="logo" style="width: 20%;" src="../assets/logo2.png" alt="Logo">
+            <div class="text-white font-bold text-xl">
+                <img id="logo" class="w-10 h-10" src="../assets/logo2.png" alt="Logo">
             </div>
-            <!-- Navigation Links -->
-            <ul class="hidden md:flex space-x-8" style="padding-right: 2rem;">
-                <li><a href="#" class="text-white hover:text-gray-400">Home</a></li>
-                <li><a href="#" class="text-white hover:text-gray-400">About</a></li>
-                <li><a href="#" class="text-white hover:text-gray-400">Login</a></li>
-            </ul>
             <!-- Hamburger Menu -->
-            <button id="menu-toggle" class="block md:hidden text-white">
+            <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
             </button>
+            <!-- Navigation Links -->
+            <ul id="menu" class="hidden md:flex space-x-8 md:items-center md:space-y-0 md:space-x-8 bg-gray-800 md:bg-transparent md:flex-row md:static absolute inset-x-0 top-full mt-1 p-4 md:p-0 shadow-lg md:shadow-none rounded-lg md:rounded-none">
+                <li><a href="#" id="home-link" class="text-white block py-2 px-4 hover:text-gray-400">Home</a></li>
+                <li><a href="about.html" class="text-white block py-2 px-4 hover:text-gray-400">About</a></li>
+                <li><a href="login.html" class="text-white block py-2 px-4 hover:text-gray-400">Login</a></li>
+            </ul>
         </div>
     </nav>
     
-    <script>
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) { // Adjust scroll distance as needed
-                navbar.style.backgroundColor = '#11224a'; // Solid color when scrolled
-            } else {
-                navbar.style.backgroundColor = 'transparent'; // Transparent at top
-            }
-        });
-    </script>    
-
-<!-- Background Video Section -->
-<div class="relative h-screen w-full overflow-hidden">
-    <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover">
-        <source src="../assets/bg-video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <!-- Overlay -->
-    <div class="absolute inset-0 bg-black opacity-50"></div>
-    <!-- Hero Content Aligned to the Left -->
-    <div class="relative flex items-center justify-start h-full text-white fade-in px-8 md:px-16">
-        <div class="max-w-md">
-            <h1 class="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent text-4xl md:text-6xl font-extrabold pb-4 font-roboto">WELCOME TO Visualogic</h1>
-            <p class="text-lg md:text-2xl mb-6">Your online algorithm visualization tool.</p>
-            <a href="#about" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded hover:bg-gradient-to-l hover:from-pink-500 hover:to-purple-500 transition duration-300">
-                GET STARTED!
-            </a>
+    <!-- Popup Modal -->
+    <div id="popup-modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 hidden justify-center items-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-80">
+            <button id="close-modal" class="text-white bg-gray-800 px-4 py-2 rounded-full float-right">X</button>
+            <h2 class="text-xl mb-4">Menu</h2>
+            <ul class="space-y-4">
+                <li><a href="#" class="text-gray-800 hover:text-gray-600">Home</a></li>
+                <li><a href="about.html" class="text-gray-800 hover:text-gray-600">About</a></li>
+                <li><a href="login.html" class="text-gray-800 hover:text-gray-600">Login</a></li>
+            </ul>
         </div>
     </div>
-
-</div>
-
-<!-- Navigation Bar -->
+    <!-- Navigation Bar -->
 <nav class="bg-gray-800 p-4 fixed w-full z-10">
     <div class="container mx-auto flex justify-between items-center">
         <!-- Logo Section -->
@@ -88,7 +52,6 @@
             <li><a href="#" class="text-white hover:text-gray-400">Home</a></li>
             <li><a href="#about" class="text-white hover:text-gray-400">About</a></li>
             <li><a href="#" class="text-white hover:text-gray-400">Login</a></li>
-            <li><a href="#categories" class="text-white hover:text-gray-400">Categories</a></li>
         </ul>
         <!-- Hamburger Menu -->
         <button id="menu-toggle" class="block md:hidden text-white">
@@ -98,22 +61,45 @@
         </button>
     </div>
 </nav>
+    
+<!-- Background Video Section -->
+<div class="relative h-screen w-full overflow-hidden">
+    <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover">
+        <source src="../assets/bg-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <!-- Hero Content Aligned to the Left -->
+    <div class="relative flex items-center justify-start h-full text-white fade-in px-8 md:px-16 lg:pl-32">
+        <div class="max-w-md">
+            <h1 class="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent text-4xl md:text-6xl font-extrabold pb-4 font-roboto">WELCOME TO Visualogic</h1>
+            <p class="text-lg md:text-2xl mb-6">Your online algorithm visualization tool.</p>
+            <a href="#about" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded hover:bg-gradient-to-l hover:from-pink-500 hover:to-purple-500 transition duration-300">
+                GET STARTED!
+            </a>
+        </div>
+    </div>
+
+</div>
+
+
 <!-- About Section -->
-<section id="about" class="bg-dark-navy p-8 text-white fade-in">
+<section id="about" class="relative overflow-hidden z-10 p-8 rounded-lg before:w-24 before:h-24 before:absolute before:bg-purple-600 before:rounded-full before:-z-10 before:blur-2xl after:w-32 after:h-32 after:absolute after:bg-sky-400 after:rounded-full after:-z-10 after:blur-xl after:top-24 after:-right-12">
     <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
         <!-- Left Part: Text Content -->
-        <div class="w-full md:w-1/2 mb-8 md:mb-0 text-justify pr-8 ml-6">
-            <h2 class="text-3xl font-bold mb-4">How can visualizing algorithms help you learn better?</h2>
-            <p class="text-lg mb-6"> 
-                Algovis.io is an interactive tool for visualizing algorithms and data structures. It helps you understand complex concepts in an easy and engaging way, making learning fun and efficient.
+        <div class="w-full md:w-1/2 mb-8 md:mb-0 text-justify pr-8 ml-6 text-white md:p-7">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-center sm:text-left transition-all duration-300 hover:text-purple-400">How can visualizing algorithms help you learn better?</h2>
+            <p class="text-lg sm:text-xl mb-6">
+                Visualogic is an interactive tool for visualizing algorithms and data structures. It helps you understand complex concepts in an easy and engaging way, making learning fun and efficient.
             </p>
             <p class="mb-6">
                 Are you a visual learner looking to better understand important algorithms? I made AlgoVis for all the people who want to learn about algorithms, but don't feel like studying textbooks for hours just to understand them.
             </p>
-            <ul class="pl-6">
-                <li class="text-lg"><span class="font-bold">✓</span> Short explanations of how the algorithms work.</li>
-                <li class="text-lg"><span class="font-bold">✓</span> Pseudocode implementations with dynamically highlighted lines.</li>
-                <li class="text-lg"><span class="font-bold">✓</span> High quality visualizations on all devices.</li>
+            <ul class="pl-6 text-lg sm:text-xl">
+                <li class="mb-2"><span class="font-bold text-purple-400">✓</span> Short explanations of how the algorithms work.</li>
+                <li class="mb-2"><span class="font-bold text-purple-400">✓</span> Pseudocode implementations with dynamically highlighted lines.</li>
+                <li class="mb-2"><span class="font-bold text-purple-400">✓</span> High quality visualizations on all devices.</li>
             </ul>
             <p class="mt-6">
                 I made sure to create visualizations with the highest degree of interactivity. Every visualization comes with the option to test the algorithm on your own data, be it a list of unsorted numbers or a custom graph.
@@ -121,11 +107,12 @@
         </div>
 
         <!-- Right Part: Image Content -->
-        <div class="w-full md:w-1/2">
-            <img src="about2.jpg" alt="Algorithm Visualization" class="rounded-lg shadow-lg">
+        <div class="w-full md:w-1/2 flex justify-center items-center">
+            <img src="../assets/about2.jpg" alt="Algorithm Visualization" class="rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
         </div>
     </div>
 </section>
+
 <!--Cards text-->
 <section id="categories" class="bg-dark-navy p-8 text-black fade-in ">
     <div class="container mx-auto text-center">
@@ -240,17 +227,6 @@
     </div>
 </section>
 
-
-
-<!-- JavaScript for Toggle Menu -->
-<script>
-    const menuToggle = document.getElementById('menu-toggle');
-    const navLinks = document.querySelector('ul');
-
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('hidden');
-    });
-</script>
 <footer class="bg-[#0a1d46] text-white py-10">
     <div class="container mx-auto flex flex-wrap justify-between items-center">
       <!-- Left Side (Social Media Links) -->
@@ -293,4 +269,27 @@
     </div>
   </footer>
 </body>
+<script>
+    const homeLink = document.getElementById('home-link');
+    const popupModal = document.getElementById('popup-modal');
+    const closeModal = document.getElementById('close-modal');
+    
+    // Show the popup modal when the Home link is clicked
+    homeLink.addEventListener('click', (e) => {
+        e.preventDefault();  // Prevent the default navigation behavior
+        popupModal.classList.remove('hidden');  // Show the popup
+    });
+
+    // Close the popup modal when the close button is clicked
+    closeModal.addEventListener('click', () => {
+        popupModal.classList.add('hidden');  // Hide the popup
+    });
+
+    // Close the popup modal if the user clicks outside of it
+    popupModal.addEventListener('click', (e) => {
+        if (e.target === popupModal) {
+            popupModal.classList.add('hidden');
+        }
+    });
+</script>
 </html>

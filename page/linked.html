@@ -4,9 +4,198 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Linked List Visualizer</title>
-    <link rel="stylesheet" href="/Al_Orbiters_005/styles/linked.css" />
+    <link rel="stylesheet" href="../styles/linked.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
   </head>
-  <body>
+  <body class="bg-gray-900 text-white">
+    <div class="flex h-full">
+      <!-- Sidebar -->
+      <div
+          class="fixed top-0 left-0 h-full w-16 md:w-64 bg-gray-800 text-gray-400 flex flex-col items-center md:items-start p-4 shadow-lg">
+          <h2
+              class="hidden md:block text-transparent text-lg font-semibold mb-4 bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">
+              Data Structures</h2>
+          <ul class="space-y-4">
+              <li class="text-center md:text-left">
+                  <a href="array.html" onclick="setBacktrackingProblem('sudoku')"
+                      class="flex items-center space-x-2 py-1 hover:text-white">
+                      <i class="fas fa-th-large"></i>
+                      <span class="hidden md:inline">Array</span>
+                  </a>
+              </li>
+              <li class="text-center md:text-left">
+                  <a href="string.html" onclick="setBacktrackingProblem('ratInMaze')"
+                      class="flex items-center space-x-2 py-1 hover:text-white">
+                      <i class="fas fa-font"></i>
+                      <span class="hidden md:inline">string</span>
+                  </a>
+              </li>
+              <li class="text-center md:text-left">
+                  <a href="Stack.html" onclick="setBacktrackingProblem('wordBreak')"
+                      class="flex items-center space-x-2 py-1 hover:text-white">
+                      <i class="fa-solid fa-layer-group"></i>
+                      <span class="hidden md:inline">stack</span>
+                  </a>
+              </li>
+              <li class="text-center md:text-left">
+                  <a href="Queue.html" onclick="setBacktrackingProblem('nQueens')"
+                      class="flex items-center space-x-2 py-1 hover:text-white">
+                      <i class="fa-brands fa-stack-overflow"></i>
+                      <span class="hidden md:inline">Queue</span>
+                  </a>
+              </li>
+              <li class="text-center md:text-left">
+                  <a href="linklist.html" onclick="setBacktrackingProblem('nQueens')"
+                      class="flex items-center space-x-2 py-1 hover:text-white">
+                      <i class="fas fa-project-diagram"></i>
+                      <span class="hidden md:inline">linklist</span>
+                  </a>
+              </li>
+          </ul>
+      </div>
+      <!-- Main Content -->
+      <div class="pl-20 md:ml-52 flex-1 p-8">
+          <h1 id="problemTitle"
+              class="text-3xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 mb-2">
+              Array Visualizer</h1>
+          <div class= grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 items-center mt-5">
+              <div>
+                  <label for="addElement" class="block md:text-lg font-medium">Add to Array</label>
+                  <input id="addElement" type="number"
+                      class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400">
+              </div>
+              <div>
+                  <label for="deleteIndex" class="block md:text-lg font-medium">Delete from Array
+                      (Index)</label>
+                  <input id="deleteIndex" type="number"
+                      class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400">
+              </div>
+              <div> <label for="appendIndex" class="block md:text-lg font-medium">Append to Array
+                      Index</label>
+                  <div class="flex gap-2 flex-col md:flex-row">
+                      <input id="appendIndex" type="number"
+                      class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400" placeholder="Index">
+                  <input id="appendValue" type="text"
+                      class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400"
+                      placeholder="String">
+                  </div>
+              </div>
+              <div>
+                  <label for="updateIndex" class="block md:text-lg font-medium">Update String (Index)</label>
+                  <div class="flex gap-2 flex-col md:flex-row">
+                      <input id="updateIndex" type="number"
+                      class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400" placeholder="Index">
+                  <input id="updateValue" type="text"
+                      class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400"
+                      placeholder="New String">
+                  </div>
+
+              </div>
+          </div>
+
+          <div class="space-x-2">
+              <div class="grid grid-cols-2 lg:grid-cols-4 lg:gap-4 gap-2 mt-6">
+                  <button onclick="addElement()"
+                      class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Add
+                  </button>
+                  <button onclick="deleteElement()"
+                      class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Delete</button>
+                  <button onclick="appendElement()"
+                      class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Append</button>
+                  <button onclick="updateElement()"
+                      class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Update</button>
+              </div>
+          </div>
+
+          <!-- Visualization Area -->
+          <div id="arrayDisplay" class="visualization mt-8 bg-gray-800 p-4 rounded"></div>
+          <!-- Problem Description -->
+
+          <div class="p-2 md:p-6 mt-4 bg-gray-800 rounded-lg shadow-lg space-y-4" id="problemDescription">
+              <h2 class="text-xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500"
+                  id="problemTitle">
+                  Array Data Structure
+              </h2>
+              <p class="text-gray-300 leading-relaxed" id="problemDescriptionText">
+                  An <strong>Array</strong> is a collection of elements, each identified by an index or key. Arrays are one of the
+                  most fundamental data structures, often used to store lists of data where each element can be
+                  accessed efficiently.
+                  Arrays can store data of the same type (homogeneous) and are typically fixed in size once
+                  initialized. They are used in a wide range of applications, from basic data storage to complex
+                  algorithms and systems.
+              </p>
+
+              <!-- Time Complexity Section -->
+              <div class="bg-gray-700 p-4 rounded-lg">
+                  <h3
+                      class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 mb-2">
+                      Time Complexity:
+                  </h3>
+                  <p class="text-gray-300">
+                      - <strong>Access by Index:</strong> O(1) (constant time to access any element by its index).<br>
+                      - <strong>Insertion/Deletion at End:</strong> O(1) (constant time for adding/removing an element at the
+                      end).<br>
+                      - <strong>Insertion/Deletion at Beginning:</strong> O(n) (linear time due to the need to shift elements).<br>
+                      - <strong>Search:</strong> O(n) (linear time to search for an element in an unsorted array).<br>
+                      - <strong>Sorting:</strong> O(n log n) (average time complexity for sorting using algorithms like MergeSort
+                      or QuickSort).
+                  </p>
+              </div>
+
+              <!-- Space Complexity Section -->
+              <div class="bg-gray-700 p-4 rounded-lg">
+                  <h3
+                      class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 mb-2">
+                      Space Complexity:
+                  </h3>
+                  <p class="text-gray-300">
+                      - The space complexity of an array is O(n), where <strong>n</strong> is the number of elements in the array.
+                      Each element occupies space proportional to its type, and the overall space is linear with
+                      respect to the number of elements stored in the array.
+                      - Dynamic arrays (like those in languages such as Python) may require occasional resizing, but
+                      their space complexity remains O(n).
+                  </p>
+              </div>
+
+              <!-- Additional Problem Information -->
+              <p class="text-gray-400 italic">
+                  Arrays are an essential data structure used in a variety of domains, including database management,
+                  graphics rendering, and machine learning. Variants like multidimensional arrays and dynamic arrays
+                  offer added flexibility and efficiency in specialized applications.
+              </p>
+          </div>
+
+
+
+      </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="container">
       <h2>Linked List Visualizer</h2>
       <input type="text" id="nodeValue" placeholder="Enter node value" />
@@ -18,6 +207,6 @@
       </div>
       <div class="list-container" id="listContainer"></div>
     </div>
-    <script src="/Al_Orbiters_005/script/linked.js"></script>
+    <script src="../script/linked.js"></script>
   </body>
 </html>
