@@ -7,8 +7,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center">
-  <div class="container mx-auto p-6 bg-white rounded-lg shadow-md">
-    <h1 class="text-2xl font-bold text-center mb-4">Sliding Window Algorithm Visualizer</h1>
+  <div class="container mx-auto p-6 bg-white rounded-lg shadow-md w-full max-w-3xl">
+    <h1 class="text-2xl font-bold text-center mb-4 text-gray-800">Sliding Window Visualizer</h1>
 
     <!-- Sliding Window Type -->
     <div class="mb-4">
@@ -56,19 +56,151 @@
     </div>
 
     <div class="flex justify-center mb-6 gap-4">
-      <button id="enterButton" class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none">
-        Enter
+      <button id="startButton" class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none">
+        Start Visualization
       </button>
       <button id="resetButton" class="bg-gray-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-gray-600 focus:outline-none">
         Reset
       </button>
     </div>
 
-    <div id="visualizer" class="mt-6 flex justify-center gap-2">
-      <!-- Visualization will be shown here -->
+    <!-- Navigation Buttons -->
+    <div class="flex justify-center mb-6 gap-4">
+      <button id="prevButton" class="bg-green-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-green-600 focus:outline-none hidden">
+        Prev
+      </button>
+      <button id="nextButton" class="bg-yellow-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-yellow-600 focus:outline-none hidden">
+        Next
+      </button>
+    </div>
+
+    <!-- Visualization Section -->
+    <div id="visualizer" class="mt-6 flex flex-col items-center gap-4">
+      <!-- Visualization will appear here -->
     </div>
   </div>
 
-  <script src="slidingwindowscript.js" defer></script>
+  <script>
+    const windowTypeSelect = document.getElementById("windowType");
+    const fixedWindowInput = document.getElementById("fixedWindowInput");
+    const variableWindowInput = document.getElementById("variableWindowInput");
+    const inputArray = document.getElementById("inputArray");
+    const startButton = document.getElementById("startButton");
+    const resetButton = document.getElementById("resetButton");
+    const prevButton = document.getElementById("prevButton");
+    const nextButton = document.getElementById("nextButton");
+    const visualizer = document.getElementById("visualizer");
+
+    let steps = [];
+    let currentStep = 0;
+
+    // Toggle between fixed and variable window input fields
+    windowTypeSelect.addEventListener("change", () => {
+      if (windowTypeSelect.value === "fixed") {
+        fixedWindowInput.classList.remove("hidden");
+        variableWindowInput.classList.add("hidden");
+      } else {
+        fixedWindowInput.classList.add("hidden");
+        variableWindowInput.classList.remove("hidden");
+      }
+    });
+
+    // Start Visualization
+    startButton.addEventListener("click", () => {
+      const array = inputArray.value.split(",").map(Number);
+      visualizer.innerHTML = ""; // Clear the visualization area
+      steps = [];
+      currentStep = 0;
+
+      if (windowTypeSelect.value === "fixed") {
+        const windowSize = parseInt(document.getElementById("windowSize").value);
+        if (isNaN(windowSize) || windowSize <= 0) {
+          alert("Please enter a valid fixed window size.");
+          return;
+        }
+        generateFixedWindowSteps(array, windowSize);
+      } else {
+        const variableSizes = document.getElementById("variableSizes").value
+          .split(",")
+          .map(Number)
+          .filter(size => size > 0);
+        if (variableSizes.length === 0) {
+          alert("Please enter valid variable window sizes.");
+          return;
+        }
+        generateVariableWindowSteps(array, variableSizes);
+      }
+
+      if (steps.length > 0) {
+        prevButton.classList.remove("hidden");
+        nextButton.classList.remove("hidden");
+        displayStep(0);
+      }
+    });
+
+    // Reset inputs and visualizer
+    resetButton.addEventListener("click", () => {
+      inputArray.value = "";
+      document.getElementById("windowSize").value = "";
+      document.getElementById("variableSizes").value = "";
+      visualizer.innerHTML = "";
+      prevButton.classList.add("hidden");
+      nextButton.classList.add("hidden");
+    });
+
+    // Navigate Steps
+    prevButton.addEventListener("click", () => {
+      if (currentStep > 0) {
+        currentStep--;
+        displayStep(currentStep);
+      }
+    });
+
+    nextButton.addEventListener("click", () => {
+      if (currentStep < steps.length - 1) {
+        currentStep++;
+        displayStep(currentStep);
+      }
+    });
+
+    // Generate steps for a fixed window
+    function generateFixedWindowSteps(array, windowSize) {
+      for (let i = 0; i <= array.length - windowSize; i++) {
+        steps.push({ start: i, end: i + windowSize });
+      }
+    }
+
+    // Generate steps for a variable window
+    function generateVariableWindowSteps(array, sizes) {
+      let start = 0;
+      for (let size of sizes) {
+        const end = Math.min(start + size, array.length);
+        steps.push({ start, end });
+        start = end;
+        if (start >= array.length) break;
+      }
+    }
+
+    // Display a specific step
+    function displayStep(stepIndex) {
+      const array = inputArray.value.split(",").map(Number);
+      const { start, end } = steps[stepIndex];
+      visualizer.innerHTML = ""; // Clear previous visualization
+
+      const row = document.createElement("div");
+      row.className = "flex items-center gap-2";
+
+      array.forEach((value, index) => {
+        const box = document.createElement("div");
+        box.className = `w-12 h-12 flex items-center justify-center text-lg font-bold rounded-md ${
+          index >= start && index < end ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-800"
+        }`;
+        box.textContent = value;
+        row.appendChild(box);
+      });
+
+      visualizer.appendChild(row);
+    }
+  </script>
 </body>
 </html>
