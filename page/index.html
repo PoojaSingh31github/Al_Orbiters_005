@@ -9,12 +9,26 @@
     <link rel="stylesheet" href="../styles/index.css" />
     <title>visualogic</title>
     <link rel="icon" href="https://ik.imagekit.io/uvfza6h6e/logo2meta.png?updatedAt=1731766414898" type="image/png" />
+    <style>
+        .logo {
+            width: 80px; /* Set the desired width */
+            height: 80px; /* Set the desired height */
+            object-fit: contain; /* Ensures the aspect ratio is maintained */
+        }
+    
+        .glass_morphism_cards {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
 </head>
 
 <body class="bg-[#0f2451] text-white">
     <!-- nav -->
     <nav id="navbar"
-        class="h-[4.5rem] lg:h-[5rem] bg-[#0f2451] lg:text-gray-300 lg:bg-transparent w-full fixed top-0 z-50"
+        class="h-[4.5rem] lg:h-[5rem] bg-[#0f2451] lg:text-gray-300 w-full fixed top-0 z-50"
         data-aos="fade-down" data-aos-duration="800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex justify-between items-center h-full" data-aos="zoom-in"
             data-aos-delay="500">
@@ -151,9 +165,9 @@
 
     <section id="topic">
         <div class="main-top-topic py-20">
-            <div class="top-topic" data-aos="fade-down" data-aos-duration="400">
-                <div class="img-topic flex justify-center items-center h-14">
-                    <img  class="w-10 h-10 " src="https://mutationmedia.net/FOXECONF/assets/svg/topic-icon.svg" />
+            <div class="top-topic flex flex-col justify-center items-center" data-aos="fade-down" data-aos-duration="400">
+                <div class="m-8 w-14 bg-blue-50 rounded-full h-14 flex justify-center items-center" data-aos="zoom-in">
+                    <img class="w-10" src="https://mutationmedia.net/FOXECONF/assets/svg/topic-icon.svg" alt="" />
                 </div>
                 <h1 class="head-topics my-4 dark:text-white">Algorithm Lists</h1>
                 <h4 class="mb-8 text-center ">
@@ -162,11 +176,12 @@
                 </h4>
             </div>
         </div>
+        
+        
         <div class="boxes grid grid-cols-1 md:grid-cols-3 gap-6">
             <a href="sorting.html">
-                <div class="glass_morphism_cards dark:shadow-shade-white p-6 h-72" data-aos="fade-up"
-                    data-aos-duration="800">
-                    <img class="logo mx-auto mb-4" src="https://ik.imagekit.io/uvfza6h6e/sorting.gif?updatedAt=1731766414978" style="max-width: 100%; height: auto;" />
+                <div class="glass_morphism_cards dark:shadow-shade-white p-6 h-72" data-aos="fade-up" data-aos-duration="800">
+                    <img class="logo mx-auto mb-4" src="https://ik.imagekit.io/uvfza6h6e/sorting.gif?updatedAt=1731766414978" />
                     <h1 class="box-head text-center">Sorting Algorithms</h1>
                     <p class="overflow-hidden text-ellipsis whitespace-normal line-clamp-4">
                         Dive into the mechanics of sorting algorithms, including Bubble Sort, Quick Sort, Merge Sort,
@@ -176,22 +191,19 @@
                 </div>
             </a>
             <a href="binary.html">
-                <div class="glass_morphism_cards dark:shadow-shade-white p-6 h-72" data-aos="fade-up"
-                    data-aos-duration="800">
-                    <img class="logo mx-auto mb-4" src="https://ik.imagekit.io/uvfza6h6e/binary.gif?updatedAt=1731766414711" style="max-width: 100%; height: auto;" />
+                <div class="glass_morphism_cards dark:shadow-shade-white p-6 h-72" data-aos="fade-up" data-aos-duration="800">
+                    <img class="logo mx-auto mb-4" src="https://ik.imagekit.io/uvfza6h6e/binary.gif?updatedAt=1731766414711" />
                     <h1 class="box-head text-center">Searching Algorithms</h1>
                     <p class="overflow-hidden text-ellipsis whitespace-normal line-clamp-4">
                         Uncover the strategies behind searching algorithms like Binary Search and Linear Search. Master
                         their applications in finding data effectively within vast datasets. Learn how to optimize your
                         search processes to handle real-world challenges in data retrieval and analysis.
-
                     </p>
                 </div>
             </a>
             <a href="array.html">
-                <div class="glass_morphism_cards dark:shadow-shade-white p-6 h-72" data-aos="fade-up"
-                    data-aos-duration="800">
-                    <img class="logo mx-auto mb-4" src="https://ik.imagekit.io/uvfza6h6e/ds.gif?updatedAt=1731766414915" style="max-width: 100%; height: auto;" />
+                <div class="glass_morphism_cards dark:shadow-shade-white p-6 h-72" data-aos="fade-up" data-aos-duration="800">
+                    <img class="logo mx-auto mb-4" src="https://ik.imagekit.io/uvfza6h6e/ds.gif?updatedAt=1731766414915" />
                     <h1 class="box-head text-center">Data Structures</h1>
                     <p class="overflow-hidden text-ellipsis whitespace-normal line-clamp-4">
                         Understand foundational data structures like Arrays, Stacks, Queues, Linked Lists, and Trees.
@@ -200,9 +212,8 @@
                 </div>
             </a>
             <a href="TwoSum.html">
-                <div class="glass_morphism_cards dark:shadow-shade-white p-6 h-72" data-aos="fade-up"
-                    data-aos-duration="800">
-                    <img class="logo mx-auto mb-4" src="https://ik.imagekit.io/uvfza6h6e/sraech.gif?updatedAt=1731766417058" style="max-width: 100%; height: auto;" />
+                <div class="glass_morphism_cards dark:shadow-shade-white p-6 h-72" data-aos="fade-up" data-aos-duration="800">
+                    <img class="logo mx-auto mb-4" src="https://ik.imagekit.io/uvfza6h6e/sraech.gif?updatedAt=1731766417058" />
                     <h1 class="box-head text-center">Two Pointer Algorithm</h1>
                     <p class="overflow-hidden text-ellipsis whitespace-normal line-clamp-4">
                         Master the Two Pointer technique, a powerful approach to solving array and string problems.
@@ -212,9 +223,8 @@
                 </div>
             </a>
             <a href="slidingWindow.html">
-                <div class="glass_morphism_cards dark:shadow-shade-white p-6 h-72" data-aos="fade-up"
-                    data-aos-duration="800">
-                    <img class="logo mx-auto mb-4" src="https://ik.imagekit.io/uvfza6h6e/sliding.gif?updatedAt=1731766414868" style="max-width: 100%; height: auto;" />
+                <div class="glass_morphism_cards dark:shadow-shade-white p-6 h-72" data-aos="fade-up" data-aos-duration="800">
+                    <img class="logo mx-auto mb-4" src="https://ik.imagekit.io/uvfza6h6e/sliding.gif?updatedAt=1731766414868" />
                     <h1 class="box-head text-center">Sliding Window</h1>
                     <p class="overflow-hidden text-ellipsis whitespace-normal line-clamp-4">
                         Master the Sliding Window technique, an essential algorithmic approach for solving problems
@@ -225,10 +235,8 @@
                 </div>
             </a>
             <a href="backtracking.html">
-                <div class="glass_morphism_cards dark:shadow-shade-white p-6 h-72" data-aos="fade-up"
-                    data-aos-duration="800">
-                    <img class="logo mx-auto mb-4" src="https://ik.imagekit.io/uvfza6h6e/backtracking.gif?updatedAt=1731766414704"
-                        style="max-width: 100%; height: auto;" />
+                <div class="glass_morphism_cards dark:shadow-shade-white p-6 h-72" data-aos="fade-up" data-aos-duration="800">
+                    <img class="logo mx-auto mb-4" src="https://ik.imagekit.io/uvfza6h6e/backtracking.gif?updatedAt=1731766414704" />
                     <h1 class="box-head text-center">Backtracking</h1>
                     <p class="overflow-hidden text-ellipsis whitespace-normal line-clamp-4">
                         Explore Backtracking, a powerful algorithmic technique for solving complex problems like
@@ -238,9 +246,8 @@
                     </p>
                 </div>
             </a>
-
-            </a>
         </div>
+        
     </section>
 
     <!-- Footer Section -->
@@ -248,7 +255,7 @@
         <!-- Subscription Section -->
         <div
             class="max-w-md  mx-auto relative overflow-hidden z-10 bg-gray-800 p-8 rounded-lg shadow-md before:w-24 before:h-24 before:absolute before:bg-purple-600 before:rounded-full before:-z-10 before:blur-2xl after:w-32 after:h-32 after:absolute after:bg-sky-400 after:rounded-full after:-z-10 after:blur-xl after:top-24 after:-right-12">
-            <h5 class="mb-8 text-2xl font-bold text-gray-900 dark:text-gray-200">
+            <h5 class="mb-8 text-2xl font-bold">
                 Subscribe now to get update of new Algorithms
             </h5>
             <form
