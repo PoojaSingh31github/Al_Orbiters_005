@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visualogic</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#0f2451] text-white">
+    <nav id="navbar" class="bg-gray-800 fixed w-full z-10 transition-all duration-300">
+        <div class="container mx-auto flex justify-between items-center px-4 py-3">
+            <!-- Logo Section -->
+            <div class="text-white font-bold text-xl">
+                <img id="logo" class="w-10 h-10" src="../assets/logo2.png" alt="Logo">
+            </div>
+            <!-- Hamburger Menu -->
+            <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+            <!-- Navigation Links -->
+            <ul id="menu" class="hidden md:flex space-x-8 md:items-center md:space-y-0 md:space-x-8 bg-gray-800 md:bg-transparent md:flex-row md:static absolute inset-x-0 top-full mt-1 p-4 md:p-0 shadow-lg md:shadow-none rounded-lg md:rounded-none">
+                <li><a href="#" id="home-link" class="text-white block py-2 px-4 hover:text-gray-400">Home</a></li>
+                <li><a href="about.html" class="text-white block py-2 px-4 hover:text-gray-400">About</a></li>
+                <li><a href="login.html" class="text-white block py-2 px-4 hover:text-gray-400">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Popup Modal -->
+    <div id="popup-modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 hidden justify-center items-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-80">
+            <button id="close-modal" class="text-white bg-gray-800 px-4 py-2 rounded-full float-right">X</button>
+            <h2 class="text-xl mb-4">Menu</h2>
+            <ul class="space-y-4">
+                <li><a href="#" class="text-gray-800 hover:text-gray-600">Home</a></li>
+                <li><a href="about.html" class="text-gray-800 hover:text-gray-600">About</a></li>
+                <li><a href="login.html" class="text-gray-800 hover:text-gray-600">Login</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Navigation Bar -->
+<nav class="bg-gray-800 p-4 fixed w-full z-10">
+    <div class="container mx-auto flex justify-between items-center">
+        <!-- Logo Section -->
+        <div class="text-white font-bold text-2xl">
+            ALGOVIS.IO
+        </div>
+        <!-- Navigation Links -->
+        <ul class="hidden md:flex space-x-8">
+            <li><a href="#" class="text-white hover:text-gray-400">Home</a></li>
+            <li><a href="#about" class="text-white hover:text-gray-400">About</a></li>
+            <li><a href="#" class="text-white hover:text-gray-400">Login</a></li>
+        </ul>
+        <!-- Hamburger Menu -->
+        <button id="menu-toggle" class="block md:hidden text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+    </div>
+</nav>
+    
+<!-- Background Video Section -->
+<div class="relative h-screen w-full overflow-hidden">
+    <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover">
+        <source src="../assets/bg-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <!-- Hero Content Aligned to the Left -->
+    <div class="relative flex items-center justify-start h-full text-white fade-in px-8 md:px-16 lg:pl-32">
+        <div class="max-w-md">
+            <h1 class="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent text-4xl md:text-6xl font-extrabold pb-4 font-roboto">WELCOME TO Visualogic</h1>
+            <p class="text-lg md:text-2xl mb-6">Your online algorithm visualization tool.</p>
+            <a href="#about" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded hover:bg-gradient-to-l hover:from-pink-500 hover:to-purple-500 transition duration-300">
+                GET STARTED!
+            </a>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- About Section -->
+<section id="about" class="relative overflow-hidden z-10 p-8 rounded-lg before:w-24 before:h-24 before:absolute before:bg-purple-600 before:rounded-full before:-z-10 before:blur-2xl after:w-32 after:h-32 after:absolute after:bg-sky-400 after:rounded-full after:-z-10 after:blur-xl after:top-24 after:-right-12">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+        <!-- Left Part: Text Content -->
+        <div class="w-full md:w-1/2 mb-8 md:mb-0 text-justify pr-8 ml-6 text-white md:p-7">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-center sm:text-left transition-all duration-300 hover:text-purple-400">How can visualizing algorithms help you learn better?</h2>
+            <p class="text-lg sm:text-xl mb-6">
+                Visualogic is an interactive tool for visualizing algorithms and data structures. It helps you understand complex concepts in an easy and engaging way, making learning fun and efficient.
+            </p>
+            <p class="mb-6">
+                Are you a visual learner looking to better understand important algorithms? I made AlgoVis for all the people who want to learn about algorithms, but don't feel like studying textbooks for hours just to understand them.
+            </p>
+            <ul class="pl-6 text-lg sm:text-xl">
+                <li class="mb-2"><span class="font-bold text-purple-400">✓</span> Short explanations of how the algorithms work.</li>
+                <li class="mb-2"><span class="font-bold text-purple-400">✓</span> Pseudocode implementations with dynamically highlighted lines.</li>
+                <li class="mb-2"><span class="font-bold text-purple-400">✓</span> High quality visualizations on all devices.</li>
+            </ul>
+            <p class="mt-6">
+                I made sure to create visualizations with the highest degree of interactivity. Every visualization comes with the option to test the algorithm on your own data, be it a list of unsorted numbers or a custom graph.
+            </p>
+        </div>
+
+        <!-- Right Part: Image Content -->
+        <div class="w-full md:w-1/2 flex justify-center items-center">
+            <img src="../assets/about2.jpg" alt="Algorithm Visualization" class="rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+        </div>
+    </div>
+</section>
+
+<!--Cards text-->
+<section id="categories" class="bg-dark-navy p-8 text-black fade-in ">
+    <div class="container mx-auto text-center">
+        <!-- Cards Container -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-">
+            <!-- Card 1 -->
+            <div class="card p-6 bg-transparent text-left text-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white border border-gray-300">
+                <h3 class="text-3xl font-bold mb-2 text-white">01</h3>
+                <h4 class="text-xl font-bold mb-2 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">High quality visualizations</h4>
+                <p>All visualizations have been coded by me, touching them up until it's clear on first sight how an algorithm works.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card p-6 bg-transparent text-left text-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white border border-gray-300">
+                <h3 class="text-3xl font-bold mb-2 text-white">02</h3>
+                <h4 class="text-xl font-bold mb-2 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">Completely free</h4>
+                <p>I believe in free education. AlgoVis is and will stay free - forever. Also, there’s no need to create an account. All features are available for everyone.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card p-6 bg-transparent text-left text-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white border border-gray-300">
+                <h3 class="text-3xl font-bold mb-2 text-white">03</h3>
+                <h4 class="text-xl font-bold mb-2 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">No advertisements</h4>
+                <p>Ads are annoying. In fact, they're so annoying that I refrain from having them on my site at all. I’m sure your ad-blocker appreciates that break.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Categories Section -->
+<section id="categories" class="bg-dark-navy p-16  ml-10 text-black fade-in">
+    <div class="container mx-auto text-center">
+        <!--h2 class="text-3xl font-bold mb-4">Categories</h2-->
+        <!--p class="mb-6">Explore different categories of algorithms such as sorting, searching, and dynamic programming.</p-->
+        
+        <!-- Cards Container -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <!-- Card 1 -->
+            <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
+                <div class="flex justify-center items-center transform rotate-180 scale-x-[-1]">
+                <img src="../assets/sorting2.gif" alt="Algorithm" class="w-full py-9 sm:w-70 md:w-60 lg:w-78 h-auto">
+                </div>
+                <div class="p-4">
+                    <h3 class=" text-white text-xl font-semibold mb-2">Sorting Algorithms</h3>
+                    <p class="text-white">Learn how different sorting algorithms work, from Bubble Sort to Merge Sort.</p>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
+                <div class="flex justify-center items-center">
+                    <img src="../assets/binarySearch.gif" alt="Algorithm" class="w-full py-3 sm:w-64 md:w-48 lg:w-70 h-auto">
+                    </div>
+                <div class="p-4">
+                    <h3 class="text-white text-xl font-semibold mb-2">Searching Algorithms</h3>
+                    <p class="text-white">Explore various searching algorithms like Binary Search and Linear Search.</p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
+                <div class="flex justify-center items-center">
+                    <img src="../assets/stack.gif" alt="Algorithm" class="w-full py-3 sm:w-70 md:w-54 lg:w-80 h-auto">
+                    </div>
+                <div class="p-4">
+                    <h3 class="text-white text-xl font-semibold mb-2">Stack</h3>
+                    <p class="text-white">Understand dynamic programming with examples like Fibonacci sequence and Knapsack problem.</p>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
+                <div class="flex justify-center items-center">
+                    <img src="../assets/twoPointer.gif" alt="Algorithm" class="w-full py-3 sm:w-70 md:w-54 lg:w-80 h-auto">
+                    </div>
+                <div class="p-4">
+                    <h3 class="text-white text-xl font-semibold mb-2">Two Pointer Algorithm</h3>
+                    <p class="text-white">Understand dynamic programming with examples like Fibonacci sequence and Knapsack problem.</p>
+                </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
+                <div class="flex justify-center items-center">
+                    <img src="../assets/Array.gif" alt="Algorithm" class="w-full py-3 sm:w-70 md:w-54 lg:w-80 h-auto">
+                    </div>
+                <div class="p-4">
+                    <h3 class="text-white text-xl font-semibold mb-2">Array</h3>
+                    <p class="text-white">Understand dynamic programming with examples like Fibonacci sequence and Knapsack problem.</p>
+                </div>
+            </div>
+            <!-- Card 6 -->
+            <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
+                <div class="flex justify-center items-center">
+                    <img src="../assets/queue.gif" alt="Algorithm" class="w-full py-3 sm:w-70 md:w-54 lg:w-80 h-auto">
+                    </div>
+                <div class="p-4">
+                    <h3 class="text-white text-xl font-semibold mb-2">Queue</h3>
+                    <p class="text-white">Understand dynamic programming with examples like Fibonacci sequence and Knapsack problem.</p>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
+                <div class="flex justify-center items-center">
+                    <img src="../assets/linkedlist.gif" alt="Algorithm" class="w-full py-3 sm:w-70 md:w-54 lg:w-80 h-auto">
+                    </div>
+                <div class="p-4">
+                    <h3 class="text-white text-xl font-semibold mb-2">Linked List Algorithm</h3>
+                    <p class="text-white">Understand dynamic programming with examples like Fibonacci sequence and Knapsack problem.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-[#0a1d46] text-white py-10">
+    <div class="container mx-auto flex flex-wrap justify-between items-center">
+      <!-- Left Side (Social Media Links) -->
+      <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-6 md:mb-0">
+        <h3 class="text-xl font-bold mb-2">Visualogic</h3>
+        <p class="mb-4">Feel free to hit me up on social media:</p>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-400 hover:text-white">
+            <i class="fab fa-twitter"></i> <!-- Replace with actual icon -->
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white">
+            <i class="fab fa-google"></i> <!-- Replace with actual icon -->
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white">
+            <i class="fab fa-xing"></i> <!-- Replace with actual icon -->
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white">
+            <i class="fab fa-linkedin"></i> <!-- Replace with actual icon -->
+          </a>
+        </div>
+      </div>
+      
+      <!-- Right Side (Useful Links) -->
+      <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-6 md:mb-0">
+        <h3 class="text-xl font-bold mb-2">Useful Links</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">About us</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Categories</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Terms of service</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Privacy policy</a></li>
+        </ul>
+      </div>
+    </div>
+  
+    <!-- Bottom Section (Copyright) -->
+    <div class="border-t border-gray-700 mt-6 pt-4 text-center text-gray-400">
+      <p>© Copyright <span class="font-bold">Visualogic</span>. All Rights Reserved</p>
+      <!--p>Designed by <a href="#" class="text-red-500 hover:text-red-700">BootstrapMade</a></p-->
+    </div>
+  </footer>
+</body>
+<script>
+    const homeLink = document.getElementById('home-link');
+    const popupModal = document.getElementById('popup-modal');
+    const closeModal = document.getElementById('close-modal');
+    
+    // Show the popup modal when the Home link is clicked
+    homeLink.addEventListener('click', (e) => {
+        e.preventDefault();  // Prevent the default navigation behavior
+        popupModal.classList.remove('hidden');  // Show the popup
+    });
+
+    // Close the popup modal when the close button is clicked
+    closeModal.addEventListener('click', () => {
+        popupModal.classList.add('hidden');  // Hide the popup
+    });
+
+    // Close the popup modal if the user clicks outside of it
+    popupModal.addEventListener('click', (e) => {
+        if (e.target === popupModal) {
+            popupModal.classList.add('hidden');
+        }
+    });
+</script>
+</html>

@@ -1,295 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Visualogic</title>
-<script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+        src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+    <link rel="stylesheet" href="../styles/index.css" />
+    <title>visualogic</title>
+    <link rel="icon" href="../assets/logo2meta.png" type="image/png" />
 </head>
+
 <body class="bg-[#0f2451] text-white">
-    <nav id="navbar" class="bg-gray-800 fixed w-full z-10 transition-all duration-300">
-        <div class="container mx-auto flex justify-between items-center px-4 py-3">
-            <!-- Logo Section -->
-            <div class="text-white font-bold text-xl">
-                <img id="logo" class="w-10 h-10" src="../assets/logo2.png" alt="Logo">
+    <!-- nav -->
+    <nav id="navbar"
+        class="h-[4.5rem] lg:h-[5rem] bg-[#0f2451] lg:text-gray-300 lg:bg-transparent w-full fixed top-0 z-50"
+        data-aos="fade-down" data-aos-duration="800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex justify-between items-center h-full" data-aos="zoom-in"
+            data-aos-delay="500">
+            <!-- Logo dark headphone -->
+            <div class="logo-dark" data-aos="zoom-out" data-aos-delay="700">
+                <a href="#hero"><img class="h-9 sm:h-10" src="../assets/logo2.png" alt="" /></a>
             </div>
-            <!-- Hamburger Menu -->
-            <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
-            </button>
-            <!-- Navigation Links -->
-            <ul id="menu" class="hidden md:flex space-x-8 md:items-center md:space-y-0 md:space-x-8 bg-gray-800 md:bg-transparent md:flex-row md:static absolute inset-x-0 top-full mt-1 p-4 md:p-0 shadow-lg md:shadow-none rounded-lg md:rounded-none">
-                <li><a href="#" id="home-link" class="text-white block py-2 px-4 hover:text-gray-400">Home</a></li>
-                <li><a href="about.html" class="text-white block py-2 px-4 hover:text-gray-400">About</a></li>
-                <li><a href="login.html" class="text-white block py-2 px-4 hover:text-gray-400">Login</a></li>
+            <!-- Hamburger icon -->
+
+            <div class="lg:hidden flex" data-aos="fade-left">
+                <button id="hamburger-btn">
+                    <i class="fa-solid fa-bars text-xl sm:text-black-400"></i>
+                </button>
+            </div>
+
+            <!-- Navbar Desktop -->
+            <ul id="desktop-nav" class="hidden lg:flex lg:items-center space-x-10 text-[1.05rem] font-medium"
+                data-aos="fade-up" data-aos-delay="1000">
+                <li>
+                    <a href="index.html" class="hover:text-orange transition ease-in-out duration-300">Home</a>
+                </li>
+                <li>
+                    <a href="about.html" class="hover:text-orange transition ease-in-out duration-300">About</a>
+                </li>
+                <li>
+                    <a href="login.html" class="hover:text-orange transition ease-in-out duration-300">login</a>
+                </li>
+            </ul>
+        </div>
+
+        <!--Navbar Mobile Menu-->
+        <div id="mobile-menu" class="hidden lg:hidden w-full nav-mob-effect" data-aos="fade-up" data-aos-duration="800">
+            <ul
+                class="flex flex-col font-medium space-y-5 pt-4 pb-10 pl-4 text-left bg-white items-center dark:bg-black">
+                <li>
+                    <a href="index.html"
+                        class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">Home</a>
+                </li>
+                <li>
+                    <a href="about.html"
+                        class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">About</a>
+                </li>
+                <li>
+                    <a href="login.html"
+                        class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">Topics</a>
+                </li>
+
             </ul>
         </div>
     </nav>
-    
-    <!-- Popup Modal -->
-    <div id="popup-modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 hidden justify-center items-center">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-80">
-            <button id="close-modal" class="text-white bg-gray-800 px-4 py-2 rounded-full float-right">X</button>
-            <h2 class="text-xl mb-4">Menu</h2>
-            <ul class="space-y-4">
-                <li><a href="#" class="text-gray-800 hover:text-gray-600">Home</a></li>
-                <li><a href="about.html" class="text-gray-800 hover:text-gray-600">About</a></li>
-                <li><a href="login.html" class="text-gray-800 hover:text-gray-600">Login</a></li>
-            </ul>
+    <!-- banner -->
+    <div class="relative h-screen w-full overflow-hidden">
+        <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover">
+            <source src="../assets/bg-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <!-- Hero Content Aligned to the Left -->
+        <div class="relative flex items-center justify-start h-full text-white fade-in px-8 md:px-16 lg:pl-32">
+            <div class="max-w-md">
+                <h1
+                    class="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent text-4xl md:text-6xl font-extrabold pb-4 font-roboto">
+                    WELCOME TO Visualogic</h1>
+                <p class="text-lg md:text-2xl mb-6">Your online algorithm visualization tool.</p>
+                <a href="#about"
+                    class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded hover:bg-gradient-to-l hover:from-pink-500 hover:to-purple-500 transition duration-300">
+                    GET STARTED!
+                </a>
+            </div>
         </div>
+
     </div>
-    <!-- Navigation Bar -->
-<nav class="bg-gray-800 p-4 fixed w-full z-10">
-    <div class="container mx-auto flex justify-between items-center">
-        <!-- Logo Section -->
-        <div class="text-white font-bold text-2xl">
-            ALGOVIS.IO
+
+    <section class="relative w-full py-20 text-white wavy-bg bg-orange bg-img-timer bg-parallax">
+        <div class="flex flex-col justify-center items-center" data-aos="fade-up" data-aos-duration="1200">
+            <div class="m-8 w-14 bg-blue-50 rounded-full h-14 flex justify-center items-center" data-aos="zoom-in">
+                <img class="w-10" src="https://mutationmedia.net/FOXECONF/assets/svg/topic-icon.svg" alt="" />
+            </div>
+
+            <p class="text-2xl md:text-3xl px- lg:text-[3rem] font-semibold text-center text-secondaryBlue md:px-24"
+                data-aos="fade-up">
+                Visualogic is an interactive tool for visualizing algorithms and data structures. It helps you
+                understand complex concepts in an easy and engaging way, making learning fun and efficient.
+
+            </p>
+            <div class="count-down max-w-full md:p-6 mt-6" data-aos="zoom-in-up" data-aos-delay="500">
+                <div class="flipdown m-auto max-w-full flex justify-center content-center" id="flipdown"></div>
+            </div>
         </div>
-        <!-- Navigation Links -->
-        <ul class="hidden md:flex space-x-8">
-            <li><a href="#" class="text-white hover:text-gray-400">Home</a></li>
-            <li><a href="#about" class="text-white hover:text-gray-400">About</a></li>
-            <li><a href="#" class="text-white hover:text-gray-400">Login</a></li>
-        </ul>
-        <!-- Hamburger Menu -->
-        <button id="menu-toggle" class="block md:hidden text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-        </button>
-    </div>
-</nav>
-    
-<!-- Background Video Section -->
-<div class="relative h-screen w-full overflow-hidden">
-    <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover">
-        <source src="../assets/bg-video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <!-- Overlay -->
-    <div class="absolute inset-0 bg-black opacity-50"></div>
-    <!-- Hero Content Aligned to the Left -->
-    <div class="relative flex items-center justify-start h-full text-white fade-in px-8 md:px-16 lg:pl-32">
-        <div class="max-w-md">
-            <h1 class="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent text-4xl md:text-6xl font-extrabold pb-4 font-roboto">WELCOME TO Visualogic</h1>
-            <p class="text-lg md:text-2xl mb-6">Your online algorithm visualization tool.</p>
-            <a href="#about" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded hover:bg-gradient-to-l hover:from-pink-500 hover:to-purple-500 transition duration-300">
-                GET STARTED!
+    </section>
+
+    <!--Cards text-->
+    <section id="categories" class="bg-dark-navy p-8 text-black fade-in ">
+        <div class="container mx-auto text-center">
+            <!-- Cards Container -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-">
+                <!-- Card 1 -->
+                <div
+                    class="card p-6 bg-transparent text-left text-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white border border-gray-300">
+                    <h3 class="text-3xl font-bold mb-2 text-white">01</h3>
+                    <h4
+                        class="text-xl font-bold mb-2 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+                        High quality visualizations</h4>
+                    <p>All visualizations have been coded by me, touching them up until it's clear on first sight how an
+                        algorithm works.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="card p-6 bg-transparent text-left text-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white border border-gray-300">
+                    <h3 class="text-3xl font-bold mb-2 text-white">02</h3>
+                    <h4
+                        class="text-xl font-bold mb-2 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+                        Completely free</h4>
+                    <p>I believe in free education. AlgoVis is and will stay free - forever. Also, All features are
+                        available for everyone.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="card p-6 bg-transparent text-left text-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white border border-gray-300">
+                    <h3 class="text-3xl font-bold mb-2 text-white">03</h3>
+                    <h4
+                        class="text-xl font-bold mb-2 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+                        No advertisements</h4>
+                    <p>Ads are annoying. In fact, they're so annoying that I refrain from having them on my site at all.
+                        I’m sure your ad-blocker appreciates that break.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="topic">
+        <div class="main-top-topic py-20">
+            <div class="top-topic" data-aos="fade-down" data-aos-duration="400">
+                <div class="img-topic">
+                    <img src="https://mutationmedia.net/FOXECONF/assets/svg/topic-icon.svg" />
+                </div>
+                <h1 class="head-topics my-4 dark:text-white">Algorithm Lists</h1>
+                <h4 class="mb-8 text-center">
+                    Explore the world of algorithms and data structures. Each topic is carefully crafted to enhance your
+                    understanding, from foundational concepts to advanced techniques.
+                </h4>
+            </div>
+        </div>
+        <div class="boxes grid grid-cols-1 md:grid-cols-3 gap-6">
+            <a href="sorting.html">
+                <div class="glass_morphism_cards dark:shadow-shade-white p-6" data-aos="fade-up"
+                    data-aos-duration="800">
+                    <img class="logo mx-auto mb-4" src="../assets/sorting.gif"
+                        style="max-width: 100%; height: auto;" />
+                    <h1 class="box-head text-center">Sorting Algorithms</h1>
+                    <p class="text-justify">
+                        Dive into the mechanics of sorting algorithms, including Bubble Sort, Quick Sort, Merge Sort,
+                        and Heap Sort. Learn their time complexities, practical use cases, and how they optimize data
+                        organization.
+                    </p>
+                </div>
+            </a>
+            <a href="binary.html">
+                <div class="glass_morphism_cards dark:shadow-shade-white p-6" data-aos="fade-up"
+                    data-aos-duration="800">
+                    <img class="logo mx-auto mb-4" src="../assets/sraech.gif"
+                        style="max-width: 100%; height: auto;" />
+                    <h1 class="box-head text-center">Searching Algorithms</h1>
+                    <p class="box-para dark:text-gray-200 text-justify">
+                        Uncover the strategies behind searching algorithms like Binary Search and Linear Search. Master
+                        their applications in finding data effectively within vast datasets.
+                    </p>
+                </div>
+            </a>
+            <a href="array.html">
+                <div class="glass_morphism_cards dark:shadow-shade-white p-6" data-aos="fade-up"
+                    data-aos-duration="800">
+                    <img class="logo mx-auto mb-4" src="../assets/ds.gif" style="max-width: 100%; height: auto;" />
+                    <h1 class="box-head text-center">Data Structures</h1>
+                    <p class="box-para dark:text-gray-200 text-justify">
+                        Understand foundational data structures like Arrays, Stacks, Queues, Linked Lists, and Trees.
+                        Learn how they enable efficient data manipulation and storage in real-world scenarios.
+                    </p>
+                </div>
+            </a>
+            <a href="two_pointer.html">
+                <div class="glass_morphism_cards dark:shadow-shade-white p-6" data-aos="fade-up"
+                    data-aos-duration="800">
+                    <img class="logo mx-auto mb-4" src="../assets/twoPointer.gif"
+                        style="max-width: 100%; height: auto;" />
+                    <h1 class="box-head text-center">Two Pointer Algorithm</h1>
+                    <p class="box-para dark:text-gray-200 text-justify">
+                        Master the Two Pointer technique, a powerful approach to solving array and string problems.
+                        Understand its applications in tasks like finding pairs, merging arrays, and solving sliding
+                        window problems.
+                    </p>
+                </div>
+            </a>
+            <a href="visual_design.html">
+                <div class="glass_morphism_cards dark:shadow-shade-white p-6" data-aos="fade-up"
+                    data-aos-duration="800">
+                    <img class="logo mx-auto mb-4" src="https://mutationmedia.net/FOXECONF/assets/svg/settings-icon.svg"
+                        style="max-width: 100%; height: auto;" />
+                    <h1 class="box-head text-center">Sliding window</h1>
+                    <p class="box-para dark:text-gray-200 text-justify">
+                        Discover the art of visual design and its role in enhancing user experiences. Learn how to use
+                        shapes, colors, and layouts to create visually appealing and functional interfaces.
+                    </p>
+                </div>
+            </a>
+            <a href="backtracking.html">
+                <div class="glass_morphism_cards dark:shadow-shade-white p-6" data-aos="fade-up"
+                    data-aos-duration="800">
+                    <img class="logo mx-auto mb-4"
+                        src="https://mutationmedia.net/FOXECONF/assets/svg/dollarsun-icon.svg"
+                        style="max-width: 100%; height: auto;" />
+                    <h1 class="box-head text-center">Backtracking</h1>
+                    <p class="box-para dark:text-gray-200 text-justify">
+                        Delve into UX metrics that focus on usability, accessibility, and user satisfaction. Learn how
+                        these metrics drive improvements in user interaction and product design.
+                    </p>
+                </div>
             </a>
         </div>
-    </div>
+    </section>
 
-</div>
-
-
-<!-- About Section -->
-<section id="about" class="relative overflow-hidden z-10 p-8 rounded-lg before:w-24 before:h-24 before:absolute before:bg-purple-600 before:rounded-full before:-z-10 before:blur-2xl after:w-32 after:h-32 after:absolute after:bg-sky-400 after:rounded-full after:-z-10 after:blur-xl after:top-24 after:-right-12">
-    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
-        <!-- Left Part: Text Content -->
-        <div class="w-full md:w-1/2 mb-8 md:mb-0 text-justify pr-8 ml-6 text-white md:p-7">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-center sm:text-left transition-all duration-300 hover:text-purple-400">How can visualizing algorithms help you learn better?</h2>
-            <p class="text-lg sm:text-xl mb-6">
-                Visualogic is an interactive tool for visualizing algorithms and data structures. It helps you understand complex concepts in an easy and engaging way, making learning fun and efficient.
-            </p>
-            <p class="mb-6">
-                Are you a visual learner looking to better understand important algorithms? I made AlgoVis for all the people who want to learn about algorithms, but don't feel like studying textbooks for hours just to understand them.
-            </p>
-            <ul class="pl-6 text-lg sm:text-xl">
-                <li class="mb-2"><span class="font-bold text-purple-400">✓</span> Short explanations of how the algorithms work.</li>
-                <li class="mb-2"><span class="font-bold text-purple-400">✓</span> Pseudocode implementations with dynamically highlighted lines.</li>
-                <li class="mb-2"><span class="font-bold text-purple-400">✓</span> High quality visualizations on all devices.</li>
-            </ul>
-            <p class="mt-6">
-                I made sure to create visualizations with the highest degree of interactivity. Every visualization comes with the option to test the algorithm on your own data, be it a list of unsorted numbers or a custom graph.
-            </p>
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-white clear-both pt-10">
+        <!-- Subscription Section -->
+        <div
+            class="max-w-md  mx-auto relative overflow-hidden z-10 bg-gray-800 p-8 rounded-lg shadow-md before:w-24 before:h-24 before:absolute before:bg-purple-600 before:rounded-full before:-z-10 before:blur-2xl after:w-32 after:h-32 after:absolute after:bg-sky-400 after:rounded-full after:-z-10 after:blur-xl after:top-24 after:-right-12">
+            <h5 class="mb-8 text-2xl font-bold text-gray-900 dark:text-gray-200">
+                Subscribe now to get update of new Algorithms
+            </h5>
+            <form
+                class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 w-full">
+                <input type="email" class="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-md text-gray-800"
+                    placeholder="Email" required />
+                <button type="submit"
+                    class="bg-gradient-to-r from-purple-600 via-purple-400 to-blue-500 text-white px-4 py-2 font-bold rounded-md hover:opacity-80">
+                    Subscribe
+                </button>
+            </form>
         </div>
 
-        <!-- Right Part: Image Content -->
-        <div class="w-full md:w-1/2 flex justify-center items-center">
-            <img src="../assets/about2.jpg" alt="Algorithm Visualization" class="rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
-        </div>
-    </div>
-</section>
-
-<!--Cards text-->
-<section id="categories" class="bg-dark-navy p-8 text-black fade-in ">
-    <div class="container mx-auto text-center">
-        <!-- Cards Container -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-">
-            <!-- Card 1 -->
-            <div class="card p-6 bg-transparent text-left text-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white border border-gray-300">
-                <h3 class="text-3xl font-bold mb-2 text-white">01</h3>
-                <h4 class="text-xl font-bold mb-2 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">High quality visualizations</h4>
-                <p>All visualizations have been coded by me, touching them up until it's clear on first sight how an algorithm works.</p>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="card p-6 bg-transparent text-left text-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white border border-gray-300">
-                <h3 class="text-3xl font-bold mb-2 text-white">02</h3>
-                <h4 class="text-xl font-bold mb-2 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">Completely free</h4>
-                <p>I believe in free education. AlgoVis is and will stay free - forever. Also, there’s no need to create an account. All features are available for everyone.</p>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="card p-6 bg-transparent text-left text-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white border border-gray-300">
-                <h3 class="text-3xl font-bold mb-2 text-white">03</h3>
-                <h4 class="text-xl font-bold mb-2 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">No advertisements</h4>
-                <p>Ads are annoying. In fact, they're so annoying that I refrain from having them on my site at all. I’m sure your ad-blocker appreciates that break.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
-<!-- Categories Section -->
-<section id="categories" class="bg-dark-navy p-16  ml-10 text-black fade-in">
-    <div class="container mx-auto text-center">
-        <!--h2 class="text-3xl font-bold mb-4">Categories</h2-->
-        <!--p class="mb-6">Explore different categories of algorithms such as sorting, searching, and dynamic programming.</p-->
-        
-        <!-- Cards Container -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <!-- Card 1 -->
-            <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
-                <div class="flex justify-center items-center transform rotate-180 scale-x-[-1]">
-                <img src="../assets/sorting2.gif" alt="Algorithm" class="w-full py-9 sm:w-70 md:w-60 lg:w-78 h-auto">
-                </div>
-                <div class="p-4">
-                    <h3 class=" text-white text-xl font-semibold mb-2">Sorting Algorithms</h3>
-                    <p class="text-white">Learn how different sorting algorithms work, from Bubble Sort to Merge Sort.</p>
-                </div>
-            </div>
-            <!-- Card 2 -->
-            <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
-                <div class="flex justify-center items-center">
-                    <img src="../assets/binarySearch.gif" alt="Algorithm" class="w-full py-3 sm:w-64 md:w-48 lg:w-70 h-auto">
-                    </div>
-                <div class="p-4">
-                    <h3 class="text-white text-xl font-semibold mb-2">Searching Algorithms</h3>
-                    <p class="text-white">Explore various searching algorithms like Binary Search and Linear Search.</p>
+        <!-- Contact Info Section -->
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-center pl-8 gap-8 mt-8" data-aos="fade-up"
+            data-aos-duration="800">
+            <!-- Call Us -->
+            <div class="flex items-center space-x-4" data-aos="fade-right" data-aos-duration="800">
+                <i class="fas fa-phone-alt w-8 h-8 text-gray-300"></i>
+                <div>
+                    <p class="text-lg font-semibold">Call Us</p>
+                    <p class="text-sm text-gray-300">(831) 870-9901</p>
                 </div>
             </div>
 
-            <!-- Card 3 -->
-            <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
-                <div class="flex justify-center items-center">
-                    <img src="../assets/stack.gif" alt="Algorithm" class="w-full py-3 sm:w-70 md:w-54 lg:w-80 h-auto">
-                    </div>
-                <div class="p-4">
-                    <h3 class="text-white text-xl font-semibold mb-2">Stack</h3>
-                    <p class="text-white">Understand dynamic programming with examples like Fibonacci sequence and Knapsack problem.</p>
+            <!-- Email Us -->
+            <div class="flex items-center space-x-4" data-aos="fade-right" data-aos-duration="800">
+                <i class="fas fa-envelope w-8 h-8 text-gray-300"></i>
+                <div>
+                    <p class="text-lg font-semibold">Email Us</p>
+                    <p class="text-sm text-gray-300">support@visualogic.net</p>
                 </div>
             </div>
-            <!-- Card 4 -->
-            <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
-                <div class="flex justify-center items-center">
-                    <img src="../assets/twoPointer.gif" alt="Algorithm" class="w-full py-3 sm:w-70 md:w-54 lg:w-80 h-auto">
-                    </div>
-                <div class="p-4">
-                    <h3 class="text-white text-xl font-semibold mb-2">Two Pointer Algorithm</h3>
-                    <p class="text-white">Understand dynamic programming with examples like Fibonacci sequence and Knapsack problem.</p>
-                </div>
-            </div>
-            <!-- Card 5 -->
-            <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
-                <div class="flex justify-center items-center">
-                    <img src="../assets/Array.gif" alt="Algorithm" class="w-full py-3 sm:w-70 md:w-54 lg:w-80 h-auto">
-                    </div>
-                <div class="p-4">
-                    <h3 class="text-white text-xl font-semibold mb-2">Array</h3>
-                    <p class="text-white">Understand dynamic programming with examples like Fibonacci sequence and Knapsack problem.</p>
-                </div>
-            </div>
-            <!-- Card 6 -->
-            <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
-                <div class="flex justify-center items-center">
-                    <img src="../assets/queue.gif" alt="Algorithm" class="w-full py-3 sm:w-70 md:w-54 lg:w-80 h-auto">
-                    </div>
-                <div class="p-4">
-                    <h3 class="text-white text-xl font-semibold mb-2">Queue</h3>
-                    <p class="text-white">Understand dynamic programming with examples like Fibonacci sequence and Knapsack problem.</p>
-                </div>
-            </div>
-            <!-- Card 3 -->
-            <div class="border-2 border-gray-300 card max-w-sm bg-transparent rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white">
-                <div class="flex justify-center items-center">
-                    <img src="../assets/linkedlist.gif" alt="Algorithm" class="w-full py-3 sm:w-70 md:w-54 lg:w-80 h-auto">
-                    </div>
-                <div class="p-4">
-                    <h3 class="text-white text-xl font-semibold mb-2">Linked List Algorithm</h3>
-                    <p class="text-white">Understand dynamic programming with examples like Fibonacci sequence and Knapsack problem.</p>
+
+            <!-- Address -->
+            <div class="flex items-center space-x-4" data-aos="fade-right" data-aos-duration="800">
+                <i class="fas fa-map-marker-alt w-8 h-8 text-gray-300"></i>
+                <div>
+                    <p class="text-lg font-semibold">Address</p>
+                    <p class="text-sm text-gray-300">Delhi</p>
                 </div>
             </div>
         </div>
-    </div>
-</section>
 
-<footer class="bg-[#0a1d46] text-white py-10">
-    <div class="container mx-auto flex flex-wrap justify-between items-center">
-      <!-- Left Side (Social Media Links) -->
-      <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-6 md:mb-0">
-        <h3 class="text-xl font-bold mb-2">Visualogic</h3>
-        <p class="mb-4">Feel free to hit me up on social media:</p>
-        <div class="flex space-x-4">
-          <a href="#" class="text-gray-400 hover:text-white">
-            <i class="fab fa-twitter"></i> <!-- Replace with actual icon -->
-          </a>
-          <a href="#" class="text-gray-400 hover:text-white">
-            <i class="fab fa-google"></i> <!-- Replace with actual icon -->
-          </a>
-          <a href="#" class="text-gray-400 hover:text-white">
-            <i class="fab fa-xing"></i> <!-- Replace with actual icon -->
-          </a>
-          <a href="#" class="text-gray-400 hover:text-white">
-            <i class="fab fa-linkedin"></i> <!-- Replace with actual icon -->
-          </a>
+        <!-- Social Icons Section -->
+        <div class="max-w-4xl mx-auto flex justify-center mt-6 space-x-6">
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fa-brands fa-google"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fa-brands fa-instagram"></i></a>
         </div>
-      </div>
-      
-      <!-- Right Side (Useful Links) -->
-      <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-6 md:mb-0">
-        <h3 class="text-xl font-bold mb-2">Useful Links</h3>
-        <ul class="space-y-2">
-          <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
-          <li><a href="#" class="text-gray-400 hover:text-white">About us</a></li>
-          <li><a href="#" class="text-gray-400 hover:text-white">Categories</a></li>
-          <li><a href="#" class="text-gray-400 hover:text-white">Terms of service</a></li>
-          <li><a href="#" class="text-gray-400 hover:text-white">Privacy policy</a></li>
-        </ul>
-      </div>
-    </div>
-  
-    <!-- Bottom Section (Copyright) -->
-    <div class="border-t border-gray-700 mt-6 pt-4 text-center text-gray-400">
-      <p>© Copyright <span class="font-bold">Visualogic</span>. All Rights Reserved</p>
-      <!--p>Designed by <a href="#" class="text-red-500 hover:text-red-700">BootstrapMade</a></p-->
-    </div>
-  </footer>
+
+        <!-- Footer Text -->
+        <div class="mt-6 text-center text-sm text-gray-400">
+            <p>© 2024 all rights reserved - Visualogic.</p>
+            <p>A product of Visualogic.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../script/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <script src="https://kit.fontawesome.com/b7c0508dd7.js" crossorigin="anonymous"></script>
+    <script src="https://pbutcher.uk/flipdown/js/flipdown/flipdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@1.0.4/dist/simple-notify.min.js"></script>
 </body>
-<script>
-    const homeLink = document.getElementById('home-link');
-    const popupModal = document.getElementById('popup-modal');
-    const closeModal = document.getElementById('close-modal');
-    
-    // Show the popup modal when the Home link is clicked
-    homeLink.addEventListener('click', (e) => {
-        e.preventDefault();  // Prevent the default navigation behavior
-        popupModal.classList.remove('hidden');  // Show the popup
-    });
 
-    // Close the popup modal when the close button is clicked
-    closeModal.addEventListener('click', () => {
-        popupModal.classList.add('hidden');  // Hide the popup
-    });
-
-    // Close the popup modal if the user clicks outside of it
-    popupModal.addEventListener('click', (e) => {
-        if (e.target === popupModal) {
-            popupModal.classList.add('hidden');
-        }
-    });
-</script>
 </html>
