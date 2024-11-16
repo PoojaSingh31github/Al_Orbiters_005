@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sliding Window Visualizer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div class="container mx-auto p-6 bg-white rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold text-center mb-4">Sliding Window Algorithm Visualizer</h1>
+
+    <!-- Sliding Window Type -->
+    <div class="mb-4">
+      <label for="windowType" class="block text-gray-700 font-semibold mb-2">Sliding Window Type:</label>
+      <select
+        id="windowType"
+        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <option value="fixed">Fixed Window</option>
+        <option value="variable">Variable Window</option>
+      </select>
+    </div>
+
+    <!-- Fixed Window Size -->
+    <div id="fixedWindowInput" class="mb-4">
+      <label for="windowSize" class="block text-gray-700 font-semibold mb-2">Window Size:</label>
+      <input
+        type="number"
+        id="windowSize"
+        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="e.g., 3"
+      />
+    </div>
+
+    <!-- Variable Window Sizes -->
+    <div id="variableWindowInput" class="mb-4 hidden">
+      <label for="variableSizes" class="block text-gray-700 font-semibold mb-2">Variable Window Sizes (comma-separated):</label>
+      <input
+        type="text"
+        id="variableSizes"
+        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="e.g., 2,3,4"
+      />
+    </div>
+
+    <!-- Array Input -->
+    <div class="mb-4">
+      <label for="inputArray" class="block text-gray-700 font-semibold mb-2">Enter Array (comma-separated):</label>
+      <input
+        type="text"
+        id="inputArray"
+        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="e.g., 1,2,3,4,5,6,7"
+      />
+    </div>
+
+    <div class="flex justify-center mb-6 gap-4">
+      <button id="enterButton" class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none">
+        Enter
+      </button>
+      <button id="resetButton" class="bg-gray-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-gray-600 focus:outline-none">
+        Reset
+      </button>
+    </div>
+
+    <div id="visualizer" class="mt-6 flex justify-center gap-2">
+      <!-- Visualization will be shown here -->
+    </div>
+  </div>
+
+  <script src="slidingwindowscript.js" defer></script>
+</body>
+</html>
