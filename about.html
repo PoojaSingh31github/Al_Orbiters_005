@@ -7,66 +7,103 @@
     <script
         src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
     <link rel="stylesheet" href="../styles/index.css" />
-    <title>visualogic</title>
+    <title>Visualogic</title>
     <link rel="icon" href="../assets/logo2meta.png" type="image/png" />
 </head>
 
 <body class="bg-[#0f2451] text-white">
     <!-- nav -->
     <nav id="navbar"
-    class="h-[4.5rem] lg:h-[5rem] bg-[#0f2451] lg:text-gray-300 w-full fixed top-0 z-50"
-    data-aos="fade-down" data-aos-duration="800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex justify-between items-center h-full" data-aos="zoom-in"
-        data-aos-delay="500">
-        <!-- Logo dark headphone -->
-        <div class="logo-dark" data-aos="zoom-out" data-aos-delay="700">
-            <a href="#hero"><img class="h-9 sm:h-10" src="https://ik.imagekit.io/uvfza6h6e/logo2.png?updatedAt=1731766414873" alt="" /></a>
+        class="h-[4.5rem] lg:h-[5rem] bg-[#0f2451] lg:text-gray-300 w-full fixed top-0 z-50"
+        data-aos="fade-down" data-aos-duration="800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex justify-between items-center h-full" data-aos="zoom-in"
+            data-aos-delay="500">
+            <!-- Logo dark headphone -->
+            <div class="logo-dark" data-aos="zoom-out" data-aos-delay="700">
+                <a href="#hero"><img class="h-9 sm:h-10" src="https://ik.imagekit.io/uvfza6h6e/logo2.png?updatedAt=1731766414873" alt="" /></a>
+            </div>
+            <!-- Hamburger icon -->
+            <div class="lg:hidden flex" data-aos="fade-left">
+                <button id="hamburger-btn">
+                    <i class="fa-solid fa-bars text-xl sm:text-black-400"></i>
+                </button>
+            </div>
+
+            <!-- Navbar Desktop -->
+            <ul id="desktop-nav" class="hidden lg:flex lg:items-center space-x-10 text-[1.05rem] font-medium"
+                data-aos="fade-up" data-aos-delay="1000">
+                <li>
+                    <a href="index.html" class="hover:text-orange transition ease-in-out duration-300">Home</a>
+                </li>
+                <li>
+                    <a href="about.html" class="hover:text-orange transition ease-in-out duration-300">About</a>
+                </li>
+                <li>
+                    <a href="login.html" class="hover:text-orange transition ease-in-out duration-300">Login</a>
+                </li>
+            </ul>
         </div>
-        <!-- Hamburger icon -->
+    </nav>
 
-        <div class="lg:hidden flex" data-aos="fade-left">
-            <button id="hamburger-btn">
-                <i class="fa-solid fa-bars text-xl sm:text-black-400"></i>
-            </button>
+    <!-- Team Section -->
+<!-- Team Section -->
+<!-- Team Section -->
+<!-- Team Section -->
+<section class="py-12 bg-[#1a2a61] mt-[100px]">
+    <div class="container mx-auto text-center px-4">
+        <h2 class="text-3xl font-semibold text-white">Meet Our Team</h2>
+        <p class="mt-4 text-lg text-gray-300">The talented individuals behind Visualogic</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-8 ml-10 pr-10">
+            <!-- Team Member 1 -->
+            <div class="card p-6 bg-transparent text-white rounded-lg shadow-lg overflow-hidden max-w-[400px] min-h-[380px]  transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white border border-gray-300">
+                <img class="w-80 h-70 rounded-full mx-auto" src="https://i.ibb.co/n3YVDk0/pooja.jpg" alt="Team Member 1">
+                <h3 class="text-xl font-semibold mt-4 text-white-800">Pooja Singh</h3>
+                <i class="fab fa-linkedin"></i>
+                <a href="https://www.linkedin.com/in/pooja-singh-689024278/" target="_blank" class="text-blue-500 mt-4 inline-block">LinkedIn</a>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div class="card p-6 bg-transparent text-white rounded-lg shadow-lg overflow-hidden max-w-[400px] min-h-[380px] transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white border border-gray-300">
+
+                <img class="w-80 h-70 rounded-full mx-auto" src="https://i.ibb.co/Xypp2Rh/akash.jpg" alt="Team Member 5">
+                <h3 class="text-xl font-semibold mt-4 text-white-800">Akash Srivastava</h3>
+                <i class="fab fa-linkedin"></i>
+
+                <a href="https://www.linkedin.com/in/akash-srivastava-b3b3041bb/" target="_blank" class="text-blue-500 mt-4 inline-block">LinkedIn</a>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div class="card p-6 bg-transparent text-white rounded-lg shadow-lg overflow-hidden max-w-[400px] min-h-[380px] transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white border border-gray-300 ">
+
+                <img class="w-80 h-70 rounded-full  mx-auto" src="https://i.ibb.co/6PqtN8t/sharavri.jpg" alt="Team Member 3">
+                <h3 class="text-xl font-semibold mt-4 text-white-800">Sharvari Patil</h3>
+                <i class="fab fa-linkedin"></i>
+                <a href="https://www.linkedin.com/in/sharvari-patil1103/" target="_blank" class="text-blue-500 mt-4 inline-block">LinkedIn</a>
+            </div>
+
+            <!-- Team Member 4 -->
+            <div class="card p-6 bg-transparent text-white rounded-lg shadow-lg overflow-hidden max-w-[400px] min-h-[380px] transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white border border-gray-300">
+
+                <img class="w-80 h-70 rounded-full mx-auto" src="https://i.ibb.co/dmFXXY9/anisha1.jpg" alt="Team Member 4">
+                <h3 class="text-xl font-semibold mt-4 text-white-800">Anisha Singh</h3>
+                <i class="fab fa-linkedin"></i>
+                <a href="https://www.linkedin.com/in/anisha-singh-9a4640295" target="_blank" class="text-blue-500 mt-4 inline-block">LinkedIn</a>
+            </div>
+
+            <!-- Team Member 5 -->
+            <div class="card p-6 bg-transparent text-white rounded-lg shadow-lg overflow-hidden max-w-[400px] min-h-[380px] transform transition duration-300 hover:bg-white hover:bg-opacity-20 hover:backdrop-blur-lg hover:scale-105 hover:text-white border border-gray-300">
+
+                <img class="w-80 h-70 rounded-full mx-auto" src="https://i.ibb.co/fN58TdV/sakshi2.jpg" alt="Team Member 2">
+                <h3 class="text-xl font-semibold mt-4 text-wite-800">Sakshi Madne</h3>
+                <i class="fab fa-linkedin"></i>
+                <a href="https://www.linkedin.com/in/sakshi-madne-27a189269/" target="_blank" class="text-blue-500 mt-4 inline-block">LinkedIn</a>
+            </div>
         </div>
-
-        <!-- Navbar Desktop -->
-        <ul id="desktop-nav" class="hidden lg:flex lg:items-center space-x-10 text-[1.05rem] font-medium"
-            data-aos="fade-up" data-aos-delay="1000">
-            <li>
-                <a href="/index.html" class="hover:text-orange transition ease-in-out duration-300">Home</a>
-            </li>
-            <li>
-                <a href="/about.html" class="hover:text-orange transition ease-in-out duration-300">About</a>
-            </li>
-            <li>
-                <a href="/login.html" class="hover:text-orange transition ease-in-out duration-300">login</a>
-            </li>
-        </ul>
     </div>
+</section>
 
-    <!--Navbar Mobile Menu-->
-    <div id="mobile-menu" class="hidden lg:hidden w-full nav-mob-effect" data-aos="fade-up" data-aos-duration="800">
-        <ul
-            class="flex flex-col font-medium space-y-5 pt-4 pb-10 pl-4 text-left bg-white items-center dark:bg-black">
-            <li>
-                <a href="/index.html"
-                    class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">Home</a>
-            </li>
-            <li>
-                <a href="/about.html"
-                    class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">About</a>
-            </li>
-            <li>
-                <a href="/login.html"
-                    class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">Topics</a>
-            </li>
 
-        </ul>
-    </div>
-</nav>
-    <!-- team details -->
-    
 
     <!-- Footer Section -->
     <footer class="bg-gray-900 text-white clear-both pt-10">
@@ -140,5 +177,5 @@
     <script src="https://pbutcher.uk/flipdown/js/flipdown/flipdown.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-notify@1.0.4/dist/simple-notify.min.js"></script>
 </body>
-<script src="../script/index.js"></script>
+
 </html>

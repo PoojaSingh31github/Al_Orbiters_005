@@ -18,14 +18,25 @@
   margin: 20px 0;
   flex-wrap: wrap;
   justify-content: center;
+  flex-wrap: nowrap; /* Prevents wrapping */
+  overflow-x: hidden; /* Hides horizontal overflow */
+  overflow-y: auto; /* Optional: Add vertical scroll if needed */
+  white-space: nowrap; /* Keeps content in a single line */
+  text-overflow: ellipsis;
+  
 }
+::-webkit-scrollbar { display: none; }
 .node {
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin-right: 15px;
-  font-size: 1.2rem;
-  font-weight: bold;
+  flex-shrink: 0;
+  width: 100px; /* Adjust width to suit your design */
+  height: 50px; /* Example height */
+  background-color: #4a5568; /* Example background */
+  color: white; /* Example text color */
+  margin-right: 10px; /* Space between nodes */
+  text-align: center;
+  line-height: 50px; /* Center text vertically */
+  border-radius: 4px;
+  overflow: hidden;
 }
 .node-value {
   padding: 10px;
@@ -42,7 +53,8 @@
   background-color: #b9b7b7;
   position: relative;
   margin-left: 10px;
-  margin-right: 10px;
+  margin-right: 25px;
+  margin-top: 25px;
 }
 .arrow::after {
   content: "";
