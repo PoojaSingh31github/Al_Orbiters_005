@@ -29,34 +29,27 @@ function visualizeWordBreak(word, dictionary) {
             return true;
         }
 
-        // Try every possible word break from the current position
         for (let end = start + 1; end <= word.length; end++) {
-            const substring = word.slice(start, end); // Extract the current substring
+            const substring = word.slice(start, end); 
 
             if (dictionary.includes(substring)) {
-                // If the substring is in the dictionary, it's a valid segment
                 setTimeout(() => {
-                    highlightSubstring(word, start, end - 1, true); // Highlight valid substring
+                    highlightSubstring(word, start, end - 1, true);
                 }, 500 * path.length);
 
-                // Add this valid segment to the path and recursively check the remaining part
                 const newPath = [...path, { start, end }];
                 if (canBreak(end, newPath)) {
                     return true;
                 }
             } else {
-                // Optional: Highlight invalid segments
                 setTimeout(() => {
-                    highlightSubstring(word, start, end - 1, false); // Highlight invalid substring
+                    highlightSubstring(word, start, end - 1, false);
                 }, 500 * path.length);
             }
         }
-
-        // If no valid segmentation is found, return false
         return false;
     }
 
-    // Begin the backtracking process
     if (!canBreak(0, [])) {
         setTimeout(() => {
             alert("Word cannot be segmented.");
@@ -68,7 +61,7 @@ function visualizeWordBreak(word, dictionary) {
 function highlightSubstring(word, start, end, isValid) {
     const substring = word.slice(start, end + 1); // Get the substring
     const box = document.createElement("div");
-    box.className = `visualization-box ${isValid ? "highlight-success" : "highlight-fail"}`;
+    box.className =` visualization-box ${isValid ? "highlight-success" : "highlight-fail"}`;
     box.textContent = substring; // Show the substring
     document.getElementById("visualizationArea").appendChild(box); // Append the segment
 }
