@@ -86,7 +86,7 @@ body {
     cursor: pointer;
 }
 
-#enterArray {
+/* #enterArray {
     background: linear-gradient(to right, #3b82f6, #004cef);
 }
 
@@ -100,7 +100,7 @@ body {
 
 button:hover {
     transform: scale(1.03);
-}
+} */
 
 .algorithm-details {
     background-color: #374151;
