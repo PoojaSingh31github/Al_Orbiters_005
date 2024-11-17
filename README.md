@@ -7,24 +7,24 @@ The **Algorithm Visualizer** is an interactive web application designed to help 
 Frontend
 
 ## Deployed App
-- **Frontend**: [Deployed Frontend Link](https://deployed-site.whatever)
-- **Backend**: Not applicable (Frontend-only project)
-- **Database**: Not applicable (No database used)
+- **Frontend**: [Deployed Frontend Link][(https://deployed-site.whatever](https://al-orbiters-005-git-master-poojasingh31githubs-projects.vercel.app/))
+
 
 ## Directory Structure
 ```plaintext
 algorithm-visualizer/
-├─ backend/ (If applicable, not used in this project)
-├─ frontend/
-│  ├─ src/
-│  │  ├─ components/       # UI components for algorithms and controls
-│  │  ├─ algorithms/       # JavaScript files for each algorithm visualization
-│  │  ├─ utils/            # Utility functions for animations and state management
-│  ├─ public/              # Static files such as images and icons
-│  ├─ index.html           # Main HTML file
-├─ .gitignore
+
+├─ src/
+│  ├─script/
+│  ├─ style/       
+│  ├─ page/       
+├─ index.html           
+├─ about.html          
 ├─ README.md
-├─ package.json
+├─ login.html
+├─ signup.html
+
+```
 
 ## Video Walkthrough of the Project
 Attach a very short video walkthrough of all of the features (1 - 3 minutes)
@@ -48,7 +48,6 @@ List your design decisions and assumptions.
 
 - **Responsiveness**: The UI is designed to work smoothly across devices (desktop, tablet, mobile).
 - **Modular Code**: Code is modular for easy scalability; each algorithm is a separate module.
-- **State Management**: Redux is used for managing global state across the application.
 - **Animation Framework**: Used CSS and JavaScript animations for smooth visualization transitions.
 
 ## Installation & Getting Started
@@ -56,23 +55,13 @@ Detailed instructions on how to install, configure, and get the project running.
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/username/algorithm-visualizer.git
-    cd algorithm-visualizer
+    git clone [https://github.com/username/algorithm-visualizer.git
+    cd algorithm-visualizer](https://github.com/PoojaSingh31github/Al_Orbiters_005.git)
     ```
 
-2. Install dependencies:
-    ```bash
-    npm install
-    ```
 
-3. Start the development server:
-    ```bash
-    npm start
-    ```
+4. Open the application in your browser at `http://localhost:PORT`.
 
-4. Open the application in your browser at `http://localhost:3000`.
-
-For Backend/Fullstack Projects: If you're using MongoDB, check the schema using MongoDB Compass or a similar tool.
 
 ## Usage
 Provide instructions and examples on how to use your project.
@@ -86,24 +75,19 @@ Provide instructions and examples on how to use your project.
 # Example:
 Choose "Merge Sort", input [12, 5, 7, 9], and click "Start". The algorithm will be visualized step-by-step.
 
+```
+
 ## Credentials
 Provide user credentials for authenticated pages.
 
 - **Username**: exampleUser
 - **Password**: examplePassword123
+- **email**: example@gmail.com
 
-## APIs Used
-If your application relies on external APIs, document them and include any necessary links or references.
+## Technology Stack
+technologies used in the project.
 
-- **Algorithm Data API**: Fetches algorithm data and descriptions from an external source. Documentation: [Link to API Docs](link-to-api-docs).
-- **User Authentication API**: Handles user login and registration for the platform. Documentation: [Link to User Auth API](link-to-api-docs).
-
-## API Endpoints
-In case of Backend Applications, provide a list of your API endpoints, methods, brief descriptions, and examples of request/response.
-
-**GET /api/items**  
-Description: Retrieves a list of all available algorithms.  
-Example request:
-```bash
-GET /api/items
+- HTML
+- CSS
+- Javascript
 
