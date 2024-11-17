@@ -1,154 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Variable Window Visualizer</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+
 </head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center">
-  <div class="container mx-auto p-6 bg-white rounded-lg shadow-md w-full max-w-3xl">
-    <h1 class="text-2xl font-bold text-center mb-4 text-gray-800">Variable Window Visualizer</h1>
 
-    <!-- Variable Window Sizes -->
-    <div class="mb-4">
-      <label for="variableSizes" class="block text-gray-700 font-semibold mb-2">Variable Window Sizes (comma-separated):</label>
-      <input
-        type="text"
-        id="variableSizes"
-        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="e.g., 2,3,4"
-      />
+<body class="bg-gray-900 text-white">
+  <nav id="navbar" class="h-[4.5rem] lg:h-[5rem] bg-[#0f2451] lg:text-gray-300 w-full fixed top-0 z-50"
+    data-aos="fade-down" data-aos-duration="800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex justify-between items-center h-full" data-aos="zoom-in"
+      data-aos-delay="500">
+      <!-- Logo dark headphone -->
+      <div class="logo-dark" data-aos="zoom-out" data-aos-delay="700">
+        <a href="#hero"><img class="h-9 sm:h-10"
+            src="https://ik.imagekit.io/uvfza6h6e/logo2.png?updatedAt=1731766414873" alt="" /></a>
+      </div>
+      <!-- Hamburger icon -->
+
+      <div class="lg:hidden flex" data-aos="fade-left">
+        <button id="hamburger-btn">
+          <i class="fa-solid fa-bars text-xl sm:text-black-400"></i>
+        </button>
+      </div>
+
+      <!-- Navbar Desktop -->
+      <ul id="desktop-nav" class="hidden lg:flex lg:items-center space-x-10 text-[1.05rem] font-medium"
+        data-aos="fade-up" data-aos-delay="1000">
+        <li>
+          <a href="index.html" class="hover:text-orange transition ease-in-out duration-300">Home</a>
+        </li>
+        <li>
+          <a href="about.html" class="hover:text-orange transition ease-in-out duration-300">About</a>
+        </li>
+        <li>
+          <a href="login.html" class="hover:text-orange transition ease-in-out duration-300">login</a>
+        </li>
+      </ul>
     </div>
 
-    <!-- Array Input -->
-    <div class="mb-4">
-      <label for="inputArray" class="block text-gray-700 font-semibold mb-2">Enter Array (comma-separated):</label>
-      <input
-        type="text"
-        id="inputArray"
-        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="e.g., 1,2,3,4,5,6,7"
-      />
+    <!--Navbar Mobile Menu-->
+    <div id="mobile-menu" class="hidden lg:hidden w-full nav-mob-effect" data-aos="fade-up" data-aos-duration="800">
+      <ul class="flex flex-col font-medium space-y-5 pt-4 pb-10 pl-4 text-left bg-white items-center dark:bg-black">
+        <li>
+          <a href="index.html"
+            class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">Home</a>
+        </li>
+        <li>
+          <a href="about.html"
+            class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">About</a>
+        </li>
+        <li>
+          <a href="login.html"
+            class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">Topics</a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+
+  <div class="flex h-full mt-[4.5rem]">
+    <!-- Sidebar -->
+    <div
+      class="mt-[4.5rem] fixed top-0 left-0 h-full w-16 md:w-64 bg-gray-800 text-gray-400 flex flex-col items-center md:items-start p-4 shadow-lg">
+      <h2
+        class="hidden md:block text-transparent text-lg font-semibold mb-4 bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">
+        Sliding Window</h2>
+      <ul class="space-y-4">
+        <li class="text-center md:text-left">
+          <a href="slidingfixed.html" class="flex items-center space-x-2 py-1 hover:text-white">
+            <i class="fa fa-cogs"></i> <!-- Fixed Size Icon -->
+            <span class="hidden md:inline">Fixed Sized</span>
+          </a>
+        </li>
+        <li class="text-center md:text-left">
+          <a href="slidingvariable.html" class="flex items-center space-x-2 py-1 hover:text-white">
+            <i class="fa fa-random"></i> <!-- Variable Size Icon -->
+            <span class="hidden md:inline">Variable Sized</span>
+          </a>
+        </li>
+        <li class="text-center md:text-left">
+          <a href="maxsubarr.html" class="flex items-center space-x-2 py-1 hover:text-white">
+            <i class="fa fa-archive"></i> <!-- Maximum Subarray Icon -->
+            <span class="hidden md:inline">Maximum Subarray</span>
+          </a>
+        </li>
+        <li class="text-center md:text-left">
+          <a href="longestsubtstr.html" class="flex items-center space-x-2 py-1 hover:text-white">
+            <i class="fa fa-text-width"></i> <!-- Longest Substring Icon -->
+            <span class="hidden md:inline">Longest Substring</span>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+    <!-- Main Content -->
+    <div class="pl-20 md:ml-52 flex-1 p-8">
+      <h1 id="problemTitle"
+        class="text-3xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 mb-2">
+        Variable Window Visualizer</h1>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 items-center mt-5">
+        <div>
+          <label for="variableSizes" class="block md:text-lg font-medium">Variable Window Sizes
+            (comma-separated):</label>
+          <input type="text" id="variableSizes" placeholder="e.g., 3,4,5,6"
+            class="w-full p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400">
+
+          <label for="inputArray" class="block md:text-lg font-medium">Enter Array (comma-separated):</label>
+          <input type="text" id="inputArray" placeholder="e.g., 1,2,3,4,5,6,7"
+            class="w-full p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400">
+        </div>
+      </div>
+
+      <div class="space-x-2">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:gap-4 gap-2 mt-6">
+          <button id="startButton"
+            class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Start
+            Visualization
+          </button>
+          <button id="resetButton"
+            class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Reset</button>
+        </div>
+      </div>
+
+      <!-- Visualization Area -->
+      <div id="visualizer" class="visualization mt-8 bg-gray-800 p-4 rounded"></div>
+
+      <div class="space-x-2">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:gap-4 gap-2 mt-6">
+          <button id="prevButton"
+            class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">prev
+          </button>
+          <button id="nextButton"
+            class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">next</button>
+        </div>
+      </div>
+      <!-- Problem Description -->
+
+      <div class="p-2 md:p-6 mt-4 bg-gray-800 rounded-lg shadow-lg space-y-4" id="problemDescription">
+        <h2
+          class="text-xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500"
+          id="problemTitle">
+          Sliding Window Technique
+        </h2>
+        <p class="text-gray-300 leading-relaxed" id="problemDescriptionText">
+          The <strong>Sliding Window</strong> technique is an efficient way to solve problems involving arrays or lists.
+          It works by maintaining a "window" of elements in the array that "slides" from one end to the other while
+          updating the result dynamically. The window can be of fixed or variable size depending on the problem.
+          This technique is especially useful in optimizing problems that require processing a continuous segment
+          of the array.
+        </p>
+
+        <!-- Time Complexity Section -->
+        <div class="bg-gray-700 p-4 rounded-lg">
+          <h3
+            class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 mb-2">
+            Time Complexity:
+          </h3>
+          <p class="text-gray-300">
+            - <strong>Sliding Window Operation:</strong> O(n) (linear time, where n is the number of elements in the
+            array).<br>
+            - <strong>For Maximum/Minimum Sum in a Fixed Window:</strong> O(n) (as the window slides once through all
+            elements).<br>
+            - <strong>For Variable Window:</strong> O(n) (sliding the window through the entire array to find the
+            optimal solution).
+          </p>
+        </div>
+
+        <!-- Space Complexity Section -->
+        <div class="bg-gray-700 p-4 rounded-lg">
+          <h3
+            class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 mb-2">
+            Space Complexity:
+          </h3>
+          <p class="text-gray-300">
+            - The space complexity is O(1) (constant space) for most sliding window problems since it only requires a
+            fixed amount of space
+            to store the current window, regardless of the array size.
+          </p>
+        </div>
+
+        <!-- Additional Problem Information -->
+        <p class="text-gray-400 italic">
+          Sliding window techniques are widely used in solving problems related to arrays, strings, and even
+          dynamic programming problems. It's particularly effective when you need to calculate a value across
+          a continuous subarray and minimize computational time.
+        </p>
+      </div>
+    </div>
     </div>
 
-    <div class="flex justify-center mb-6 gap-4">
-      <button id="startButton" class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none">
-        Start Visualization
-      </button>
-      <button id="resetButton" class="bg-gray-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-gray-600 focus:outline-none">
-        Reset
-      </button>
-    </div>
+    <script>
+      const inputArray = document.getElementById("inputArray");
+      const startButton = document.getElementById("startButton");
+      const resetButton = document.getElementById("resetButton");
+      const prevButton = document.getElementById("prevButton");
+      const nextButton = document.getElementById("nextButton");
+      const visualizer = document.getElementById("visualizer");
 
-    <!-- Navigation Buttons -->
-    <div class="flex justify-center mb-6 gap-4">
-      <button id="prevButton" class="bg-green-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-green-600 focus:outline-none hidden">
-        Prev
-      </button>
-      <button id="nextButton" class="bg-yellow-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-yellow-600 focus:outline-none hidden">
-        Next
-      </button>
-    </div>
+      let steps = [];
+      let currentStep = 0;
 
-    <!-- Visualization Section -->
-    <div id="visualizer" class="mt-6 flex flex-col items-center gap-4">
-      <!-- Visualization will appear here -->
-    </div>
-  </div>
+      // Start Visualization
+      startButton.addEventListener("click", () => {
+        const array = inputArray.value.split(",").map(Number);
+        visualizer.innerHTML = ""; // Clear the visualization area
+        steps = [];
+        currentStep = 0;
 
-  <script>
-    const inputArray = document.getElementById("inputArray");
-    const startButton = document.getElementById("startButton");
-    const resetButton = document.getElementById("resetButton");
-    const prevButton = document.getElementById("prevButton");
-    const nextButton = document.getElementById("nextButton");
-    const visualizer = document.getElementById("visualizer");
+        const variableSizes = document.getElementById("variableSizes").value
+          .split(",")
+          .map(Number)
+          .filter(size => size > 0);
 
-    let steps = [];
-    let currentStep = 0;
+        if (variableSizes.length === 0) {
+          alert("Please enter valid variable window sizes.");
+          return;
+        }
 
-    // Start Visualization
-    startButton.addEventListener("click", () => {
-      const array = inputArray.value.split(",").map(Number);
-      visualizer.innerHTML = ""; // Clear the visualization area
-      steps = [];
-      currentStep = 0;
+        generateVariableWindowSteps(array, variableSizes);
 
-      const variableSizes = document.getElementById("variableSizes").value
-        .split(",")
-        .map(Number)
-        .filter(size => size > 0);
-
-      if (variableSizes.length === 0) {
-        alert("Please enter valid variable window sizes.");
-        return;
-      }
-
-      generateVariableWindowSteps(array, variableSizes);
-
-      if (steps.length > 0) {
-        prevButton.classList.remove("hidden");
-        nextButton.classList.remove("hidden");
-        displayStep(0);
-      }
-    });
-
-    // Reset inputs and visualizer
-    resetButton.addEventListener("click", () => {
-      inputArray.value = "";
-      document.getElementById("variableSizes").value = "";
-      visualizer.innerHTML = "";
-      prevButton.classList.add("hidden");
-      nextButton.classList.add("hidden");
-    });
-
-    // Navigate Steps
-    prevButton.addEventListener("click", () => {
-      if (currentStep > 0) {
-        currentStep--;
-        displayStep(currentStep);
-      }
-    });
-
-    nextButton.addEventListener("click", () => {
-      if (currentStep < steps.length - 1) {
-        currentStep++;
-        displayStep(currentStep);
-      }
-    });
-
-    // Generate steps for variable window
-    function generateVariableWindowSteps(array, sizes) {
-      let start = 0;
-      for (let size of sizes) {
-        const end = Math.min(start + size, array.length);
-        steps.push({ start, end });
-        start = end;
-        if (start >= array.length) break;
-      }
-    }
-
-    // Display a specific step
-    function displayStep(stepIndex) {
-      const array = inputArray.value.split(",").map(Number);
-      const { start, end } = steps[stepIndex];
-      visualizer.innerHTML = ""; // Clear previous visualization
-
-      const row = document.createElement("div");
-      row.className = "flex items-center gap-2";
-
-      array.forEach((value, index) => {
-        const box = document.createElement("div");
-        box.className = `w-12 h-12 flex items-center justify-center text-lg font-bold rounded-md ${
-          index >= start && index < end ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-800"
-        }`;
-        box.textContent = value;
-        row.appendChild(box);
+        if (steps.length > 0) {
+          prevButton.classList.remove("hidden");
+          nextButton.classList.remove("hidden");
+          displayStep(0);
+        }
       });
 
-      visualizer.appendChild(row);
-    }
-  </script>
+      // Reset inputs and visualizer
+      resetButton.addEventListener("click", () => {
+        inputArray.value = "";
+        document.getElementById("variableSizes").value = "";
+        visualizer.innerHTML = "";
+        prevButton.classList.add("hidden");
+        nextButton.classList.add("hidden");
+      });
+
+      // Navigate Steps
+      prevButton.addEventListener("click", () => {
+        if (currentStep > 0) {
+          currentStep--;
+          displayStep(currentStep);
+        }
+      });
+
+      nextButton.addEventListener("click", () => {
+        if (currentStep < steps.length - 1) {
+          currentStep++;
+          displayStep(currentStep);
+        }
+      });
+
+      // Generate steps for variable window
+      function generateVariableWindowSteps(array, sizes) {
+        let start = 0;
+        for (let size of sizes) {
+          const end = Math.min(start + size, array.length);
+          steps.push({ start, end });
+          start = end;
+          if (start >= array.length) break;
+        }
+      }
+
+      // Display a specific step
+      function displayStep(stepIndex) {
+        const array = inputArray.value.split(",").map(Number);
+        const { start, end } = steps[stepIndex];
+        visualizer.innerHTML = ""; // Clear previous visualization
+
+        const row = document.createElement("div");
+        row.className = "flex items-center gap-2";
+
+        array.forEach((value, index) => {
+          const box = document.createElement("div");
+          box.className = `w-12 h-12 flex items-center justify-center text-lg font-bold rounded-md ${index >= start && index < end ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-800"
+            }`;
+          box.textContent = value;
+          row.appendChild(box);
+        });
+
+        visualizer.appendChild(row);
+      }
+    </script>
 </body>
+
 </html>

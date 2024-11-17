@@ -4,10 +4,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Advanced Binary Search Visualizer</title>
+  <title>Binary Search Visualizer</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
   <style>
+    .card {
+      width: 600px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .card h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333;
+    }
+
     .array-container {
       display: flex;
       justify-content: center;
@@ -34,18 +50,78 @@
     .array-element.checked {
       background-color: #ffc107;
     }
+
+    .input-group {
+      margin-bottom: 10px;
+    }
+
+    .input-group input {
+      width: calc(50% - 5px);
+      padding: 10px;
+      font-size: 16px;
+      margin-right: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .type-group {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .type-group button {
+      padding: 10px 20px;
+      font-size: 14px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      flex-grow: 1;
+    }
+
+    .type-group button.selected {
+      background-color: #28a745;
+    }
+
+    .type-group button:hover {
+      background-color: #0056b3;
+    }
+
+    .button-group {
+      margin-top: 10px;
+    }
+
+    .button-group button {
+      padding: 10px 20px;
+      font-size: 14px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .button-group button:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 
 <body class="bg-gray-900 text-white">
-  <nav id="navbar"
-  class="h-[4.5rem] lg:h-[5rem] bg-[#0f2451] lg:text-gray-300 w-full fixed top-0 z-50"
+  <nav id="navbar" class="h-[4.5rem] lg:h-[5rem] bg-[#0f2451] lg:text-gray-300 w-full fixed top-0 z-50"
   data-aos="fade-down" data-aos-duration="800">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex justify-between items-center h-full" data-aos="zoom-in"
       data-aos-delay="500">
       <!-- Logo dark headphone -->
       <div class="logo-dark" data-aos="zoom-out" data-aos-delay="700">
-          <a href="#hero"><img class="h-9 sm:h-10" src="https://ik.imagekit.io/uvfza6h6e/logo2.png?updatedAt=1731766414873" alt="" /></a>
+          <a href="#hero"><img class="h-9 sm:h-10"
+                  src="https://ik.imagekit.io/uvfza6h6e/logo2.png?updatedAt=1731766414873" alt="" /></a>
       </div>
       <!-- Hamburger icon -->
 
@@ -90,292 +166,253 @@
       </ul>
   </div>
 </nav>
+
+
   <div class="flex h-full mt-[4.5rem]">
     <!-- Sidebar -->
-    <div
-      class="mt-[4.5rem] fixed top-0 left-0 h-full w-16 md:w-64 bg-gray-800 text-gray-400 flex flex-col items-center md:items-start p-4 shadow-lg">
-      <h2
-        class="hidden md:block text-transparent text-lg font-semibold mb-4 bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">
-        Binary search</h2>
-      <ul class="space-y-4" id="searchTypes">
-        <button class="text-center md:text-left" onclick="selectSearchType(this)" data-type="normal">
-
-          <i class="fas fa-th-large"></i>
-          <span class="hidden md:inline">Normal Binary Search</span>
-        </button>
-        <button class="text-center md:text-left" onclick="selectSearchType(this)" data-type="first">
-
-          <i class="fas fa-font"></i>
-          <span class="hidden md:inline">First Occurrence</span>
-        </button>
-        <button class="text-center md:text-left" onclick="selectSearchType(this)" data-type="last">
-
-          <i class="fa-solid fa-layer-group"></i>
-          <span class="hidden md:inline">Last Occurrence</span>
-        </button>
-        <button class="text-center md:text-left" onclick="selectSearchType(this)" data-type="closest">
-
-          <i class="fa-brands fa-stack-overflow"></i>
-          <span class="hidden md:inline">Closest Value</span>
-        </button>
-        <button class="text-center md:text-left" onclick="selectSearchType(this)" data-type="abstract">
-
-          <i class="fas fa-project-diagram"></i>
-          <span class="hidden md:inline">Abstract Binary Search</span>
-        </button>
-      </ul>
+    <div class="mt-[4.5rem] fixed top-0 left-0 h-full w-16 md:w-64 bg-gray-800 text-gray-400 flex flex-col items-center md:items-start p-4 shadow-lg">
+      <h2 class="hidden md:block text-transparent text-lg font-semibold mb-4 bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">
+        Searching Algorithm
+      </h2>
+      <div id="binarySearchOptions">
+        <ul class="space-y-4">
+          <li class="text-center md:text-left">
+            <a href="linear.html" class="flex items-center space-x-2 py-1 hover:text-white">
+              <i class="fa fa-search"></i> <!-- Linear Search Icon -->
+              <span class="hidden md:inline">Linear Search</span>
+            </a>
+          </li>
+    
+          <button onclick="selectSearchType(this)" class="text-center md:text-left" data-value="normal">
+            <i class="fa fa-search-plus"></i> <!-- Binary Search Icon -->
+            <span class="hidden md:inline">Binary Search</span>
+          </button>
+          <br>
+          <button onclick="selectSearchType(this)" class="text-center md:text-left" data-value="first">
+            <i class="fa fa-search-minus"></i> <!-- First Occurrence Icon -->
+            <span class="hidden md:inline">First Occurrence</span>
+          </button>
+          <br>
+          <button onclick="selectSearchType(this)" class="text-center md:text-left" data-value="last">
+            <i class="fa fa-search"></i> <!-- Last Occurrence Icon -->
+            <span class="hidden md:inline">Last Occurrence</span>
+          </button>
+          <br>
+          <button onclick="selectSearchType(this)" class="text-center md:text-left" data-value="closest">
+            <i class="fa fa-link"></i> <!-- Closest Icon -->
+            <span class="hidden md:inline">Closest</span>
+          </button>
+          <br>
+        </ul>
+      </div>
     </div>
+    
     <!-- Main Content -->
     <div class="pl-20 md:ml-52 flex-1 p-8">
-      <h1 id="problemTitle"
+      <h1 id="visualizerTitle"
         class="text-3xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 mb-2">
-        Binary Search Visualizer</h1>
-      <div class="mt-5">
-        <label for="addElement" class="block md:text-lg font-medium">Add Array</label>
-        <input type="text" id="arrayInput" placeholder="Enter sorted array (e.g., 1, 2, 3, 4)"
-          class="w-full p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400">
-
-        <label for="addElement" class="block md:text-lg font-medium">Target</label>
-        <input type="number" id="targetInput" placeholder="Target Number" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-          class="w-full p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400">
-
+        binary Visualizer</h1>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 items-center mt-5">
+        <div>
+          <label for="addElement" class="block md:text-lg font-medium">Add to Array</label>
+          <input type="text" id="arrayInput" placeholder="Enter sorted array (e.g., 1, 2, 3, 4)"
+            class="w-full p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400">
+          <input type="text" id="targetInput" placeholder="Target Number"
+            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+            class="w-full p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400">
+        </div>
       </div>
 
       <div class="space-x-2">
         <div class="grid grid-cols-2 lg:grid-cols-4 lg:gap-4 gap-2 mt-6">
           <button onclick="startSearch()"
-            class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Start
-            Search
+            class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Add
           </button>
         </div>
       </div>
 
       <!-- Visualization Area -->
       <div id="arrayContainer" class="array-container mt-8 bg-gray-800 p-4 rounded"></div>
-      <div id="result"></div>
       <!-- Problem Description -->
+
       <div class="p-2 md:p-6 mt-4 bg-gray-800 rounded-lg shadow-lg space-y-4" id="problemDescription">
         <h2
-          class="text-xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500"
-          id="problemTitle">
-          Binary Search Algorithm
+            class="text-xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500"
+            id="problemTitle">
+            Binary Search Algorithm
         </h2>
         <p class="text-gray-300 leading-relaxed" id="problemDescriptionText">
-          <strong>Binary Search</strong> is an efficient algorithm for finding a target element in a sorted array. It
-          works by
-          repeatedly dividing the search interval in half. If the target value matches the middle element, the search
-          is complete. Otherwise, the search continues in the left or right half, depending on whether the target
-          value is smaller or larger than the middle element.
-          Binary Search reduces the problem size by half at each step, making it significantly faster than linear
-          search for large datasets.
+            <strong>Binary Search</strong> is an efficient algorithm for finding the position of a target element in a sorted
+            array. It works by repeatedly dividing the search interval in half, comparing the target value to the middle
+            element, and deciding whether to continue searching in the left or right half. Binary Search operates only on
+            sorted data structures.
         </p>
-
+    
         <!-- Time Complexity Section -->
         <div class="bg-gray-700 p-4 rounded-lg">
-          <h3
-            class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 mb-2">
-            Time Complexity:
-          </h3>
-          <p class="text-gray-300">
-            - <strong>Best Case:</strong> O(1) (when the target is the middle element).<br>
-            - <strong>Worst Case:</strong> O(log n) (in every step, the array size reduces by half).<br>
-            - <strong>Average Case:</strong> O(log n) (applies when the target could be anywhere in the sorted
-            array).<br>
-          </p>
+            <h3
+                class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 mb-2">
+                Time Complexity:
+            </h3>
+            <p class="text-gray-300">
+                - <strong>Best Case:</strong> O(1) (when the middle element matches the target immediately).<br>
+                - <strong>Average Case:</strong> O(log n) (halving the search space in each step).<br>
+                - <strong>Worst Case:</strong> O(log n) (search continues until the interval reduces to a single element).
+            </p>
         </div>
-
+    
         <!-- Space Complexity Section -->
         <div class="bg-gray-700 p-4 rounded-lg">
-          <h3
-            class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 mb-2">
-            Space Complexity:
-          </h3>
-          <p class="text-gray-300">
-            - <strong>Iterative Implementation:</strong> O(1) (constant space as it does not require additional data
-            structures).<br>
-            - <strong>Recursive Implementation:</strong> O(log n) (due to the recursive stack used for function
-            calls).<br>
-          </p>
+            <h3
+                class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 mb-2">
+                Space Complexity:
+            </h3>
+            <p class="text-gray-300">
+                - <strong>Iterative Binary Search:</strong> O(1) (no extra space is required as the algorithm operates in place).<br>
+                - <strong>Recursive Binary Search:</strong> O(log n) (due to the recursive call stack for each halved interval).
+            </p>
         </div>
-
-        <!-- How Binary Search Works -->
-        <div class="bg-gray-700 p-4 rounded-lg">
-          <h3
-            class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600 mb-2">
-            How Binary Search Works:
-          </h3>
-          <p class="text-gray-300">
-            1. Start with two pointers: <em>low</em> at the beginning and <em>high</em> at the end of the array.
-            2. Calculate the middle index: <code>mid = (low + high) // 2</code>.
-            3. Compare the middle element with the target value:
-            - If <code>array[mid] == target</code>, the target is found.
-            - If <code>array[mid] &gt; target</code>, narrow the search to the left half: <code>high = mid - 1</code>.
-            - If <code>array[mid] &lt; target</code>, narrow the search to the right half: <code>low = mid + 1</code>.
-            4. Repeat steps 2-3 until <code>low &gt; high</code> or the target is found.
-          </p>
-        </div>
-
-        <!-- Conclusion -->
+    
+        <!-- Additional Problem Information -->
         <p class="text-gray-400 italic">
-          Binary Search is widely used in scenarios requiring efficient search operations, such as database indexing,
-          sorted arrays, and search engines. Its logarithmic time complexity makes it a critical tool for handling
-          large datasets efficiently.
+            Binary Search is widely used in applications that involve sorted data, such as searching in databases, 
+            navigating through ordered datasets, and solving optimization problems. Variants of Binary Search, such 
+            as finding the first or last occurrence of a target, enhance its versatility.
         </p>
-      </div>
-
-
-
-
     </div>
+    
+    </div>
+
   </div>
-
-  <!-- 
-    <div class="card">
-      <h2>Advanced Binary Search Visualizer</h2>
-      <div class="input-group">
-        <input
-          type="text"
-          id="arrayInput"
-          placeholder="Enter sorted array (e.g., 1, 2, 3, 4)"
-        />
-        <input type="number" id="targetInput" placeholder="Target Number" />
-      </div>
-      <div class="type-group">
-        <ul id="searchTypes">
-          <li data-type="normal">Normal Binary Search</li>
-          <li data-type="first">First Occurrence</li>
-          <li data-type="last">Last Occurrence</li>
-          <li data-type="closest">Closest Value</li>
-          <li data-type="abstract">Abstract Binary Search</li>
-        </ul>
-      </div>
-      <div class="button-group">
-        <button onclick="startSearch()">Start Search</button>
-      </div>
-      <div class="array-container" id="arrayContainer"></div>
-      <div id="result"></div>
-    </div> -->
-
   <script>
-    let selectedSearchType = 'normal' // Default search type
+    let selectedSearchType = 'normal'; // Default search type
 
-function selectSearchType(button) {
-  // Remove 'selected' class from all buttons
-  document.querySelectorAll('.type-group button').forEach((btn) => {
-    btn.classList.remove('selected')
-  })
+    function selectSearchType(button) {
+      // Remove 'selected' class from all buttons
+      document.querySelectorAll('.type-group button').forEach((btn) => {
+        btn.classList.remove('selected');
+      });
 
-  // Add 'selected' class to clicked button
-  button.classList.add('selected')
-  selectedSearchType = button.getAttribute('data-value')
-}
+      // Add 'selected' class to clicked button
+      button.classList.add('selected');
+      selectedSearchType = button.getAttribute('data-value');
 
-function startSearch() {
-  const arrayInput = document.getElementById('arrayInput').value
-  const target = parseInt(document.getElementById('targetInput').value)
-  const resultDiv = document.getElementById('result')
-  const arrayContainer = document.getElementById('arrayContainer')
+      // Update the visualizer title dynamically
+      const title = document.getElementById('visualizerTitle');
+      const titles = {
+        normal: 'Normal Binary Visualizer',
+        first: 'First Occ Binary Visualizer',
+        last: 'Last Occ Binary Visualizer',
+        closest: 'Closest Binary Visualizer',
+        abstract: 'Abstract Binary Visualizer',
+      };
 
-  // Validate input
-  if (!arrayInput || isNaN(target)) {
-    resultDiv.innerText = 'Please enter a valid array and target number.'
-    return
-  }
-
-  // Parse the array and validate the elements
-  const array = arrayInput.split(',').map(Number)
-  if (array.some(isNaN)) {
-    resultDiv.innerText = 'Array must contain only numbers.'
-    return
-  }
-
-  // Sort the array
-  array.sort((a, b) => a - b)
-
-  // Clear previous results
-  arrayContainer.innerHTML = ''
-  resultDiv.innerText = ''
-
-  // Render the array elements
-  array.forEach((value) => {
-    const element = document.createElement('div')
-    element.className = 'array-element'
-    element.innerText = value
-    arrayContainer.appendChild(element)
-  })
-
-  // Binary search logic
-  let left = 0,
-    right = array.length - 1,
-    result = -1
-
-  function updateDisplay(mid) {
-    document.querySelectorAll('.array-element').forEach((el, idx) => {
-      el.classList.remove('active', 'checked')
-      if (idx === mid) el.classList.add('active')
-    })
-  }
-
-  function searchStep() {
-    if (left > right) {
-      if (result !== -1) {
-        resultDiv.innerText = `Target ${
-          selectedSearchType === 'closest' ||
-          selectedSearchType === 'abstract'
-            ? 'closest to'
-            : 'found at'
-        } index ${result}`
-      } else {
-        resultDiv.innerText = 'Target not found.'
-      }
-      return
+      title.innerText = titles[selectedSearchType] || 'Binary Search Visualizer';
     }
 
-    const mid = Math.floor((left + right) / 2)
-    updateDisplay(mid)
+    function startSearch() {
+      const arrayInput = document.getElementById('arrayInput').value;
+      const target = parseInt(document.getElementById('targetInput').value);
+      const resultDiv = document.getElementById('result');
+      const arrayContainer = document.getElementById('arrayContainer');
 
-    setTimeout(() => {
-      const midValue = array[mid]
-      if (selectedSearchType === 'normal') {
-        if (midValue === target) result = mid
-      } else if (selectedSearchType === 'first') {
-        if (midValue === target) result = mid
-        if (midValue >= target) right = mid - 1
-        else left = mid + 1
-        return searchStep()
-      } else if (selectedSearchType === 'last') {
-        if (midValue === target) result = mid
-        if (midValue <= target) left = mid + 1
-        else right = mid - 1
-        return searchStep()
-      } else if (selectedSearchType === 'closest') {
-        if (
-          result === -1 ||
-          Math.abs(array[result] - target) > Math.abs(midValue - target)
-        ) {
-          result = mid
-        }
-      } else if (selectedSearchType === 'abstract') {
-        if (midValue >= target) {
-          result = mid
-          right = mid - 1 // Continue searching the left half
-        } else {
-          left = mid + 1 // Continue searching the right half
-        }
-        return searchStep()
+      // Validate input
+      if (!arrayInput || isNaN(target)) {
+        resultDiv.innerText = 'Please enter a valid array and target number.';
+        return;
       }
 
-      if (midValue < target) left = mid + 1
-      else right = mid - 1
+      // Parse the array and validate the elements
+      const array = arrayInput.split(',').map(Number);
+      if (array.some(isNaN)) {
+        resultDiv.innerText = 'Array must contain only numbers.';
+        return;
+      }
 
-      searchStep()
-    }, 1000)
-  }
+      // Sort the array
+      array.sort((a, b) => a - b);
 
-  searchStep()
-}
+      // Clear previous results
+      arrayContainer.innerHTML = '';
+      resultDiv.innerText = '';
+
+      // Render the array elements
+      array.forEach((value) => {
+        const element = document.createElement('div');
+        element.className = 'array-element';
+        element.innerText = value;
+        arrayContainer.appendChild(element);
+      });
+
+      // Binary search logic
+      let left = 0,
+        right = array.length - 1,
+        result = -1;
+
+      function updateDisplay(mid) {
+        document.querySelectorAll('.array-element').forEach((el, idx) => {
+          el.classList.remove('active', 'checked');
+          if (idx === mid) el.classList.add('active');
+        });
+      }
+
+      function searchStep() {
+        if (left > right) {
+          if (result !== -1) {
+            resultDiv.innerText = `Target ${selectedSearchType === 'closest' || selectedSearchType === 'abstract'
+              ? 'closest to'
+              : 'found at'
+              } index ${result}`;
+          } else {
+            resultDiv.innerText = 'Target not found.';
+          }
+          return;
+        }
+
+        const mid = Math.floor((left + right) / 2);
+        updateDisplay(mid);
+
+        setTimeout(() => {
+          const midValue = array[mid];
+          if (selectedSearchType === 'normal') {
+            if (midValue === target) result = mid;
+          } else if (selectedSearchType === 'first') {
+            if (midValue === target) result = mid;
+            if (midValue >= target) right = mid - 1;
+            else left = mid + 1;
+            return searchStep();
+          } else if (selectedSearchType === 'last') {
+            if (midValue === target) result = mid;
+            if (midValue <= target) left = mid + 1;
+            else right = mid - 1;
+            return searchStep();
+          } else if (selectedSearchType === 'closest') {
+            if (
+              result === -1 ||
+              Math.abs(array[result] - target) > Math.abs(midValue - target)
+            ) {
+              result = mid;
+            }
+          } else if (selectedSearchType === 'abstract') {
+            if (midValue >= target) {
+              result = mid;
+              right = mid - 1; // Continue searching the left half
+            } else {
+              left = mid + 1; // Continue searching the right half
+            }
+            return searchStep();
+          }
+
+          if (midValue < target) left = mid + 1;
+          else right = mid - 1;
+
+          searchStep();
+        }, 1000);
+      }
+
+      searchStep();
+    }
   </script>
-  <script src="../script/index.js"></script>
 </body>
 
 </html>

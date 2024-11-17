@@ -96,43 +96,38 @@
       <h2
         class="hidden md:block text-transparent text-lg font-semibold mb-4 bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">
         Two Pointers</h2>
-      <ul class="space-y-4">
-        <li class="text-center md:text-left">
-          <a href="TwoSum.html"
-            class="flex items-center space-x-2 py-1 hover:text-white">
-            <i class="fas fa-th-large"></i>
-            <span class="hidden md:inline">Two Sum - All Pairs</span>
-          </a>
-        </li>
-        <li class="text-center md:text-left">
-          <a href="palindrome.html"
-            class="flex items-center space-x-2 py-1 hover:text-white">
-            <i class="fas fa-font"></i>
-            <span class="hidden md:inline">Valid Palindrome</span>
-          </a>
-        </li>
-        <li class="text-center md:text-left">
-          <a href="water.html" onclick="setBacktrackingProblem('wordBreak')"
-            class="flex items-center space-x-2 py-1 hover:text-white">
-            <i class="fa-solid fa-layer-group"></i>
-            <span class="hidden md:inline">Container With Most Water</span>
-          </a>
-        </li>
-        <!-- <li class="text-center md:text-left">
-          <a href="linklist.html" onclick="setBacktrackingProblem('nQueens')"
-            class="flex items-center space-x-2 py-1 hover:text-white">
-            <i class="fas fa-project-diagram"></i>
-            <span class="hidden md:inline">linklist</span>
-          </a>
-        </li> -->
-      </ul>
+        <ul class="space-y-4">
+          <li class="text-center md:text-left">
+            <a href="TwoSum.html"
+              class="flex items-center space-x-2 py-1 hover:text-white">
+              <i class="fas fa-2"></i> 
+              <span class="hidden md:inline">Two Sum - All Pairs</span>
+            </a>
+          </li>
+          <li class="text-center md:text-left">
+            <a href="palindrome.html"
+              class="flex items-center space-x-2 py-1 hover:text-white">
+              <i class="fas fa-text-width"></i> 
+              <span class="hidden md:inline">Valid Palindrome</span>
+            </a>
+          </li>
+          <li class="text-center md:text-left">
+            <a href="water.html" onclick="setBacktrackingProblem('wordBreak')"
+              class="flex items-center space-x-2 py-1 hover:text-white">
+              <i class="fas fa-water"></i> 
+              <span class="hidden md:inline">Container With Most Water</span>
+            </a>
+          </li>
+        
+        </ul>
+        
     </div>
 
     <!-- Main Content -->
     <div class="ml-16 md:ml-64 flex-1 p-8">
         <h1 id="problemTitle"
         class="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500">
-        Two Pointer Visualizer (Two Sum - All Pairs)</h1>
+        Two Sum - All Pairs</h1>
 
 
       <!-- Visualization Area -->
@@ -170,11 +165,16 @@
         </div>
     
         <div class="controls flex justify-center space-x-4">
-          <button id="prevButton" class="p-2 bg-gray-500 text-white rounded hover:bg-gray-600">Previous</button>
-          <button id="playPauseButton" class="p-2 bg-green-500 text-white rounded hover:bg-green-600">Play</button>
-          <button id="nextButton" class="p-2 bg-gray-500 text-white rounded hover:bg-gray-600">Next</button>
-          <button id="resetButton" class="p-2 bg-red-500 text-white rounded hover:bg-red-600">Reset</button>
-        </div>
+          <button id="prevButton" 
+                    class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Previous</button>
+                <button id="playPauseButton"
+                    class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Play</button>
+                <button id="nextButton"
+                    class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Next</button>
+                <button id="resetButton"
+                    class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Reset</button>
+            
+          </div>
     
         <div class="output mt-6">
           <h2 class="text-xl font-semibold text-white-800 text-center">Output</h2>

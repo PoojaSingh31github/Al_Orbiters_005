@@ -137,12 +137,20 @@
 
 
       <!-- Visualization Area -->
-      <div id="visualizer" class="text-center">
+      <div id="visualizer" class="">
     <h1 class="text-3xl font-semibold mb-6 mt-10">Valid Palindrome Visualizer</h1>
-    <input type="text" id="inputString" class="px-4 py-2 text-xl border rounded-md mb-4 text-black" placeholder="Enter a string" />
-    <button onclick="startVisualization()" class="px-6 py-2 bg-blue-500 text-white text-lg rounded-md hover:bg-blue-700 focus:outline-none">Check Palindrome</button>
-    <button onclick="resetVisualizer()" class="px-6 py-2 bg-gray-500 text-white text-lg rounded-md hover:bg-gray-700 focus:outline-none">Reset</button>
-    <div id="output" class="mt-4 text-2xl font-bold"></div>
+    <input type="text" id="inputString" class="w-1/2 p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400" placeholder="Enter a string" />
+
+    <div class="space-x-2">
+      <div class="grid grid-cols-2 lg:grid-cols-4 lg:gap-4 gap-2 mt-6">
+        <button onclick="startVisualization()"
+          class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Check Palindrome</button>
+        <button onclick="resetVisualizer()"
+          class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Reset</button>
+        </div>
+    </div>
+
+    <div id="output" class="mt-4 text-2xl font-bold  mt-8 bg-gray-800 p-4 rounded"></div>
     <div id="animation" class="flex justify-center mt-6 gap-2"></div>
   </div>
     

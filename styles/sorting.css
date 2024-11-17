@@ -76,7 +76,7 @@ body {
     gap: 1rem;
 }
 
-#enterArray,#sortButton,#resetButton {
+/* #enterArray,#sortButton,#resetButton {
     padding: 0.8rem 1.5rem;
     color: rgba(255, 255, 255, 0.933);
     font-weight: bold;
@@ -86,7 +86,7 @@ body {
     cursor: pointer;
 }
 
-#enterArray {
+/* #enterArray {
     background: linear-gradient(to right, #3b82f6, #004cef);
 }
 
@@ -96,11 +96,11 @@ body {
 
 #resetButton {
     background: linear-gradient(to right, #f63b3b, #ef0000);
-}
+} */
 
-button:hover {
+/* button:hover {
     transform: scale(1.03);
-}
+} */
 
 .algorithm-details {
     background-color: #374151;
