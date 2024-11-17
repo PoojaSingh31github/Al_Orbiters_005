@@ -1,13 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Backtracking Visualizer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stylish Sudoku Solver</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(145deg, #f0f0f3, #cacace);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #333;
+      position: relative;
+    }
+
+    #sudoku-board {
+      gap: .3rem 1.2rem;
+    }
+    input {
+      transition: all 0.2s ease-in-out;
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 1.5rem;
+      border-radius: 5px;
+    }
+    input:focus {
+      outline: none;
+    }
+    button {
+      padding: 0.6rem 2rem;
+      border-radius: 9999px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    button:hover {
+      transform: translateY(-2px);
+    }
+    button:active {
+      transform: translateY(0);
+    }
+    /* theme */
+    .theme-light {
+      background: #f0f0f3;
+    }
+    .theme-dark {
+      background: #333;
+    }
+    .theme-red {
+      background: #f28b82;
+    }
+    .theme-yellow {
+      background: #fff475;
+    }
+    .theme-blue {
+      background: #aecbfa;
+    }
+    .theme-green {
+      background: #9fef44;
+    }
+    .theme-light input {
+      border: 2px solid #333;
+      color: #333;
+    }
+    .theme-dark input {
+      border: 2px solid #ccc;
+      color: #ccc;
+    }
+    .theme-red input {
+      border: 2px solid #d32f2f;
+      color: #d32f2f;
+    }
+    .theme-yellow input {
+      border: 2px solid #fbc02d;
+      color: #fbc02d;
+    }
+    .theme-blue input {
+      border: 2px solid #1976d2;
+      color: #1976d2;
+    }
+    .theme-green input {
+      border: 2px solid #388e3c;
+      color: #388e3c;
+    }
+    .theme-light button {
+      background-color: #f0f0f3;
+      box-shadow: 6px 6px 12px #d1d1d3, -6px -6px 12px #ffffff;
+    }
+    .theme-dark button {
+      background-color: #555;
+      box-shadow: 6px 6px 12px #444, -6px -6px 12px #666;
+    }
+    .theme-red button {
+      background-color: #f28b82;
+      box-shadow: 6px 6px 12px #d32f2f, -6px -6px 12px #f06a6a;
+    }
+    .theme-yellow button {
+      background-color: #fff475;
+      box-shadow: 6px 6px 12px #fbc02d, -6px -6px 12px #f9cc59;
+    }
+    .theme-blue button {
+      background-color: #aecbfa;
+      box-shadow: 6px 6px 12px #1976d2, -6px -6px 12px #57a4f1;
+    }
+    .theme-green button {
+      background-color: #9fef44;
+      box-shadow: 6px 6px 12px #388e3c, -6px -6px 12px #83ea88;
+    }
+    #theme-selector-div {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+    .img-bottom-left {
+      position: absolute;
+      bottom: 3rem;
+      right: 10rem;
+      
+    }
+  </style>
 </head>
-<body class="bg-gray-900 text-white">
+<body class="theme-light">
+  
     <nav id="navbar"
     class="h-[4.5rem] lg:h-[5rem] bg-[#0f2451] lg:text-gray-300 w-full fixed top-0 z-50"
     data-aos="fade-down" data-aos-duration="800">
@@ -160,8 +275,172 @@
             
         </div>
     </div>
+  
+ 
+      
+    </div>
 
-    <script src="../script/backtracking.js"></script>
-    <script src="../script/index.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <div id="sudoku-board" class="grid grid-cols-9 w-5/6 gap-1 p-4 rounded-xl shadow-lg">
+      <script>
+        for (let i = 0; i < 81; i++) {
+          document.write(`<input type="text" maxlength="1" class="w-10 h-10 rounded-md">`);
+        }
+      </script>
+    </div>
+    
+    <div class="flex space-x-4 mt-8">
+      <button id="start-button" class="text-gray-700 px-4 py-3 border font-semibold">Start</button>
+      <button id="pause-button" class="text-gray-700 px-4 py-3 border font-semibold">Pause</button>
+      <button id="reset-button" class="text-gray-700 px-4 py-3 border font-semibold">Reset</button>
+      <button id="instant-solve" class="text-gray-700 px-4 py-3 border font-semibold">Solve Instantly</button>
+    </div>
+  </div>
+
+  <img id="emoji-image" src="img/hey.webp" alt="Dancing Emoji" class="hidden md:block absolute bottom-2 right-2 lg:bottom-12 lg:right-12" style="width: 200px; height: 200px;">
+
+  <script>
+    const boardElements = Array.from(document.querySelectorAll('#sudoku-board input'));
+    const emojis = {
+      completed: "img/dancing.webp", // When Sudoku is complete
+      running: "img/hey.webp",      // When Sudoku is running
+      reset: "img/ohho.webp",         // When Sudoku is reset
+      idle: "img/chill.webp"          // When nothing is going on
+    };
+
+    function updateEmojiImage(gameState) {
+      const emojiImage = document.getElementById("emoji-image");
+      emojiImage.src = emojis[gameState];
+    }
+
+
+    const initialBoard = [
+      ["5", "3", ".", ".", "7", ".", ".", ".", "."],
+      ["6", ".", ".", "1", "9", "5", ".", ".", "."],
+      [".", "9", "8", ".", ".", ".", ".", "6", "."],
+      ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
+      ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
+      ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
+      [".", "6", ".", ".", ".", ".", "2", "8", "."],
+      [".", ".", ".", "4", "1", "9", ".", ".", "5"],
+      [".", ".", ".", ".", "8", ".", ".", "7", "9"]
+    ];
+    let currentBoard = JSON.parse(JSON.stringify(initialBoard));
+    let solving = false;
+    let instantSolve = false;
+
+    
+    function renderBoard(board) {
+      boardElements.forEach((input, index) => {
+        const row = Math.floor(index / 9);
+        const col = index % 9;
+        input.value = board[row][col] === '.' ? '' : board[row][col];
+      });
+    }
+
+    async function solveSudoku() {
+      solving = true;
+      currentBoard = JSON.parse(JSON.stringify(initialBoard)); 
+      renderBoard(currentBoard);
+      updateEmojiImage('idle');
+      await solveStep(0, 0);
+      solving = false;
+      updateEmojiImage('completed');
+    }
+
+    async function solveStep(row, col) {
+      if (!solving) return; 
+      if (row === 9) return true;
+      if (col === 9) return await solveStep(row + 1, 0);
+
+      if (currentBoard[row][col] !== ".") return await solveStep(row, col + 1);
+
+      for (let num = 1; num <= 9; num++) {
+        const strNum = num.toString();
+        if (isValid(strNum, row, col)) {
+          currentBoard[row][col] = strNum;
+          renderBoard(currentBoard);
+          if (!instantSolve) await new Promise(r => setTimeout(r, 100));
+          if (await solveStep(row, col + 1)) return true;
+          currentBoard[row][col] = ".";
+          renderBoard(currentBoard);
+        }
+      }
+      return false;
+    }
+
+    function isValid(num, row, col) {
+      for (let i = 0; i < 9; i++) {
+        if (currentBoard[row][i] === num || currentBoard[i][col] === num) return false;
+        const boxRow = 3 * Math.floor(row / 3) + Math.floor(i / 3);
+        const boxCol = 3 * Math.floor(col / 3) + (i % 3);
+        if (currentBoard[boxRow][boxCol] === num) return false;
+      }
+      return true;
+    }
+
+    document.getElementById('start-button').addEventListener('click', () => {
+      solving = true;
+      instantSolve = false;
+      solveSudoku();
+    });
+
+    document.getElementById('pause-button').addEventListener('click', () => {
+      solving = false
+    updateEmojiImage('running');
+
+    });
+
+    document.getElementById('reset-button').addEventListener('click', () => {
+      solving = false;
+      renderBoard(initialBoard);
+      updateEmojiImage('reset');
+    });
+
+    document.getElementById('instant-solve').addEventListener('click', () => {
+      solving = true;
+      instantSolve = true;
+      solveSudoku();
+      updateEmojiImage('completed');
+    });
+
+    document.getElementById('theme-selector').addEventListener('change', (e) => {
+      document.body.className = `theme-${e.target.value}`;
+    });
+
+    renderBoard(initialBoard);
+    updateEmojiImage('running');
+
+  </script>
 </body>
 </html>

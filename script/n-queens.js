@@ -70,7 +70,7 @@ async function animateQueenMove(row, col) {
     }
     
     const queenIcon = document.createElement('i');
-    queenIcon.className = "fa-solid fa-chess-queen text-black"; 
+    queenIcon.className = "fa-solid fa-chess-queen text-black queen-icon"; 
     cellDiv.appendChild(queenIcon);
 
     // Add the queen element to the array for tracking
