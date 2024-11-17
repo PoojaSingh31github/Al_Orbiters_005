@@ -10,106 +10,92 @@
 
   <style>
     .card {
-      width: 600px;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      text-align: center;
-    }
-
-    .card h2 {
-      margin-bottom: 20px;
-      font-size: 24px;
-      color: #333;
-    }
-
-    .array-container {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-      overflow-x: auto;
-    }
-
-    .array-element {
-      padding: 10px;
-      margin: 2px;
-      background-color: #0099cc;
-      color: #fff;
-      font-weight: bold;
-      border-radius: 5px;
-      text-align: center;
-      width: 50px;
-      transition: background-color 0.3s;
-    }
-
-    .array-element.active {
-      background-color: #28a745;
-    }
-
-    .array-element.checked {
-      background-color: #ffc107;
-    }
-
-    .input-group {
-      margin-bottom: 10px;
-    }
-
-    .input-group input {
-      width: calc(50% - 5px);
-      padding: 10px;
-      font-size: 16px;
-      margin-right: 5px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    .type-group {
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: space-between;
-      gap: 5px;
-      flex-wrap: wrap;
-    }
-
-    .type-group button {
-      padding: 10px 20px;
-      font-size: 14px;
-      color: #fff;
-      background-color: #007bff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      flex-grow: 1;
-    }
-
-    .type-group button.selected {
-      background-color: #28a745;
-    }
-
-    .type-group button:hover {
-      background-color: #0056b3;
-    }
-
-    .button-group {
-      margin-top: 10px;
-    }
-
-    .button-group button {
-      padding: 10px 20px;
-      font-size: 14px;
-      color: #fff;
-      background-color: #007bff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .button-group button:hover {
-      background-color: #0056b3;
-    }
+        width: 600px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+      .card h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #333;
+      }
+      .array-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        overflow-x: auto;
+      }
+      .array-element {
+        padding: 10px;
+        margin: 2px;
+        background-color: #0099cc;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 5px;
+        text-align: center;
+        width: 50px;
+        transition: background-color 0.3s;
+      }
+      .array-element.active {
+        background-color: #28a745;
+      }
+      .array-element.checked {
+        background-color: #ffc107;
+      }
+      .input-group {
+        margin-bottom: 10px;
+      }
+      .input-group input {
+        width: calc(50% - 5px);
+        padding: 10px;
+        font-size: 16px;
+        margin-right: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .type-group {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        gap: 5px;
+        flex-wrap: wrap;
+      }
+      .type-group button {
+        padding: 10px 20px;
+        font-size: 14px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        flex-grow: 1;
+      }
+      .type-group button.selected {
+        background-color: #28a745;
+      }
+      .type-group button:hover {
+        background-color: #0056b3;
+      }
+      .button-group {
+        margin-top: 10px;
+      }
+      .button-group button {
+        padding: 10px 20px;
+        font-size: 14px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .button-group button:hover {
+        background-color: #0056b3;
+      }
   </style>
 </head>
 
@@ -217,7 +203,9 @@
           <label for="addElement" class="block md:text-lg font-medium">Add to Array</label>
           <input type="text" id="arrayInput" placeholder="Enter sorted array (e.g., 1, 2, 3, 4)"
             class="w-full p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400">
-          <input type="text" id="targetInput" placeholder="Target Number"
+          
+          
+            <input type="text" id="targetInput" placeholder="Target Number"
             oninput="this.value = this.value.replace(/[^0-9]/g, '')"
             class="w-full p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400">
         </div>
@@ -233,6 +221,7 @@
 
       <!-- Visualization Area -->
       <div id="arrayContainer" class="array-container mt-8 bg-gray-800 p-4 rounded"></div>
+      <div id="result" class="hidden" ></div>
       <!-- Problem Description -->
 
       <div class="p-2 md:p-6 mt-4 bg-gray-800 rounded-lg shadow-lg space-y-4" id="problemDescription">
