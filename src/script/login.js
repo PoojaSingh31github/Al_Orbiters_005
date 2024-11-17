@@ -42,13 +42,30 @@ document.getElementById('emailSigninForm').addEventListener('submit', (e) => {
     
     const email = document.getElementById('signinEmail').value;
     const password = document.getElementById('signinPassword').value;
+
+    if (password.length < 6 ){
+      alert("password must be of 6 characters or more")
+    }
+
   
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log("User signed in:", userCredential.user);
-        window.location.href = "index.html"; // Redirect to dashboard
-      })
-      .catch((error) => {
-        console.error("Error during email signin:", error);
-      });
-  });
+    .then((userCredential) => {
+      // Check if userCredential exists (it always will if no error occurred)
+      if (!userCredential) {
+        alert("Sign up first to log in"); // This line may not be needed as it won't reach here if there are errors
+      }
+      console.log("User signed in:", userCredential.user);
+      window.location.href = "index.html"; // Redirect to dashboard
+    })
+    .catch((error) => {
+      if (error.code === 'auth/user-not-found') {
+        alert("No account found with this email. Please sign up first.");
+      } else if (error.code === 'auth/wrong-password') {
+        alert("Incorrect password. Please try again.");
+      } else {
+        alert("invalid creadentials, signup first");
+      }
+      console.error("Error during email sign-in:", error);
+    });;
+  }
+);
