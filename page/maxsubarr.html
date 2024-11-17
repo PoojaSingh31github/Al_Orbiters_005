@@ -1,55 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Max Sum Subarray Visualizer</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen flex flex-col items-center p-4">
-  <h1 class="text-3xl font-bold mb-6">Maximum Sum Subarray of Size K</h1>
 
-  <!-- Input Section -->
-  <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
-    <label for="arrayInput" class="block text-lg font-medium mb-2">Array (comma-separated)</label>
-    <input id="arrayInput" type="text" 
-           class="w-full border border-gray-300 rounded-md p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
+<body class="bg-gray-900 text-white">
+  <nav id="navbar" class="h-[4.5rem] lg:h-[5rem] bg-[#0f2451] lg:text-gray-300 w-full fixed top-0 z-50"
+    data-aos="fade-down" data-aos-duration="800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex justify-between items-center h-full" data-aos="zoom-in"
+      data-aos-delay="500">
+      <!-- Logo dark headphone -->
+      <div class="logo-dark" data-aos="zoom-out" data-aos-delay="700">
+        <a href="#hero"><img class="h-9 sm:h-10"
+            src="https://ik.imagekit.io/uvfza6h6e/logo2.png?updatedAt=1731766414873" alt="" /></a>
+      </div>
+      <!-- Hamburger icon -->
 
-    <label for="kInput" class="block text-lg font-medium mb-2">Value of K</label>
-    <input id="kInput" type="number" 
-           class="w-full border border-gray-300 rounded-md p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      <div class="lg:hidden flex" data-aos="fade-left">
+        <button id="hamburger-btn">
+          <i class="fa-solid fa-bars text-xl sm:text-black-400"></i>
+        </button>
+      </div>
 
-    <button id="visualizeButton" 
-            class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition">
-      Visualize Algorithm
-    </button>
-  </div>
+      <!-- Navbar Desktop -->
+      <ul id="desktop-nav" class="hidden lg:flex lg:items-center space-x-10 text-[1.05rem] font-medium"
+        data-aos="fade-up" data-aos-delay="1000">
+        <li>
+          <a href="index.html" class="hover:text-orange transition ease-in-out duration-300">Home</a>
+        </li>
+        <li>
+          <a href="about.html" class="hover:text-orange transition ease-in-out duration-300">About</a>
+        </li>
+        <li>
+          <a href="login.html" class="hover:text-orange transition ease-in-out duration-300">login</a>
+        </li>
+      </ul>
+    </div>
 
-  <!-- Visualization Section -->
-  <div id="visualization" class="w-full max-w-4xl mt-8 bg-white p-6 rounded-lg shadow-md hidden">
-    <h2 class="text-xl font-semibold mb-4">Algorithm Visualization</h2>
-    <div id="inputBoxes" class="flex space-x-2 mb-4"></div>
-    <div id="window" class="flex space-x-2 relative"></div>
-    <div id="result" class="mt-4 text-gray-800 font-semibold"></div>
+    <!--Navbar Mobile Menu-->
+    <div id="mobile-menu" class="hidden lg:hidden w-full nav-mob-effect" data-aos="fade-up" data-aos-duration="800">
+      <ul class="flex flex-col font-medium space-y-5 pt-4 pb-10 pl-4 text-left bg-white items-center dark:bg-black">
+        <li>
+          <a href="index.html"
+            class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">Home</a>
+        </li>
+        <li>
+          <a href="about.html"
+            class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">About</a>
+        </li>
+        <li>
+          <a href="login.html"
+            class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">Topics</a>
+        </li>
 
-    <!-- Control Buttons -->
-    <div class="mt-6 flex space-x-4">
-      <button id="startButton" 
-              class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition">
-        Start
-      </button>
-      <button id="prevButton" 
-              class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition">
-        Prev
-      </button>
-      <button id="nextButton" 
-              class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition">
-        Next
-      </button>
-      <button id="resetButton" 
-              class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition">
-        Reset
-      </button>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="flex h-full mt-[4.5rem]">
+    <!-- Sidebar -->
+    <div
+      class="mt-[4.5rem] fixed top-0 left-0 h-full w-16 md:w-64 bg-gray-800 text-gray-400 flex flex-col items-center md:items-start p-4 shadow-lg">
+      <h2
+        class="hidden md:block text-transparent text-lg font-semibold mb-4 bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">
+        Sliding Window</h2>
+      <ul class="space-y-4">
+        <li class="text-center md:text-left">
+          <a href="slidingfixed.html" class="flex items-center space-x-2 py-1 hover:text-white">
+            <i class="fa fa-cogs"></i> <!-- Fixed Size Icon -->
+            <span class="hidden md:inline">Fixed Sized</span>
+          </a>
+        </li>
+        <li class="text-center md:text-left">
+          <a href="slidingvariable.html" class="flex items-center space-x-2 py-1 hover:text-white">
+            <i class="fa fa-random"></i> <!-- Variable Size Icon -->
+            <span class="hidden md:inline">Variable Sized</span>
+          </a>
+        </li>
+        <li class="text-center md:text-left">
+          <a href="maxsubarr.html" class="flex items-center space-x-2 py-1 hover:text-white">
+            <i class="fa fa-archive"></i> <!-- Maximum Subarray Icon -->
+            <span class="hidden md:inline">Maximum Subarray</span>
+          </a>
+        </li>
+        <li class="text-center md:text-left">
+          <a href="longestsubtstr.html" class="flex items-center space-x-2 py-1 hover:text-white">
+            <i class="fa fa-text-width"></i> <!-- Longest Substring Icon -->
+            <span class="hidden md:inline">Longest Substring</span>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+    <!-- Main Content -->
+    <div class="pl-20 md:ml-52 flex-1 p-8">
+      <h1 id="problemTitle"
+        class="text-3xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 mb-2">
+        Maximum Sum Subarray of Size K</h1>
+      <div class="items-center mt-5">
+        <div>
+          <label for="arrayInput" class="block md:text-lg font-medium">
+            Array (comma-separated)</label>
+          <input type="text" id="arrayInput" placeholder="abc..."
+            class="w-full p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400">
+
+
+          <label for="kInput" class="block md:text-lg font-medium">
+            Value of K</label>
+          <input type="number" id="kInput" placeholder="abc..."
+            class="w-full p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400">
+          <button id="visualizeButton"
+            class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Start
+            visualizeButton
+          </button>
+        </div>
+      </div>
+
+      <div id="visualization" class="visualization mt-8 bg-gray-700 p-4 rounded">
+        <h2 class="text-xl font-semibold mb-4">Algorithm Visualization</h2>
+        <div id="inputBoxes" class="flex space-x-2 mb-4 text-white"></div>
+        <div id="window" class="flex space-x-2 relative text-white"></div>
+        <div id="result" class="mt-4 text-gray-800 font-semibold text-white"></div>
+
+
+      </div>
+
+      <div class="space-x-2">
+        <div class="grid grid-cols-2 lg:grid-cols-4 lg:gap-4 gap-2 mt-6">
+          <button id="startButton"
+            class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">start
+          </button>
+          <button id="prevButton"
+            class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">prev</button>
+          <button id="nextButton"
+            class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">next</button>
+          <button id="resetButton"
+            class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">reset</button>
+        </div>
+      </div>
+
+      <!-- Problem Description -->
+
+      <div class="p-2 md:p-6 mt-4 bg-gray-800 rounded-lg shadow-lg space-y-4" id="problemDescription">
+        <h2
+          class="text-xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500"
+          id="problemTitle">
+          Sliding Window Technique
+        </h2>
+        <p class="text-gray-300 leading-relaxed" id="problemDescriptionText">
+          The <strong>Sliding Window</strong> technique is an efficient way to solve problems involving arrays or lists.
+          It works by maintaining a "window" of elements in the array that "slides" from one end to the other while
+          updating the result dynamically. The window can be of fixed or variable size depending on the problem.
+          This technique is especially useful in optimizing problems that require processing a continuous segment
+          of the array.
+        </p>
+
+        <!-- Time Complexity Section -->
+        <div class="bg-gray-700 p-4 rounded-lg">
+          <h3
+            class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 mb-2">
+            Time Complexity:
+          </h3>
+          <p class="text-gray-300">
+            - <strong>Sliding Window Operation:</strong> O(n) (linear time, where n is the number of elements in the
+            array).<br>
+            - <strong>For Maximum/Minimum Sum in a Fixed Window:</strong> O(n) (as the window slides once through all
+            elements).<br>
+            - <strong>For Variable Window:</strong> O(n) (sliding the window through the entire array to find the
+            optimal solution).
+          </p>
+        </div>
+
+        <!-- Space Complexity Section -->
+        <div class="bg-gray-700 p-4 rounded-lg">
+          <h3
+            class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 mb-2">
+            Space Complexity:
+          </h3>
+          <p class="text-gray-300">
+            - The space complexity is O(1) (constant space) for most sliding window problems since it only requires a
+            fixed amount of space
+            to store the current window, regardless of the array size.
+          </p>
+        </div>
+
+        <!-- Additional Problem Information -->
+        <p class="text-gray-400 italic">
+          Sliding window techniques are widely used in solving problems related to arrays, strings, and even
+          dynamic programming problems. It's particularly effective when you need to calculate a value across
+          a continuous subarray and minimize computational time.
+        </p>
+      </div>
     </div>
   </div>
 
@@ -58,22 +203,22 @@
     const prevButton = document.getElementById("prevButton");
     const nextButton = document.getElementById("nextButton");
     const resetButton = document.getElementById("resetButton");
-    
+
     const inputBoxes = document.getElementById("inputBoxes");
     const windowDiv = document.getElementById("window");
     const resultDiv = document.getElementById("result");
     const visualization = document.getElementById("visualization");
-    
+
     let steps = []; // Store all the steps of the algorithm
     let currentStep = 0;
     let animationInterval = null;
-    
+
     // Generate steps for the sliding window algorithm
     function generateSteps(arr, k) {
       steps = []; // Reset steps
       let windowSum = 0,
         maxSum = -Infinity;
-    
+
       // Initial window
       for (let i = 0; i < k; i++) {
         windowSum += arr[i];
@@ -86,12 +231,12 @@
         maxSum,
         currentWindow: arr.slice(0, k),
       });
-    
+
       // Slide the window
       for (let i = k; i < arr.length; i++) {
         windowSum = windowSum - arr[i - k] + arr[i];
         if (windowSum > maxSum) maxSum = windowSum;
-    
+
         steps.push({
           start: i - k + 1,
           end: i,
@@ -100,32 +245,31 @@
           currentWindow: arr.slice(i - k + 1, i + 1),
         });
       }
-    
+
       // Final result step
       steps.push({
         finalResult: `The maximum sum of a subarray of size ${k} is ${maxSum}.`,
       });
     }
-    
+
     // Render a specific step
     function renderStep(stepIndex) {
       const step = steps[stepIndex];
       if (!step) return;
-    
+
       // Highlight the current window
       windowDiv.innerHTML = "";
       inputBoxes.innerHTML = "";
       const arr = document.getElementById("arrayInput").value.split(",").map(Number);
-    
+
       arr.forEach((num, index) => {
         const box = document.createElement("div");
         box.textContent = num;
-        box.className = `text-xl w-10 h-10 flex items-center justify-center border rounded shadow-md ${
-          index >= step.start && index <= step.end ? "bg-blue-400 text-white" : "bg-gray-200"
-        }`;
+        box.className = `text-xl w-10 h-10 flex items-center justify-center border rounded shadow-md ${index >= step.start && index <= step.end ? "bg-blue-400 text-white" : "bg-gray-200"
+          }`;
         inputBoxes.appendChild(box);
       });
-    
+
       // Update result section
       resultDiv.innerHTML = step.finalResult
         ? `<p class="text-green-600"><strong>${step.finalResult}</strong></p>`
@@ -134,25 +278,25 @@
           <p>Window Sum: ${step.windowSum}, Max Sum: ${step.maxSum}</p>
         `;
     }
-    
+
     // Button actions
     visualizeButton.addEventListener("click", () => {
       const arr = document.getElementById("arrayInput").value
         .split(",")
         .map((num) => parseInt(num.trim(), 10));
       const k = parseInt(document.getElementById("kInput").value.trim(), 10);
-    
+
       if (!arr.length || isNaN(k) || k > arr.length) {
         alert("Please enter a valid array and K value!");
         return;
       }
-    
+
       generateSteps(arr, k); // Generate steps for the input
       visualization.classList.remove("hidden"); // Show visualization section
       renderStep(0); // Render the first step
       currentStep = 0;
     });
-    
+
     startButton.addEventListener("click", () => {
       if (animationInterval) return; // Avoid multiple intervals
       animationInterval = setInterval(() => {
@@ -164,40 +308,41 @@
         renderStep(++currentStep);
       }, 1000); // Auto-play every 1 second
     });
-    
+
     prevButton.addEventListener("click", () => {
       if (currentStep > 0) {
         renderStep(--currentStep);
       }
     });
-    
+
     nextButton.addEventListener("click", () => {
       if (currentStep < steps.length - 1) {
         renderStep(++currentStep);
       }
     });
-    
+
     resetButton.addEventListener("click", () => {
-  // Clear any ongoing interval
-  clearInterval(animationInterval);
-  animationInterval = null;
+      // Clear any ongoing interval
+      clearInterval(animationInterval);
+      animationInterval = null;
 
-  // Reset step tracker
-  currentStep = 0;
+      // Reset step tracker
+      currentStep = 0;
 
-  // Clear input fields
-  document.getElementById("arrayInput").value = "";
-  document.getElementById("kInput").value = "";
+      // Clear input fields
+      document.getElementById("arrayInput").value = "";
+      document.getElementById("kInput").value = "";
 
-  // Hide visualization section
-  visualization.classList.add("hidden");
+      // Hide visualization section
+      visualization.classList.add("hidden");
 
-  // Clear input boxes and result
-  inputBoxes.innerHTML = "";
-  windowDiv.innerHTML = "";
-  resultDiv.innerHTML = "";
-});
+      // Clear input boxes and result
+      inputBoxes.innerHTML = "";
+      windowDiv.innerHTML = "";
+      resultDiv.innerHTML = "";
+    });
 
-    </script>
+  </script>
 </body>
+
 </html>
