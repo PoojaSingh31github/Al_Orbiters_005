@@ -55,7 +55,7 @@
           </li>
           <li>
               <a href="/login.html"
-                  class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">Topics</a>
+                  class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">login</a>
           </li>
 
       </ul>
@@ -205,17 +205,16 @@
     const resultDiv = document.getElementById("result");
     const visualization = document.getElementById("visualization");
     
-    let steps = []; // Store all the steps of the algorithm
+    let steps = []; 
     let currentStep = 0;
     let animationInterval = null;
     
-    // Generate steps for the sliding window algorithm
     function generateSteps(input) {
       const seen = new Map();
       let start = 0,
         maxLength = 0,
-        longestSubstring = ""; // Track the longest substring
-      steps = []; // Reset steps
+        longestSubstring = "";
+      steps = []; 
     
       for (let end = 0; end < input.length; end++) {
         const currentChar = input[end];
@@ -227,10 +226,9 @@
         const currentLength = end - start + 1;
         if (currentLength > maxLength) {
           maxLength = currentLength;
-          longestSubstring = input.slice(start, end + 1); // Update longest substring
+          longestSubstring = input.slice(start, end + 1);
         }
     
-        // Record the current step
         steps.push({
           start,
           end,
@@ -241,19 +239,16 @@
         });
       }
     
-      // Final result step
       steps.push({
         finalResult: `The length of the longest substring is ${maxLength}, and the substring is "${longestSubstring}".`,
         longestSubstring,
       });
     }
     
-    // Render a specific step
     function renderStep(stepIndex) {
       const step = steps[stepIndex];
       if (!step) return;
     
-      // Highlight the current window
       windowDiv.innerHTML = "";
       const inputString = document.getElementById("inputString").value.trim();
     
@@ -266,7 +261,6 @@
         windowDiv.appendChild(box);
       });
     
-      // Update result section
       resultDiv.innerHTML = step.finalResult
         ? `<p class="text-green-600"><strong>${step.finalResult}</strong></p>`
         : `
@@ -276,7 +270,6 @@
         `;
     }
     
-    // Button actions
     visualizeButton.addEventListener("click", () => {
       const inputString = document.getElementById("inputString").value.trim();
       if (!inputString) {
@@ -284,14 +277,14 @@
         return;
       }
     
-      generateSteps(inputString); // Generate steps for the input
-      visualization.classList.remove("hidden"); // Show visualization section
-      renderStep(0); // Render the first step
+      generateSteps(inputString); 
+      visualization.classList.remove("hidden"); 
+      renderStep(0); 
       currentStep = 0;
     });
     
     startButton.addEventListener("click", () => {
-      if (animationInterval) return; // Avoid multiple intervals
+      if (animationInterval) return; 
       animationInterval = setInterval(() => {
         if (currentStep >= steps.length - 1) {
           clearInterval(animationInterval);
@@ -299,7 +292,7 @@
           return;
         }
         renderStep(++currentStep);
-      }, 1000); // Auto-play every 1 second
+      }, 1000); 
     });
     
     prevButton.addEventListener("click", () => {
@@ -315,20 +308,13 @@
     });
     
     resetButton.addEventListener("click", () => {
-  // Clear any ongoing interval
   clearInterval(animationInterval);
   animationInterval = null;
-
-  // Reset step tracker
   currentStep = 0;
 
-  // Clear input fields
-  document.getElementById("inputString").value = ""; // Clear the input string
-
-  // Hide visualization section
+  document.getElementById("inputString").value = ""; 
   visualization.classList.add("hidden");
 
-  // Clear all visualization content (input boxes, window, result)
   inputBoxes.innerHTML = "";
   windowDiv.innerHTML = "";
   resultDiv.innerHTML = "";

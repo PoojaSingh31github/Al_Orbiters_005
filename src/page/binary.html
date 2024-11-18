@@ -146,7 +146,7 @@
           </li>
           <li>
               <a href="/login.html"
-                  class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">Topics</a>
+                  class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">login</a>
           </li>
 
       </ul>
@@ -274,19 +274,15 @@
 
   </div>
   <script>
-    let selectedSearchType = 'normal'; // Default search type
-
+    let selectedSearchType = 'normal'; 
     function selectSearchType(button) {
-      // Remove 'selected' class from all buttons
       document.querySelectorAll('.type-group button').forEach((btn) => {
         btn.classList.remove('selected');
       });
 
-      // Add 'selected' class to clicked button
       button.classList.add('selected');
       selectedSearchType = button.getAttribute('data-value');
 
-      // Update the visualizer title dynamically
       const title = document.getElementById('visualizerTitle');
       const titles = {
         normal: 'Normal Binary Visualizer',
@@ -305,27 +301,22 @@
       const resultDiv = document.getElementById('result');
       const arrayContainer = document.getElementById('arrayContainer');
 
-      // Validate input
       if (!arrayInput || isNaN(target)) {
         resultDiv.innerText = 'Please enter a valid array and target number.';
         return;
       }
 
-      // Parse the array and validate the elements
       const array = arrayInput.split(',').map(Number);
       if (array.some(isNaN)) {
         resultDiv.innerText = 'Array must contain only numbers.';
         return;
       }
 
-      // Sort the array
       array.sort((a, b) => a - b);
 
-      // Clear previous results
       arrayContainer.innerHTML = '';
       resultDiv.innerText = '';
 
-      // Render the array elements
       array.forEach((value) => {
         const element = document.createElement('div');
         element.className = 'array-element';
@@ -333,7 +324,6 @@
         arrayContainer.appendChild(element);
       });
 
-      // Binary search logic
       let left = 0,
         right = array.length - 1,
         result = -1;
@@ -385,9 +375,9 @@
           } else if (selectedSearchType === 'abstract') {
             if (midValue >= target) {
               result = mid;
-              right = mid - 1; // Continue searching the left half
+              right = mid - 1;
             } else {
-              left = mid + 1; // Continue searching the right half
+              left = mid + 1;
             }
             return searchStep();
           }

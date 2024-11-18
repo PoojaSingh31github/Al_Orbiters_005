@@ -10,59 +10,59 @@
 </head>
 
 <body class="bg-gray-900 text-white">
-    <nav id="navbar"
-    class="h-[4.5rem] lg:h-[5rem] bg-[#0f2451] lg:text-gray-300 w-full fixed top-0 z-50"
-    data-aos="fade-down" data-aos-duration="800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex justify-between items-center h-full" data-aos="zoom-in"
-        data-aos-delay="500">
-        <!-- Logo dark headphone -->
-        <div class="logo-dark" data-aos="zoom-out" data-aos-delay="700">
-            <a href="#hero"><img class="h-9 sm:h-10" src="https://ik.imagekit.io/uvfza6h6e/logo2.png?updatedAt=1731766414873" alt="" /></a>
+    <nav id="navbar" class="h-[4.5rem] lg:h-[5rem] bg-[#0f2451] lg:text-gray-300 w-full fixed top-0 z-50"
+        data-aos="fade-down" data-aos-duration="800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex justify-between items-center h-full" data-aos="zoom-in"
+            data-aos-delay="500">
+            <!-- Logo dark headphone -->
+            <div class="logo-dark" data-aos="zoom-out" data-aos-delay="700">
+                <a href="#hero"><img class="h-9 sm:h-10"
+                        src="https://ik.imagekit.io/uvfza6h6e/logo2.png?updatedAt=1731766414873" alt="" /></a>
+            </div>
+            <!-- Hamburger icon -->
+
+            <div class="lg:hidden flex" data-aos="fade-left">
+                <button id="hamburger-btn">
+                    <i class="fa-solid fa-bars text-xl sm:text-black-400"></i>
+                </button>
+            </div>
+
+            <!-- Navbar Desktop -->
+            <ul id="desktop-nav" class="hidden lg:flex lg:items-center space-x-10 text-[1.05rem] font-medium"
+                data-aos="fade-up" data-aos-delay="1000">
+                <li>
+                    <a href="/index.html" class="hover:text-orange transition ease-in-out duration-300">Home</a>
+                </li>
+                <li>
+                    <a href="/about.html" class="hover:text-orange transition ease-in-out duration-300">About</a>
+                </li>
+                <li>
+                    <a href="/login.html" class="hover:text-orange transition ease-in-out duration-300">login</a>
+                </li>
+            </ul>
         </div>
-        <!-- Hamburger icon -->
 
-        <div class="lg:hidden flex" data-aos="fade-left">
-            <button id="hamburger-btn">
-                <i class="fa-solid fa-bars text-xl sm:text-black-400"></i>
-            </button>
+        <!--Navbar Mobile Menu-->
+        <div id="mobile-menu" class="hidden lg:hidden w-full nav-mob-effect" data-aos="fade-up" data-aos-duration="800">
+            <ul
+                class="flex flex-col font-medium space-y-5 pt-4 pb-10 pl-4 text-left bg-white items-center dark:bg-black">
+                <li>
+                    <a href="/index.html"
+                        class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">Home</a>
+                </li>
+                <li>
+                    <a href="/about.html"
+                        class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">About</a>
+                </li>
+                <li>
+                    <a href="/login.html"
+                        class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">login</a>
+                </li>
+
+            </ul>
         </div>
+    </nav>
 
-        <!-- Navbar Desktop -->
-        <ul id="desktop-nav" class="hidden lg:flex lg:items-center space-x-10 text-[1.05rem] font-medium"
-            data-aos="fade-up" data-aos-delay="1000">
-            <li>
-                <a href="/index.html" class="hover:text-orange transition ease-in-out duration-300">Home</a>
-            </li>
-            <li>
-                <a href="/about.html" class="hover:text-orange transition ease-in-out duration-300">About</a>
-            </li>
-            <li>
-                <a href="/login.html" class="hover:text-orange transition ease-in-out duration-300">login</a>
-            </li>
-        </ul>
-    </div>
-
-    <!--Navbar Mobile Menu-->
-    <div id="mobile-menu" class="hidden lg:hidden w-full nav-mob-effect" data-aos="fade-up" data-aos-duration="800">
-        <ul
-            class="flex flex-col font-medium space-y-5 pt-4 pb-10 pl-4 text-left bg-white items-center dark:bg-black">
-            <li>
-                <a href="/index.html"
-                    class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">Home</a>
-            </li>
-            <li>
-                <a href="/about.html"
-                    class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">About</a>
-            </li>
-            <li>
-                <a href="/login.html"
-                    class="text-gray-700 dark:text-white hover:text-orange transition ease-in-out duration-300">Topics</a>
-            </li>
-
-        </ul>
-    </div>
-</nav>
-    
     <div class="flex h-full mt-[4.5rem]">
         <!-- Sidebar -->
         <div
@@ -113,7 +113,7 @@
             <h1 id="problemTitle"
                 class="text-3xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 mb-2">
                 Array Visualizer</h1>
-            <div class= "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 items-center mt-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 items-center mt-5">
                 <div>
                     <label for="addElement" class="block md:text-lg font-medium">Add to Array</label>
                     <input id="addElement" type="number" placeholder="element"
@@ -129,20 +129,22 @@
                         Index</label>
                     <div class="flex gap-2 flex-col">
                         <input id="appendIndex" type="number"
-                        class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400" placeholder="Index">
-                    <input id="appendValue" type="text"
-                        class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400"
-                        placeholder="Array">
+                            class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400"
+                            placeholder="Index">
+                        <input id="appendValue" type="text"
+                            class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400"
+                            placeholder="Array">
                     </div>
                 </div>
                 <div>
                     <label for="updateIndex" class="block md:text-lg font-medium">Update Array (Index)</label>
                     <div class="flex gap-2 flex-col">
                         <input id="updateIndex" type="number"
-                        class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400" placeholder="Index">
-                    <input id="updateValue" type="text"
-                        class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400"
-                        placeholder="New Array">
+                            class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400"
+                            placeholder="Index">
+                        <input id="updateValue" type="text"
+                            class="p-2 border rounded bg-gray-700 text-white mb-4 placeholder-gray-400"
+                            placeholder="New Array">
                     </div>
 
                 </div>
@@ -172,7 +174,8 @@
                     Array Data Structure
                 </h2>
                 <p class="text-gray-300 leading-relaxed" id="problemDescriptionText">
-                    An <strong>Array</strong> is a collection of elements, each identified by an index or key. Arrays are one of the
+                    An <strong>Array</strong> is a collection of elements, each identified by an index or key. Arrays
+                    are one of the
                     most fundamental data structures, often used to store lists of data where each element can be
                     accessed efficiently.
                     Arrays can store data of the same type (homogeneous) and are typically fixed in size once
@@ -188,11 +191,14 @@
                     </h3>
                     <p class="text-gray-300">
                         - <strong>Access by Index:</strong> O(1) (constant time to access any element by its index).<br>
-                        - <strong>Insertion/Deletion at End:</strong> O(1) (constant time for adding/removing an element at the
+                        - <strong>Insertion/Deletion at End:</strong> O(1) (constant time for adding/removing an element
+                        at the
                         end).<br>
-                        - <strong>Insertion/Deletion at Beginning:</strong> O(n) (linear time due to the need to shift elements).<br>
+                        - <strong>Insertion/Deletion at Beginning:</strong> O(n) (linear time due to the need to shift
+                        elements).<br>
                         - <strong>Search:</strong> O(n) (linear time to search for an element in an unsorted array).<br>
-                        - <strong>Sorting:</strong> O(n log n) (average time complexity for sorting using algorithms like MergeSort
+                        - <strong>Sorting:</strong> O(n log n) (average time complexity for sorting using algorithms
+                        like MergeSort
                         or QuickSort).
                     </p>
                 </div>
@@ -204,7 +210,8 @@
                         Space Complexity:
                     </h3>
                     <p class="text-gray-300">
-                        - The space complexity of an array is O(n), where <strong>n</strong> is the number of elements in the array.
+                        - The space complexity of an array is O(n), where <strong>n</strong> is the number of elements
+                        in the array.
                         Each element occupies space proportional to its type, and the overall space is linear with
                         respect to the number of elements stored in the array.
                         - Dynamic arrays (like those in languages such as Python) may require occasional resizing, but
@@ -212,7 +219,6 @@
                     </p>
                 </div>
 
-                <!-- Additional Problem Information -->
                 <p class="text-gray-400 italic">
                     Arrays are an essential data structure used in a variety of domains, including database management,
                     graphics rendering, and machine learning. Variants like multidimensional arrays and dynamic arrays
@@ -220,20 +226,16 @@
                 </p>
             </div>
         </div>
-        
-    </div>
-    
-    <script>
-        // Initialize array
-        let myArray = [];
 
-        // Update the array display
+    </div>
+
+    <script>
+        let myArray = [];
         function updateDisplay() {
             const arrayDisplay = document.getElementById('arrayDisplay');
             arrayDisplay.innerText = JSON.stringify(myArray);
         }
 
-        // Add element to the array
         function addElement() {
             const input = document.getElementById('addElement');
             const value = input.value;
@@ -243,8 +245,6 @@
                 updateDisplay();
             }
         }
-
-        // Delete element from the array
         function deleteElement() {
             const input = document.getElementById('deleteIndex');
             const index = Number(input.value);
@@ -256,8 +256,6 @@
                 alert('Invalid index');
             }
         }
-
-        // Append element at a specific index
         function appendElement() {
             const indexInput = document.getElementById('appendIndex');
             const valueInput = document.getElementById('appendValue');
@@ -274,7 +272,6 @@
             }
         }
 
-        // Update element in the array
         function updateElement() {
             const indexInput = document.getElementById('updateIndex');
             const valueInput = document.getElementById('updateValue');
@@ -291,10 +288,9 @@
             }
         }
 
-        // Initialize display
         updateDisplay();
 
     </script>
-  <script src="/src/script/index.js"></script>
+    <script src="/src/script/index.js"></script>
 
 </html>
