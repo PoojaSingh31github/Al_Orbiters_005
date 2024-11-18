@@ -17,8 +17,8 @@ function generateRandomMaze(size) {
     maze = Array.from({ length: size }, () =>
         Array.from({ length: size }, () => (Math.random() < 0.8 ? 1 : 0))
     );
-    maze[0][0] = 1; // Start point
-    maze[size - 1][size - 1] = 1; // End point
+    maze[0][0] = 1;
+    maze[size - 1][size - 1] = 1;
     displayMaze(maze);
 }
 
@@ -26,7 +26,7 @@ function generateRandomMaze(size) {
 // Display the maze in the visualization area
 function displayMaze(maze) {
     const visualizationArea = document.getElementById("visualizationArea");
-    visualizationArea.innerHTML = ""; // Clear previous content
+    visualizationArea.innerHTML = "";
     const n = maze.length;
     visualizationArea.style.gridTemplateColumns = `repeat(${n},50px)`;
     for (let i = 0; i < n; i++) {
@@ -37,13 +37,12 @@ function displayMaze(maze) {
             const cell = document.createElement("div");
             cell.className = "visualization-box";
             cell.id = `cell-${i}-${j}`;
-            // Mark start and end points with unique colors
             if (i === 0 && j === 0) {
                 cell.classList.add("start");
             } else if (i === n - 1 && j === n - 1) {
                 cell.classList.add("end");
             } else if (maze[i][j] === 0) {
-                cell.classList.add("block"); // Blocked cells
+                cell.classList.add("block");
             }
             
             rowDiv.appendChild(cell);
@@ -53,19 +52,18 @@ function displayMaze(maze) {
     }
 }
 
-// Start the maze visualization (no new maze generation)
+// Start the maze visualization
 async function startMazeVisualization() {
     if (maze.length === 0) {
         alert("Please generate a maze first!");
         return;
     }
 
-    const size = maze.length; // Get the size of the existing maze
+    const size = maze.length;
     const solution = Array.from({ length: size }, () => Array(size).fill(0));
-    pathFound = false; // Reset the path found flag
+    pathFound = false;
     
     try {
-        // Start solving the maze using backtracking
         if (!await solveMaze(maze, solution, 0, 0)) {
             alert("No path found!");
         }
@@ -76,20 +74,17 @@ async function startMazeVisualization() {
             throw e;
         }
     } finally {
-        // Clear the previous paths or any flags
         clearPaths(solution);
     }
 }
 
-// Solve the maze using backtracking with animation
+// Solve the maze
 async function solveMaze(maze, solution, x, y) {
     const n = maze.length;
-
-    // Base case: Reached destination
     if (x === n - 1 && y === n - 1) {
         solution[x][y] = 1;
         await highlightSolution(solution);
-        pathFound = true; // Set the path found flag
+        pathFound = true;
         return true;
     }
 
@@ -97,44 +92,40 @@ async function solveMaze(maze, solution, x, y) {
     if (isSafe(maze, x, y)) {
         solution[x][y] = 1;
         await highlightCell(x, y, true);
-
-        // Define the priority of directions: down, right, up, left
         const directions = [
-            { dx: 1, dy: 0 }, // Down
-            { dx: 0, dy: 1 }, // Right
-            { dx: -1, dy: 0 }, // Up
-            { dx: 0, dy: -1 } // Left
+            { dx: 1, dy: 0 },
+            { dx: 0, dy: 1 },
+            { dx: -1, dy: 0 },
+            { dx: 0, dy: -1 }
         ];
 
-        // Try moving in the prioritized directions
         for (const { dx, dy } of directions) {
             if (await solveMaze(maze, solution, x + dx, y + dy)) return true;
         }
 
-        // Backtrack: Unmark the current cell as part of the solution path
         solution[x][y] = 0;
         await highlightCell(x, y, false);
     }
 
-    return false; // No valid path found from here
+    return false;
 }
 
-// Check if the current cell is safe (within bounds and not blocked)
+// Check if the current cell is safe
 function isSafe(maze, x, y) {
     const n = maze.length;
     return x >= 0 && x < n && y >= 0 && y < n && maze[x][y] === 1;
 }
 
-// Highlight the current cell (animate path and failure)
+// Highlight the current cell
 async function highlightCell(x, y, isPath) {
     const cell = document.getElementById(`cell-${x}-${y}`);
     if (cell) {
         cell.className = `visualization-box ${isPath ? "highlight-success" : "highlight-fail"}`;
     }
-    await new Promise(resolve => setTimeout(resolve, 100)); // Add delay for visualization
+    await new Promise(resolve => setTimeout(resolve, 100));
 }
 
-// Highlight the entire solution path once it's found
+// Highlight the entire solution path
 async function highlightSolution(solution) {
     const n = solution.length;
     for (let i = 0; i < n; i++) {
@@ -142,7 +133,7 @@ async function highlightSolution(solution) {
             if (solution[i][j] === 1) {
                 const cell = document.getElementById(`cell-${i}-${j}`);
                 if (cell) {
-                    cell.className = "visualization-box highlight-success"; // Highlight the path
+                    cell.className = "visualization-box highlight-success";
                 }
             }
         }
@@ -164,16 +155,16 @@ function clearPaths(solution) {
             if (solution[i][j] === 1) {
                 const cell = document.getElementById(`cell-${i}-${j}`);
                 if (cell) {
-                    cell.className = "visualization-box"; // Clear the path
+                    cell.className = "visualization-box";
                 }
             }
         }
     }
-    pathFound = false; // Reset the path found flag
+    pathFound = false;
 }
 
 // Reset the maze visualization
 function resetMazeVisualization() {
-    maze = []; // Clear the existing maze
+    maze = [];
     document.getElementById("visualizationArea").innerHTML = "";
 }

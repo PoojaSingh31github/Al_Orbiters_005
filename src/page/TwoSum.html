@@ -286,13 +286,12 @@ function updateOutput() {
 
 function nextStep() {
   if (left >= right) {
-    updateOutput(); // Update output when the process is complete.
+    updateOutput();
     return;
   }
 
   const sum = array[left] + array[right];
   if (sum === target) {
-    // Add the pair only if it doesn't already exist in the pairs array
     const pair = [array[left], array[right]];
     if (!pairs.some(existingPair => existingPair[0] === pair[0] && existingPair[1] === pair[1])) {
       pairs.push(pair);
@@ -362,7 +361,7 @@ resetButton.addEventListener('click', () => {
   left = 0;
   right = 0;
   pairs = [];
-  clearInterval(interval); // Stop any ongoing process
+  clearInterval(interval);
   isPlaying = false;
 
   // Clear the UI

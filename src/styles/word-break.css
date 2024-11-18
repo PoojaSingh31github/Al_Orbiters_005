@@ -10,11 +10,11 @@
 }
 
 .highlight-success {
-    background: linear-gradient(to right, #38a169, #2f855a); /* From green-500 to green-700 */
+    background: linear-gradient(to right, #38a169, #2f855a);
 }
 
 .highlight-fail {
-    background: linear-gradient(to right, #e53e3e, #c53030); /* From red-500 to red-700 */
+    background: linear-gradient(to right, #e53e3e, #c53030);
 }
 
 .highlight-path {

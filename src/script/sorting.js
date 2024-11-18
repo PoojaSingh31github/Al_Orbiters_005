@@ -54,10 +54,7 @@ let selectedAlgorithm = 'bubbleSort';
 
 function setSortAlgorithm(algorithm) {
     selectedAlgorithm = algorithm;
-    // Update the main algorithm name
     document.getElementById('algorithmName').textContent = `${capitalize(algorithm)} Visualizer`;
-
-    // Update the algorithm details dynamically
     const algorithmData = algorithmsData[algorithm];
     document.querySelector('.algorithm-details h2').textContent = algorithmData.name;
     document.querySelector('.algorithm-details p').textContent = algorithmData.description;
@@ -74,26 +71,22 @@ function capitalize(str) {
 function generateBars() {
     const arrayInput = document.getElementById('arrayInput').value;
 
-    // Split and parse the input
     array = arrayInput.split(',').map(item => {
         const parsed = parseFloat(item);
         return isNaN(parsed) ? item.trim() : parsed;
     });
 
     const visualization = document.getElementById('visualization');
-    visualization.innerHTML = ''; // Clear existing bars
+    visualization.innerHTML = '';
 
-    // Create visual bars for each element in the array
     array.forEach(value => {
         const bar = document.createElement('div');
         bar.classList.add('bar');
 
         if (typeof value === 'number') {
-            // Bar height for numeric values
             bar.style.height = `${value * 5}px`;
         } else {
-            // Bar height for strings based on the ASCII value of the first character
-            const height = value.charCodeAt(0)*3 || 50; // Fallback to 50 if string is empty
+            const height = value.charCodeAt(0)*3 || 50;
             bar.style.height = `${height}px`;
         }
 
@@ -101,7 +94,6 @@ function generateBars() {
         visualization.appendChild(bar);
     });
 
-    // Adjust the visualization container height dynamically
     adjustVisualizationHeight();
 }
 
@@ -134,8 +126,6 @@ async function bubbleSort() {
         for (let j = 0; j < array.length - i - 1; j++) {
             bars[j].classList.add('active');
             bars[j + 1].classList.add('active');
-
-            // Compare elements, sorting numbers numerically and strings alphabetically
             const shouldSwap = 
                 (typeof array[j] === 'number' && typeof array[j + 1] === 'number' && array[j] > array[j + 1]) ||
                 (typeof array[j] === 'string' && typeof array[j + 1] === 'string' && array[j] > array[j + 1]);
@@ -152,7 +142,6 @@ async function bubbleSort() {
         bars[array.length - i - 1].classList.add('sorted');
     }
     
-    // Adjust the visualization container height dynamically after sorting
     adjustVisualizationHeight();
 }
 
@@ -179,7 +168,7 @@ async function selectionSort() {
         bars[minIdx].classList.remove('active');
         bars[i].classList.add('sorted');
     }
-    // Adjust the visualization container height dynamically after sorting
+
     adjustVisualizationHeight();
 }
 
@@ -196,7 +185,6 @@ async function insertionSort() {
         bars[i].classList.add('sorted');
     }
 
-    // Adjust the visualization container height dynamically after sorting
     adjustVisualizationHeight();
 }
 
@@ -213,7 +201,6 @@ async function merge(left, mid, right) {
     let i = left, j = mid + 1;
 
     while (i <= mid && j <= right) {
-        // Highlight the active bars being compared
         const barI = document.querySelectorAll('.bar')[i];
         const barJ = document.querySelectorAll('.bar')[j];
         barI.classList.add('active');
@@ -225,7 +212,6 @@ async function merge(left, mid, right) {
             temp.push(array[j++]);
         }
 
-        // Remove active highlighting
         barI.classList.remove('active');
         barJ.classList.remove('active');
         await pause();
@@ -237,7 +223,6 @@ async function merge(left, mid, right) {
     for (let k = left; k <= right; k++) {
         array[k] = temp[k - left];
 
-        // Update the bar visualization
         const bar = document.querySelectorAll('.bar')[k];
         if (typeof array[k] === 'number') {
             bar.style.height = `${array[k] * 5}px`;
@@ -245,24 +230,20 @@ async function merge(left, mid, right) {
             bar.style.height = `${array[k].charCodeAt(0) * 3}px`;
         }
         bar.textContent = array[k];
-
-        // Highlight the bar as sorted
         bar.classList.add('sorted');
         await pause();
     }
 
-    // Adjust visualization container height dynamically
     adjustVisualizationHeight();
 }
 
-// Helper function to compare values (handles numbers and strings)
 function compareValues(a, b) {
     if (typeof a === 'number' && typeof b === 'number') {
-        return a - b; // Numeric comparison
+        return a - b;
     } else {
         const strA = a.toString();
         const strB = b.toString();
-        return strA.localeCompare(strB); // Lexicographical comparison
+        return strA.localeCompare(strB);
     }
 }
 
@@ -270,14 +251,10 @@ function compareValues(a, b) {
 async function quickSort(low, high) {
     if (low < high) {
         const pi = await partition(low, high);
-
-        // Mark the pivot as sorted after partitioning
         document.querySelectorAll('.bar')[pi].classList.add('sorted');
-
         await quickSort(low, pi - 1);
         await quickSort(pi + 1, high);
     } else if (low === high) {
-        // If there's a single element, mark it as sorted
         document.querySelectorAll('.bar')[low].classList.add('sorted');
     }
 }
@@ -286,12 +263,9 @@ async function partition(low, high) {
     const pivot = array[high];
     let i = low - 1;
     const bars = document.querySelectorAll('.bar');
-
-    // Highlight the pivot
     bars[high].classList.add('pivot');
 
     for (let j = low; j < high; j++) {
-        // Highlight the current bar being compared
         bars[j].classList.add('active');
 
         if (compareValues(array[j], pivot) < 0) {
@@ -301,82 +275,53 @@ async function partition(low, high) {
             await pause();
         }
 
-        // Remove the active class after comparison
         bars[j].classList.remove('active');
     }
 
-    // Swap the pivot into its correct position
     [array[i + 1], array[high]] = [array[high], array[i + 1]];
     updateBars(bars, i + 1, high);
     await pause();
-
-    // Remove the pivot class after positioning
     bars[high].classList.remove('pivot');
-
     return i + 1;
 }
 
 async function heapSort() {
     const bars = document.querySelectorAll('.bar');
-
-    // Build the max heap
     for (let i = Math.floor(array.length / 2 - 1); i >= 0; i--) {
         await heapify(array.length, i, bars);
     }
-
-    // Extract elements from the heap
     for (let i = array.length - 1; i > 0; i--) {
-        // Swap the root (largest element) with the last element
         [array[0], array[i]] = [array[i], array[0]];
         updateBars(bars, 0, i);
-
-        // Mark the extracted element as sorted
         bars[i].classList.add('sorted');
         await pause();
-
-        // Rebuild the heap for the remaining elements
         await heapify(i, 0, bars);
     }
-
-    // Mark the last remaining element as sorted
     bars[0].classList.add('sorted');
-
-    // Adjust the visualization container height dynamically after sorting
     adjustVisualizationHeight();
 }
 
 async function heapify(n, i, bars) {
-    let largest = i; // Initialize the largest as root
-    const left = 2 * i + 1; // Left child
-    const right = 2 * i + 2; // Right child
-
-    // Highlight the current root and its children
+    let largest = i;
+    const left = 2 * i + 1;
+    const right = 2 * i + 2;
     bars[i].classList.add('active');
     if (left < n) bars[left].classList.add('active');
     if (right < n) bars[right].classList.add('active');
-
-    // Find the largest among root, left, and right children
     if (left < n && array[left] > array[largest]) largest = left;
     if (right < n && array[right] > array[largest]) largest = right;
-
-    // Swap and heapify recursively if the root is not the largest
     if (largest !== i) {
         [array[i], array[largest]] = [array[largest], array[i]];
         updateBars(bars, i, largest);
         await pause();
         await heapify(n, largest, bars);
     }
-
-    // Remove the active class after comparison
     bars[i].classList.remove('active');
     if (left < n) bars[left].classList.remove('active');
     if (right < n) bars[right].classList.remove('active');
 }
 
-
-
 function updateBars(bars, i, j) {
-    // Update the heights and labels of the bars
     if (typeof array[i] === 'number') {
         bars[i].style.height = `${array[i] * 5}px`;
     } else {

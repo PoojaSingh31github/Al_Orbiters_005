@@ -75,25 +75,25 @@
       <ul class="space-y-4">
         <li class="text-center md:text-left">
           <a href="slidingfixed.html" class="flex items-center space-x-2 py-1 hover:text-white">
-            <i class="fa fa-cogs"></i> <!-- Fixed Size Icon -->
+            <i class="fa fa-cogs"></i>
             <span class="hidden md:inline">Fixed Sized</span>
           </a>
         </li>
         <li class="text-center md:text-left">
           <a href="slidingvariable.html" class="flex items-center space-x-2 py-1 hover:text-white">
-            <i class="fa fa-random"></i> <!-- Variable Size Icon -->
+            <i class="fa fa-random"></i>
             <span class="hidden md:inline">Variable Sized</span>
           </a>
         </li>
         <li class="text-center md:text-left">
           <a href="maxsubarr.html" class="flex items-center space-x-2 py-1 hover:text-white">
-            <i class="fa fa-archive"></i> <!-- Maximum Subarray Icon -->
+            <i class="fa fa-archive"></i>
             <span class="hidden md:inline">Maximum Subarray</span>
           </a>
         </li>
         <li class="text-center md:text-left">
           <a href="longestsubtstr.html" class="flex items-center space-x-2 py-1 hover:text-white">
-            <i class="fa fa-text-width"></i> <!-- Longest Substring Icon -->
+            <i class="fa fa-text-width"></i>
             <span class="hidden md:inline">Longest Substring</span>
           </a>
         </li>
@@ -210,7 +210,7 @@
     // Start Visualization
     startButton.addEventListener("click", () => {
       const array = inputArray.value.split(",").map(Number);
-      visualizer.innerHTML = ""; // Clear the visualization area
+      visualizer.innerHTML = "";
       steps = [];
       currentStep = 0;
 
@@ -238,7 +238,6 @@
       nextButton.classList.add("hidden");
     });
 
-    // Navigate Steps
     prevButton.addEventListener("click", () => {
       if (currentStep > 0) {
         currentStep--;
@@ -253,18 +252,16 @@
       }
     });
 
-    // Generate steps for a fixed window
     function generateFixedWindowSteps(array, windowSize) {
       for (let i = 0; i <= array.length - windowSize; i++) {
         steps.push({ start: i, end: i + windowSize });
       }
     }
 
-    // Display a specific step
     function displayStep(stepIndex) {
       const array = inputArray.value.split(",").map(Number);
       const { start, end } = steps[stepIndex];
-      visualizer.innerHTML = ""; // Clear previous visualization
+      visualizer.innerHTML = "";
 
       const row = document.createElement("div");
       row.className = "flex items-center gap-2";

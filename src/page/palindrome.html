@@ -198,7 +198,7 @@
   const animation = document.getElementById("animation");
   animation.innerHTML = "";
 
-  // Clean input (remove non-alphanumeric characters and convert to lowercase)
+  // Clean input
   const sanitizedInput = input.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
   let left = 0, right = sanitizedInput.length - 1;
 
@@ -214,7 +214,7 @@
   const output = document.getElementById("output");
   output.textContent = "";
 
-  // Create an interval for the visualization
+  // Creates an interval for the visualization
   const interval = setInterval(() => {
     if (left >= right) {
       clearInterval(interval);
@@ -222,7 +222,6 @@
       return;
     }
 
-    // Skip non-alphanumeric characters
     while (left < right && !sanitizedInput[left].match(/[a-zA-Z0-9]/)) {
       document.getElementById(`char-${left}`).classList.add("bg-gray-300");
       left++;
@@ -235,7 +234,6 @@
     const leftChar = document.getElementById(`char-${left}`);
     const rightChar = document.getElementById(`char-${right}`);
 
-    // If characters don't match, display mismatch and stop
     if (sanitizedInput[left] !== sanitizedInput[right]) {
       leftChar.classList.add("bg-red-400");
       rightChar.classList.add("bg-red-400");
@@ -244,7 +242,6 @@
       return;
     }
 
-    // If characters match, highlight them
     leftChar.classList.add("bg-green-400");
     rightChar.classList.add("bg-green-400");
     left++;
@@ -252,17 +249,10 @@
   }, 1000);
 }
 function resetVisualizer() {
-  // Clear the input field
   document.getElementById("inputString").value = "";
-
-  // Clear the output message
   document.getElementById("output").textContent = "";
-
-  // Clear the animation area
   const animation = document.getElementById("animation");
   animation.innerHTML = "";
-
-  // Remove any previous styles that might have been applied to characters
   const allChars = document.querySelectorAll(".char");
   allChars.forEach(char => {
     char.classList.remove("bg-gray-300", "bg-red-400", "bg-green-400");

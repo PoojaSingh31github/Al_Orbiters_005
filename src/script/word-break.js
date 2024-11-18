@@ -10,20 +10,16 @@ function startWordBreakVisualization() {
     visualizeWordBreak(word, dictionary);
 }
 
-// Visualize Word Break using Backtracking
+// Visualization of Word Break
 function visualizeWordBreak(word, dictionary) {
     const visualizationArea = document.getElementById("visualizationArea");
-    visualizationArea.innerHTML = ""; // Clear previous visualizations
-
+    visualizationArea.innerHTML = "";
     const n = word.length;
-
-    // Start the backtracking from the 0th index
     function canBreak(start, path) {
-        // If we reached the end of the word, then highlight the path and finish
         if (start === word.length) {
             setTimeout(() => {
-                visualizationArea.innerHTML = ""; // Clear intermediate highlights
-                highlightPath(word, path); // Highlight only the final segments
+                visualizationArea.innerHTML = "";
+                highlightPath(word, path);
                 alert("Word can be segmented!");
             }, 500 * path.length);
             return true;
@@ -57,22 +53,22 @@ function visualizeWordBreak(word, dictionary) {
     }
 }
 
-// Function to highlight a valid or invalid substring in the visualization
+// highlight a valid or invalid substring in the visualization
 function highlightSubstring(word, start, end, isValid) {
-    const substring = word.slice(start, end + 1); // Get the substring
+    const substring = word.slice(start, end + 1);
     const box = document.createElement("div");
     box.className =` visualization-box ${isValid ? "highlight-success" : "highlight-fail"}`;
-    box.textContent = substring; // Show the substring
-    document.getElementById("visualizationArea").appendChild(box); // Append the segment
+    box.textContent = substring;
+    document.getElementById("visualizationArea").appendChild(box);
 }
 
-// Function to highlight the entire valid path once the word is segmented
+// highlight the entire valid path
 function highlightPath(word, path) {
     path.forEach(({ start, end }) => {
-        const segment = word.slice(start, end); // Get the full segment as a string
+        const segment = word.slice(start, end);
         const segmentBox = document.createElement("div");
         segmentBox.className = "visualization-box highlight-path";
-        segmentBox.textContent = segment; // Display the segment
+        segmentBox.textContent = segment;
         document.getElementById("visualizationArea").appendChild(segmentBox);
     });
 }

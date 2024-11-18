@@ -233,7 +233,7 @@
             }
         }
 
-        // Solve the Rat in a Maze problem (DFS Backtracking)
+        // Rat in a Maze problem
         function solveRatInMaze() {
             const visited = Array.from({ length: 10 }, () => Array(10).fill(false));
             solutionPath = [];
@@ -256,7 +256,7 @@
                         return true;
                     }
 
-                    solutionPath.pop(); // Backtrack
+                    solutionPath.pop();
                 }
 
                 return false;
@@ -284,7 +284,6 @@
             }, 300);
         }
 
-        // Event listeners
         generateMazeBtn.addEventListener('click', generateRandomMaze);
         startSolutionBtn.addEventListener('click', () => {
             if (maze.length > 0) {

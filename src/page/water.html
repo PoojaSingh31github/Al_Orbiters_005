@@ -37,7 +37,6 @@
       margin-top: 20px;
     }
 
-    /* Start Button */
     .start-btn {
       padding: 12px 24px;
       font-size: 16px;
@@ -58,7 +57,6 @@
       cursor: not-allowed;
     }
 
-    /* Pause Button */
     .pause-btn {
       padding: 12px 24px;
       font-size: 16px;
@@ -79,7 +77,6 @@
       cursor: not-allowed;
     }
 
-    /* Reset Button */
     .reset-btn {
       padding: 12px 24px;
       font-size: 16px;
@@ -226,16 +223,13 @@
           <button id="renderChartButton" class="py-2 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Visualize</button>
         </div>
     
-        <!-- Chart Container -->
         <div id="chart"></div>
     
-        <!-- Information -->
         <div class="info text-center">
           <p>Current Area: <span id="currentArea">0</span></p>
           <p>Max Area: <span id="maxArea">0</span></p>
         </div>
     
-        <!-- Controls -->
         <div class="space-x-2">
           <div class="grid grid-cols-2 lg:grid-cols-4 lg:gap-4 gap-2 mt-6">
             
@@ -309,16 +303,16 @@ Your task is to find two lines that, together with the x-axis, form a container 
 
     // Function to render the chart
     function renderChart() {
-      chart.innerHTML = ""; // Clear chart
+      chart.innerHTML = "";
       if (heights.length === 0) return;
 
-      const maxHeight = Math.max(...heights); // Get the max height in the array
-      const scale = chart.offsetHeight / maxHeight; // Scale factor to fit bars within the container
+      const maxHeight = Math.max(...heights);
+      const scale = chart.offsetHeight / maxHeight;
 
       heights.forEach((height, index) => {
         const bar = document.createElement("div");
         bar.classList.add("bar");
-        bar.style.height = `${height * scale}px`; // Scale the bar height to fit container
+        bar.style.height = `${height * scale}px`;
         if (index === left || index === right) bar.classList.add("active");
 
         const barNumber = document.createElement("div");
@@ -346,7 +340,7 @@ Your task is to find two lines that, together with the x-axis, form a container 
       interval = setInterval(() => {
         if (left >= right) {
           clearInterval(interval);
-          finalAreaText.textContent = maxArea;  // Display the max area in the output section
+          finalAreaText.textContent = maxArea;
           startButton.disabled = false;
           pauseButton.disabled = true;
           return;
@@ -354,7 +348,6 @@ Your task is to find two lines that, together with the x-axis, form a container 
 
         calculateArea();
 
-        // Move the pointers
         if (heights[left] < heights[right]) {
           left++;
         } else {
@@ -362,7 +355,7 @@ Your task is to find two lines that, together with the x-axis, form a container 
         }
 
         renderChart();
-      }, 1000); // Delay between steps
+      }, 1000);
     }
 
     // Function to pause the visualization
@@ -374,20 +367,19 @@ Your task is to find two lines that, together with the x-axis, form a container 
 
     // Function to reset the visualization
     function resetVisualization() {
-  clearInterval(interval);  // Stop any running interval
-  left = 0;  // Reset left pointer
-  right = heights.length > 0 ? heights.length - 1 : 0;  // Reset right pointer to avoid negative index
+  clearInterval(interval);
+  left = 0;
+  right = heights.length > 0 ? heights.length - 1 : 0;
   maxArea = 0;  // Reset max area
-  currentAreaSpan.textContent = "0";  // Reset current area display
-  maxAreaSpan.textContent = "0";  // Reset max area display
-  finalAreaText.textContent = "N/A";  // Reset final area display
-  renderChart();  // Re-render the chart with the initial state
+  currentAreaSpan.textContent = "0";
+  maxAreaSpan.textContent = "0";
+  finalAreaText.textContent = "N/A";
+  renderChart();
 
-  startButton.disabled = false;  // Enable start button
-  pauseButton.disabled = true;  // Disable pause button
+  startButton.disabled = false;
+  pauseButton.disabled = true;
 }
 
-    // Render chart based on user input
     renderChartButton.addEventListener("click", () => {
       const input = document.getElementById("heightsInput").value;
       heights = input.split(",").map(num => parseInt(num.trim(), 10));
@@ -397,7 +389,7 @@ Your task is to find two lines that, together with the x-axis, form a container 
         maxArea = 0;
         currentAreaSpan.textContent = "0";
         maxAreaSpan.textContent = "0";
-        finalAreaText.textContent = "N/A";  // Reset result
+        finalAreaText.textContent = "N/A";
         renderChart();
       }
     });

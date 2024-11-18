@@ -7,7 +7,7 @@ hamburgerBtn.addEventListener("click", () => {
 });
 // Dark-Light Mode
 const bodyCont = document.getElementById("bodyCont");
-const switchBtn = document.querySelectorAll("#switch input"); // Select both switches
+const switchBtn = document.querySelectorAll("#switch input");
 
 const logoDark = document.querySelector(".logo-dark");
 const logoLight = document.querySelector(".logo-light");
@@ -15,8 +15,6 @@ const logoLight = document.querySelector(".logo-light");
 switchBtn.forEach((btn) => {
   btn.addEventListener("click", () => {
     bodyCont.classList.toggle("dark");
-
-    // Toggle hidden class for the logos
     logoDark.classList.toggle("hidden");
     logoLight.classList.toggle("hidden");
   });
@@ -39,19 +37,10 @@ tailwind.config = {
     },
     screens: {
       sm: "640px",
-      // => @media (min-width: 640px) { ... }
-
       md: "768px",
-      // => @media (min-width: 768px) { ... }
-
       lg: "1024px",
-      // => @media (min-width: 1024px) { ... }
-
       xl: "1280px",
-      // => @media (min-width: 1280px) { ... }
-
       "2xl": "1536px",
-      // => @media (min-width: 1536px) { ... }
     },
   },
 };
@@ -68,14 +57,12 @@ let currentIndex = 0;
 
 // Update active slide
 function updateCarousel(index) {
-  // Remove active class from all items and indicators
   carouselItems.forEach((item, i) => {
     item.classList.remove("active");
     indicators[i].classList.remove("bg-gray-600");
     indicators[i].classList.add("bg-gray-400");
   });
 
-  // Add active class to current item and indicator
   carouselItems[index].classList.add("active");
   indicators[index].classList.add("bg-gray-600");
 }
@@ -97,7 +84,7 @@ document.getElementById("prevBtn").addEventListener("click", () => {
   updateCarousel(currentIndex);
 });
 
-// Indicator click
+// Indicator
 indicators.forEach((indicator, index) => {
   indicator.addEventListener("click", () => {
     currentIndex = index;

@@ -212,7 +212,7 @@
     document.getElementById('maxSize').addEventListener('change', function () {
         maxSize = parseInt(this.value) || Infinity;
         if (queue.length > maxSize) {
-            queue.splice(maxSize); // Trim the queue to the new max size
+            queue.splice(maxSize);
             updateDisplay();
         }
     });
@@ -246,7 +246,7 @@
 
     function dequeue() {
         if (queue.length > 0) {
-            queue.shift() // Removes from the beginning of the queue
+            queue.shift()
             updateDisplay()
         } else {
             alert('Queue is empty.')

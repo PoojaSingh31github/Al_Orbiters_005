@@ -18,23 +18,23 @@
   margin: 20px 0;
   flex-wrap: wrap;
   justify-content: center;
-  flex-wrap: nowrap; /* Prevents wrapping */
-  overflow-x: hidden; /* Hides horizontal overflow */
-  overflow-y: auto; /* Optional: Add vertical scroll if needed */
-  white-space: nowrap; /* Keeps content in a single line */
+  flex-wrap: nowrap;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: nowrap;
   text-overflow: ellipsis;
   
 }
 ::-webkit-scrollbar { display: none; }
 .node {
   flex-shrink: 0;
-  width: 100px; /* Adjust width to suit your design */
-  height: 50px; /* Example height */
-  background-color: #4a5568; /* Example background */
-  color: white; /* Example text color */
-  margin-right: 10px; /* Space between nodes */
+  width: 100px;
+  height: 50px;
+  background-color: #4a5568;
+  color: white;
+  margin-right: 10px;
   text-align: center;
-  line-height: 50px; /* Center text vertically */
+  line-height: 50px;
   border-radius: 4px;
   overflow: hidden;
 }

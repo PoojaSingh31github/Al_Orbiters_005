@@ -61,7 +61,6 @@ class LinkedList {
     listContainer.innerHTML = "";
     let current = this.head;
 
-    // Display nodes
     while (current) {
       const nodeDiv = document.createElement("div");
       nodeDiv.className = "node";
@@ -77,7 +76,6 @@ class LinkedList {
       current = current.next;
     }
 
-    // Display the null node at the end
     const nullNode = document.createElement("div");
     nullNode.className = "null-node";
     nullNode.textContent = "null";

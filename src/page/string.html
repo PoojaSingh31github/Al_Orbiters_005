@@ -224,11 +224,9 @@
 
 </body>
 <script>
-    // Initialize array
-    // Initialize the string
     let myString = "";
 
-    // Function to update the string display
+    // update the string
     function updateDisplay() {
         const stringDisplay = document.getElementById('stringDisplay');
         stringDisplay.innerText = myString || "String is empty";
@@ -265,11 +263,11 @@
     // Append a character at a specific index
     function appendChar() {
         const indexInput = document.getElementById('appendIndex');
-        const charInput = document.getElementById('appendValue'); // Corrected ID
+        const charInput = document.getElementById('appendValue');
         const index = Number(indexInput.value.trim());
         const char = charInput.value.trim();
 
-        // Validate input: index and character
+        // Validate input - index and character
         if (indexInput.value === '' || charInput.value === '') {
             alert('Both index and character fields are required.');
             return;
@@ -285,7 +283,7 @@
             return;
         }
 
-        // Perform append operation
+        // append operation
         myString = myString.slice(0, index) + char + myString.slice(index);
         indexInput.value = '';
         charInput.value = '';
@@ -297,11 +295,11 @@
     // Update a character at a specific index
     function updateChar() {
         const indexInput = document.getElementById('updateIndex');
-        const charInput = document.getElementById('updateValue'); // Corrected ID
+        const charInput = document.getElementById('updateValue');
         const index = Number(indexInput.value.trim());
         const char = charInput.value.trim();
 
-        // Validate input: index and character
+        // Validate input - index and character
         if (indexInput.value === '' || charInput.value === '') {
             alert('Both index and character fields are required.');
             return;
@@ -317,15 +315,13 @@
             return;
         }
 
-        // Perform update operation
+        // update operation
         myString = myString.slice(0, index) + char + myString.slice(index + 1);
         indexInput.value = '';
         charInput.value = '';
         updateDisplay();
     }
 
-
-    // Initialize display
     updateDisplay();
 
 

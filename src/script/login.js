@@ -27,7 +27,6 @@ const provider = new GoogleAuthProvider();
 document.getElementById('loginWithGoogle').addEventListener('click', () => {
     signInWithPopup(auth, provider)
         .then((result) => {
-            // On successful login, redirect to dashboard
             window.location.href = "index.html";
         })
         .catch((error) => {
@@ -50,12 +49,11 @@ document.getElementById('emailSigninForm').addEventListener('submit', (e) => {
   
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // Check if userCredential exists (it always will if no error occurred)
       if (!userCredential) {
-        alert("Sign up first to log in"); // This line may not be needed as it won't reach here if there are errors
+        alert("Sign up first to log in");
       }
       console.log("User signed in:", userCredential.user);
-      window.location.href = "index.html"; // Redirect to dashboard
+      window.location.href = "index.html";
     })
     .catch((error) => {
       if (error.code === 'auth/user-not-found') {

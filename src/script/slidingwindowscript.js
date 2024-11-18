@@ -2,7 +2,7 @@ let slidingWindows = [];
 let currentIndex = 0;
 let animationInterval = null;
 
-// Handle sliding window type change
+// Handles sliding window type change
 document.getElementById("windowType").addEventListener("change", (event) => {
   const fixedWindowInput = document.getElementById("fixedWindowInput");
   const variableWindowInput = document.getElementById("variableWindowInput");
@@ -16,7 +16,7 @@ document.getElementById("windowType").addEventListener("change", (event) => {
   }
 });
 
-// Handle Enter button click
+// Handles Enter button
 document.getElementById("enterButton").addEventListener("click", () => {
   const inputArray = document.getElementById("inputArray").value
     .split(",")
@@ -24,7 +24,7 @@ document.getElementById("enterButton").addEventListener("click", () => {
   const windowType = document.getElementById("windowType").value;
   const visualizer = document.getElementById("visualizer");
 
-  visualizer.innerHTML = ""; // Clear previous visualization
+  visualizer.innerHTML = "";
   slidingWindows = [];
   currentIndex = 0;
 
@@ -32,7 +32,6 @@ document.getElementById("enterButton").addEventListener("click", () => {
     clearInterval(animationInterval);
   }
 
-  // Validate array input
   if (inputArray.length === 0 || inputArray.some(isNaN)) {
     showError("Invalid array input. Please enter a comma-separated list of numbers.");
     return;
@@ -41,7 +40,6 @@ document.getElementById("enterButton").addEventListener("click", () => {
   if (windowType === "fixed") {
     const windowSize = parseInt(document.getElementById("windowSize").value);
 
-    // Validate fixed window size
     if (isNaN(windowSize) || windowSize <= 0) {
       showError("Invalid fixed window size. Please enter a positive number.");
       return;
@@ -61,7 +59,6 @@ document.getElementById("enterButton").addEventListener("click", () => {
       .split(",")
       .map((num) => parseInt(num.trim()));
 
-    // Validate variable window sizes
     if (
       variableSizes.length === 0 ||
       variableSizes.some(isNaN) ||
@@ -90,7 +87,7 @@ document.getElementById("enterButton").addEventListener("click", () => {
     for (const size of variableSizes) {
       if (start + size <= inputArray.length) {
         slidingWindows.push(inputArray.slice(start, start + size));
-        start += size; // Move start index
+        start += size;
       } else {
         break;
       }
@@ -101,7 +98,7 @@ document.getElementById("enterButton").addEventListener("click", () => {
   animateSlidingWindow();
 });
 
-// Handle Reset button click
+// Handles Reset button
 document.getElementById("resetButton").addEventListener("click", resetVisualizer);
 
 function resetVisualizer() {
@@ -116,13 +113,11 @@ function resetVisualizer() {
   }
 }
 
-// Display error messages
 function showError(message) {
   const visualizer = document.getElementById("visualizer");
   visualizer.innerHTML = `<p class="text-red-500 font-semibold">${message}</p>`;
 }
 
-// Display the full array initially
 function displayInitialArray(inputArray) {
   const visualizer = document.getElementById("visualizer");
   visualizer.innerHTML = "";
@@ -139,7 +134,7 @@ function displayInitialArray(inputArray) {
 
 // Animate the sliding window
 function animateSlidingWindow() {
-  const interval = 1000; // 1-second interval
+  const interval = 1000;
   let windowElements = [];
 
   animationInterval = setInterval(() => {
