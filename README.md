@@ -27,14 +27,14 @@ algorithm-visualizer/
 ```
 
 ## Video Walkthrough of the Project
-Attach a very short video walkthrough of all of the features (1 - 3 minutes)
+Attach a very short video walkthrough of all of the features (7-8 minutes)
 
-[Video Link](link-to-video)
+[Video Link]([link-to-video](https://youtu.be/ztrGwEPDLqk))
 
-## Video Walkthrough of the Codebase
-Attach a very short video walkthrough of the codebase (1 - 5 minutes)
+## Video Walkthrough of the Codebase Questionnaires
+Attach a very short video walkthrough of the codebase (10-11 minutes)
 
-[Codebase Walkthrough Link](link-to-video)
+[Codebase Questionnaires Walkthrough Link]([link-to-vide](https://youtu.be/mV_iEhEgFh4)o)
 
 ## Features
 List out the key features of your application.
@@ -49,6 +49,25 @@ List your design decisions and assumptions.
 - **Responsiveness**: The UI is designed to work smoothly across devices (desktop, tablet, mobile).
 - **Modular Code**: Code is modular for easy scalability; each algorithm is a separate module.
 - **Animation Framework**: Used CSS and JavaScript animations for smooth visualization transitions.
+
+## screenshots
+- **login**:
+  ![image](https://github.com/user-attachments/assets/0f21d07d-0037-4ec6-9939-c48fe22629c5)
+
+- **Home**:
+![image](https://github.com/user-attachments/assets/41106574-f5a0-48d4-9712-d85540fd8d33)
+![image](https://github.com/user-attachments/assets/a08da2c2-9418-4cd5-a44c-c3d73e9574d2)
+
+- **algorithms cards**:
+![image](https://github.com/user-attachments/assets/ad2fd08e-98b8-4ba2-9bcf-14b9a9ba2378)
+
+- **algorithms cards**:
+![image](https://github.com/user-attachments/assets/768c74e2-59ce-49da-9b7e-3876aa754066)
+![image](https://github.com/user-attachments/assets/3996cf5c-b675-4695-ab62-4caa219e6da2)
+
+- **responsiveness**:
+![image](https://github.com/user-attachments/assets/dba2636c-b788-44e0-9030-01010341a370)
+
 
 ## Installation & Getting Started
 Detailed instructions on how to install, configure, and get the project running.
