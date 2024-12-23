@@ -34,7 +34,7 @@ Attach a very short video walkthrough of all of the features (7-8 minutes)
 ## Video Walkthrough of the Codebase Questionnaires
 Attach a very short video walkthrough of the codebase (10-11 minutes)
 
-[Codebase Questionnaires Walkthrough Link]([https://youtu.be/mV_iEhEgFh4)
+[Codebase Questionnaires Walkthrough Link](https://youtu.be/mV_iEhEgFh4)
 
 ## Features
 List out the key features of your application.
