@@ -7,7 +7,7 @@ The **Algorithm Visualizer** is an interactive web application designed to help 
 Frontend
 
 ## Deployed App
-- **Frontend**: [Deployed Frontend Link][(https://deployed-site.whatever](https://al-orbiters-005-git-master-poojasingh31githubs-projects.vercel.app/))
+- **Frontend**: [Deployed Frontend Link](al-orbiters-005.vercel.app)
 
 
 ## Directory Structure
