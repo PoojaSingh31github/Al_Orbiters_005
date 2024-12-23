@@ -29,12 +29,12 @@ algorithm-visualizer/
 ## Video Walkthrough of the Project
 Attach a very short video walkthrough of all of the features (7-8 minutes)
 
-[Video Link]([link-to-video](https://youtu.be/ztrGwEPDLqk))
+[Video Link](https://youtu.be/ztrGwEPDLqk)
 
 ## Video Walkthrough of the Codebase Questionnaires
 Attach a very short video walkthrough of the codebase (10-11 minutes)
 
-[Codebase Questionnaires Walkthrough Link]([link-to-vide](https://youtu.be/mV_iEhEgFh4)o)
+[Codebase Questionnaires Walkthrough Link]([https://youtu.be/mV_iEhEgFh4)
 
 ## Features
 List out the key features of your application.
